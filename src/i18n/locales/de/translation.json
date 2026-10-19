@@ -371,6 +371,13 @@
         "title": "Füllwörter entfernen",
         "description": "Entfernt häufige Verzögerungslaute aus Transkriptionen. Deaktivieren Sie diese Option, um sie beizubehalten."
       },
+      "transcriptArchive": {
+        "title": "Transkripte speichern",
+        "description": "Hängt jedes Transkript an eine tägliche Markdown-Datei in einem lokalen Ordner an. Alles bleibt auf deinem Mac; wähle einen Ordner in iCloud Drive oder Google Drive, um ihn zu synchronisieren.",
+        "folder": "Archivordner",
+        "folderDescription": "Die täglichen Transkriptdateien werden hier gespeichert.",
+        "chooseFolder": "Auswählen…"
+      },
       "chineseScript": {
         "title": "Chinesische Schrift",
         "description": "Schreibt Transkriptionen auf Mandarin und Kantonesisch in vereinfachten oder traditionellen Schriftzeichen. Andere Sprachen bleiben unverändert.",

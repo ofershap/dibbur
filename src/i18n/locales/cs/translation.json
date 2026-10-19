@@ -371,6 +371,13 @@
         "title": "Odstranit výplňová slova",
         "description": "Odstraňuje běžná slova vyjadřující váhání z přepisů. Vypnutím je zachováte."
       },
+      "transcriptArchive": {
+        "title": "Ukládat přepisy",
+        "description": "Připojí každý přepis k dennímu souboru Markdown v místní složce. Vše zůstává na vašem Macu; pro synchronizaci zvolte složku v iCloud Drive nebo Google Drive.",
+        "folder": "Složka archivu",
+        "folderDescription": "Denní soubory přepisů se ukládají sem.",
+        "chooseFolder": "Vybrat…"
+      },
       "chineseScript": {
         "title": "Čínské písmo",
         "description": "Zapisuje přepisy v mandarínštině a kantonštině zjednodušenými nebo tradičními znaky. Ostatní jazyky zůstávají beze změny.",

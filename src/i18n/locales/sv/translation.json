@@ -371,6 +371,13 @@
         "title": "Ta bort utfyllnadsord",
         "description": "Tar bort vanliga tvekljud från transkriberingar. Stäng av för att behålla dem."
       },
+      "transcriptArchive": {
+        "title": "Spara transkriptioner",
+        "description": "Lägger varje transkription i en daglig Markdown-fil i en lokal mapp. Allt stannar på din Mac; välj en mapp i iCloud Drive eller Google Drive för att synkronisera den.",
+        "folder": "Arkivmapp",
+        "folderDescription": "Dagliga transkriptionsfiler sparas här.",
+        "chooseFolder": "Välj…"
+      },
       "chineseScript": {
         "title": "Kinesisk skrift",
         "description": "Skriver mandarin- och kantonesiska transkriptioner med förenklade eller traditionella tecken. Andra språk lämnas oförändrade.",

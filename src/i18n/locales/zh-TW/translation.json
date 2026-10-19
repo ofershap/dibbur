@@ -371,6 +371,13 @@
         "title": "移除語助詞",
         "description": "從轉錄中移除常見的語助詞。關閉此選項即可保留這些詞。"
       },
+      "transcriptArchive": {
+        "title": "儲存逐字稿",
+        "description": "將每段逐字稿附加到本機資料夾中的每日 Markdown 檔案。所有內容都留在你的 Mac 上；選擇 iCloud Drive 或 Google Drive 內的資料夾即可同步。",
+        "folder": "封存資料夾",
+        "folderDescription": "每日逐字稿檔案會儲存在這裡。",
+        "chooseFolder": "選擇…"
+      },
       "chineseScript": {
         "title": "繁簡轉換",
         "description": "將國語和粵語轉錄輸出為簡體或繁體中文。其他語言不受影響。",

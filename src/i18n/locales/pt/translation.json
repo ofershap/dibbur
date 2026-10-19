@@ -371,6 +371,13 @@
         "title": "Remover palavras de preenchimento",
         "description": "Remove hesitações comuns das transcrições. Desative para mantê-las."
       },
+      "transcriptArchive": {
+        "title": "Guardar transcrições",
+        "description": "Acrescenta cada transcrição a um ficheiro Markdown diário numa pasta local. Tudo fica no seu Mac; escolha uma pasta dentro do iCloud Drive ou Google Drive para a sincronizar.",
+        "folder": "Pasta de arquivo",
+        "folderDescription": "Os ficheiros de transcrição diários são guardados aqui.",
+        "chooseFolder": "Escolher…"
+      },
       "chineseScript": {
         "title": "Escrita chinesa",
         "description": "Escreve as transcrições em mandarim e cantonês com caracteres simplificados ou tradicionais. Os outros idiomas não são alterados.",

@@ -371,6 +371,13 @@
         "title": "フィラー語を削除",
         "description": "文字起こしから一般的なフィラー語を削除します。残すにはオフにしてください。"
       },
+      "transcriptArchive": {
+        "title": "文字起こしを保存",
+        "description": "すべての文字起こしをローカルフォルダ内の日別Markdownファイルに追加します。データはすべてMac上に残ります。同期したい場合はiCloud DriveやGoogle Drive内のフォルダを選んでください。",
+        "folder": "アーカイブフォルダ",
+        "folderDescription": "日別の文字起こしファイルはここに保存されます。",
+        "chooseFolder": "選択…"
+      },
       "chineseScript": {
         "title": "中国語の表記",
         "description": "北京語と広東語の文字起こしを簡体字または繁体字で出力します。他の言語は変更されません。",

@@ -371,6 +371,13 @@
         "title": "Hapus Kata Pengisi",
         "description": "Menghapus kata pengisi umum dari transkripsi. Nonaktifkan untuk mempertahankannya."
       },
+      "transcriptArchive": {
+        "title": "Simpan Transkrip",
+        "description": "Menambahkan setiap transkrip ke file Markdown harian di folder lokal. Semuanya tetap di Mac Anda; pilih folder di dalam iCloud Drive atau Google Drive untuk menyinkronkannya.",
+        "folder": "Folder arsip",
+        "folderDescription": "File transkrip harian disimpan di sini.",
+        "chooseFolder": "Pilih…"
+      },
       "chineseScript": {
         "title": "Aksara Tionghoa",
         "description": "Menulis transkripsi Mandarin dan Kanton dengan aksara Sederhana atau Tradisional. Bahasa lain tidak diubah.",

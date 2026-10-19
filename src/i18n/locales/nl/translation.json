@@ -371,6 +371,13 @@
         "title": "Opvulwoorden verwijderen",
         "description": "Verwijdert veelvoorkomende aarzelwoorden uit transcripties. Schakel dit uit om ze te behouden."
       },
+      "transcriptArchive": {
+        "title": "Transcripties bewaren",
+        "description": "Voegt elke transcriptie toe aan een dagelijks Markdown-bestand in een lokale map. Alles blijft op je Mac; kies een map in iCloud Drive of Google Drive om te synchroniseren.",
+        "folder": "Archiefmap",
+        "folderDescription": "Dagelijkse transcriptiebestanden worden hier opgeslagen.",
+        "chooseFolder": "Kiezen…"
+      },
       "chineseScript": {
         "title": "Chinees schrift",
         "description": "Schrijft Mandarijn- en Kantonese transcripties in vereenvoudigde of traditionele karakters. Andere talen blijven ongewijzigd.",

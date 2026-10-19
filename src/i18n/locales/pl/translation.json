@@ -371,6 +371,13 @@
         "title": "Usuń wyrazy wypełniające",
         "description": "Usuwa typowe słowa wyrażające wahanie z transkrypcji. Wyłącz, aby je zachować."
       },
+      "transcriptArchive": {
+        "title": "Zapisuj transkrypcje",
+        "description": "Dopisuje każdą transkrypcję do dziennego pliku Markdown w lokalnym folderze. Wszystko zostaje na twoim Macu; wybierz folder w iCloud Drive lub Google Drive, aby go synchronizować.",
+        "folder": "Folder archiwum",
+        "folderDescription": "Dzienne pliki transkrypcji są zapisywane tutaj.",
+        "chooseFolder": "Wybierz…"
+      },
       "chineseScript": {
         "title": "Pismo chińskie",
         "description": "Zapisuje transkrypcje w języku mandaryńskim i kantońskim znakami uproszczonymi lub tradycyjnymi. Inne języki pozostają bez zmian.",

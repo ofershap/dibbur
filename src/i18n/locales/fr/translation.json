@@ -371,6 +371,13 @@
         "title": "Supprimer les mots de remplissage",
         "description": "Supprime les hésitations courantes des transcriptions. Désactivez cette option pour les conserver."
       },
+      "transcriptArchive": {
+        "title": "Enregistrer les transcriptions",
+        "description": "Ajoute chaque transcription à un fichier Markdown quotidien dans un dossier local. Tout reste sur votre Mac ; choisissez un dossier dans iCloud Drive ou Google Drive pour le synchroniser.",
+        "folder": "Dossier d'archive",
+        "folderDescription": "Les fichiers de transcription quotidiens sont enregistrés ici.",
+        "chooseFolder": "Choisir…"
+      },
       "chineseScript": {
         "title": "Écriture chinoise",
         "description": "Écrit les transcriptions en mandarin et en cantonais en caractères simplifiés ou traditionnels. Les autres langues ne sont pas modifiées.",

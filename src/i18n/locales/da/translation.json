@@ -371,6 +371,13 @@
         "title": "Fjern fyldord",
         "description": "Fjerner almindelige tøveord fra transskriptioner. Slå fra for at beholde dem."
       },
+      "transcriptArchive": {
+        "title": "Gem transskriptioner",
+        "description": "Tilføjer hver transskription til en daglig Markdown-fil i en lokal mappe. Alt bliver på din Mac; vælg en mappe i iCloud Drive eller Google Drive for at synkronisere den.",
+        "folder": "Arkivmappe",
+        "folderDescription": "Daglige transskriptionsfiler gemmes her.",
+        "chooseFolder": "Vælg…"
+      },
       "chineseScript": {
         "title": "Kinesisk skrift",
         "description": "Skriver mandarin- og kantonesisk-transskriptioner med forenklede eller traditionelle tegn. Andre sprog ændres ikke.",

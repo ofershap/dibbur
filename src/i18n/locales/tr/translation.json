@@ -371,6 +371,13 @@
         "title": "Dolgu Sözcüklerini Kaldır",
         "description": "Transkripsiyonlardaki yaygın duraksama sözcüklerini kaldırır. Bunları korumak için kapatın."
       },
+      "transcriptArchive": {
+        "title": "Transkriptleri Kaydet",
+        "description": "Her transkripti yerel bir klasördeki günlük Markdown dosyasına ekler. Her şey Mac'inizde kalır; eşitlemek için iCloud Drive veya Google Drive içinde bir klasör seçin.",
+        "folder": "Arşiv klasörü",
+        "folderDescription": "Günlük transkript dosyaları buraya kaydedilir.",
+        "chooseFolder": "Seç…"
+      },
       "chineseScript": {
         "title": "Çince yazı",
         "description": "Mandarin ve Kantonca transkripsiyonları Basitleştirilmiş veya Geleneksel karakterlerle yazar. Diğer diller değiştirilmez.",

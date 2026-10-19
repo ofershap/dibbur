@@ -371,6 +371,13 @@
         "title": "移除语气词",
         "description": "从转录中移除常见的语气词。关闭此选项即可保留这些词。"
       },
+      "transcriptArchive": {
+        "title": "保存转写",
+        "description": "将每次转写追加到本地文件夹中的每日 Markdown 文件。所有内容都保留在你的 Mac 上；选择 iCloud Drive 或 Google Drive 内的文件夹即可同步。",
+        "folder": "归档文件夹",
+        "folderDescription": "每日转写文件保存在这里。",
+        "chooseFolder": "选择…"
+      },
       "chineseScript": {
         "title": "简繁转换",
         "description": "将普通话和粤语转录输出为简体或繁体中文。其他语言不受影响。",

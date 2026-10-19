@@ -371,6 +371,13 @@
         "title": "Elimina les falques",
         "description": "Elimina les expressions de vacil·lació habituals de les transcripcions. Desactiveu aquesta opció per conservar-les."
       },
+      "transcriptArchive": {
+        "title": "Desa les transcripcions",
+        "description": "Afegeix cada transcripció a un fitxer Markdown diari en una carpeta local. Tot es queda al teu Mac; tria una carpeta dins l'iCloud Drive o el Google Drive per sincronitzar-la.",
+        "folder": "Carpeta de l'arxiu",
+        "folderDescription": "Els fitxers de transcripció diaris es desen aquí.",
+        "chooseFolder": "Tria…"
+      },
       "chineseScript": {
         "title": "Escriptura xinesa",
         "description": "Escriu les transcripcions en mandarí i cantonès amb caràcters simplificats o tradicionals. Els altres idiomes no es modifiquen.",
