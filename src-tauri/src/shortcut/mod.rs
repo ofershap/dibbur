@@ -1407,6 +1407,38 @@ pub fn change_filler_word_removal_enabled_setting(
 
 #[tauri::command]
 #[specta::specta]
+pub fn change_transcript_archive_enabled_setting(
+    app: AppHandle,
+    enabled: bool,
+) -> Result<(), String> {
+    let mut settings = settings::get_settings(&app);
+    settings.transcript_archive_enabled = enabled;
+    settings::write_settings(&app, settings);
+    Ok(())
+}
+
+#[tauri::command]
+#[specta::specta]
+pub fn change_transcript_archive_dir_setting(
+    app: AppHandle,
+    dir: Option<String>,
+) -> Result<(), String> {
+    let mut settings = settings::get_settings(&app);
+    settings.transcript_archive_dir = dir.filter(|d| !d.is_empty());
+    settings::write_settings(&app, settings);
+    Ok(())
+}
+
+#[tauri::command]
+#[specta::specta]
+pub fn get_transcript_archive_dir(app: AppHandle) -> Result<String, String> {
+    crate::managers::transcript_archive::archive_dir(&app)
+        .map(|p| p.display().to_string())
+        .map_err(|e| e.to_string())
+}
+
+#[tauri::command]
+#[specta::specta]
 pub fn change_chinese_script_setting(app: AppHandle, script: ChineseScript) -> Result<(), String> {
     let mut settings = settings::get_settings(&app);
     settings.chinese_script = script;

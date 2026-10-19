@@ -518,6 +518,15 @@ pub struct AppSettings {
         deserialize_with = "deserialize_transcribe_gpu_device"
     )]
     pub transcribe_gpu_device: Option<String>,
+    /// Optional transcript archive: when enabled, every completed
+    /// transcription is appended to a daily Markdown file in
+    /// `transcript_archive_dir` (default: ~/Documents/Dibbur Transcripts).
+    /// Files stay fully local; the folder can live inside an iCloud Drive or
+    /// Google Drive sync directory. Off by default.
+    #[serde(default)]
+    pub transcript_archive_enabled: bool,
+    #[serde(default)]
+    pub transcript_archive_dir: Option<String>,
     #[serde(default)]
     pub extra_recording_buffer_ms: u64,
     #[serde(default = "default_vad_enabled")]

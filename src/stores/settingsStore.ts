@@ -189,6 +189,10 @@ const settingUpdaters: {
   },
   filler_word_removal_enabled: (value) =>
     commands.changeFillerWordRemovalEnabledSetting(value as boolean),
+  transcript_archive_enabled: (value) =>
+    commands.changeTranscriptArchiveEnabledSetting(value as boolean),
+  transcript_archive_dir: (value) =>
+    commands.changeTranscriptArchiveDirSetting(value as string | null),
   chinese_script: (value) =>
     commands.changeChineseScriptSetting(value as ChineseScript),
   show_tray_icon: (value) =>

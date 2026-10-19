@@ -31,6 +31,7 @@ Dibbur is a free, open-source alternative to Wispr Flow and Dragon for Hebrew sp
 - **Private by default** - speech-to-text runs on your Mac. Your voice never leaves the computer.
 - **Works in every app** - hold your shortcut, talk, release: the text is pasted wherever your cursor is - WhatsApp, Gmail, Docs, Cursor.
 - **Arabic too** - the optional **Lahjat Turbo** model (oddadmix dialectal fine-tune, Apache-2.0) is the strongest open Arabic dialect model: about 31% WER on Palestinian, 35% Lebanese, 25% Egyptian and 17% Gulf Arabic, where stock Whisper lands at 38-53%.
+- **Transcript archive (optional)** - turn on **Save Transcripts** in Settings > Advanced > History and every dictation is appended to a daily Markdown file in a local folder (default `~/Documents/Dibbur Transcripts`). Nothing leaves your Mac unless you put the folder inside iCloud Drive or Google Drive. Off by default.
 - **Optional AI cleanup (off by default)** - removes Hebrew filler words (אממ, כאילו, נו...), fixes punctuation, keeps your language. Works with a free API key (Gemini, Groq), a local model through Ollama, or Apple Intelligence.
 
 ## Install (macOS)
@@ -83,6 +84,7 @@ Included since v0.2: pick the **Lahjat Turbo (Arabic)** model in Settings > Mode
 
 - v0.1 - Hebrew-first Handy fork: ivrit-ai model built in, Hebrew-aware cleanup prompt, Dibbur branding.
 - v0.2 - Arabic dictation (Lahjat Turbo dialectal model, Arabic filler cleanup). (Current release.)
+- v0.3 - Optional transcript archive: daily Markdown files in a folder you choose, plus a read-only MCP server (`transcripts-mcp/`) to list and search them. (In progress.)
 - v0.3 - Hebrew UI translation, floating on-screen dictation button, notarized builds.
 - Later - optional transcript archive with MCP access, auto-start on speech.
 

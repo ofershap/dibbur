@@ -1,0 +1,16 @@
+{
+  "name": "dibbur-transcripts-mcp",
+  "version": "0.3.0",
+  "description": "Read-only MCP server for the Dibbur transcript archive: list and search daily Markdown transcripts.",
+  "type": "module",
+  "license": "MIT",
+  "bin": {
+    "dibbur-transcripts-mcp": "./index.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  }
+}
