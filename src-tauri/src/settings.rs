@@ -1026,6 +1026,8 @@ pub fn get_default_settings() -> AppSettings {
         chinese_script: default_chinese_script(),
         transcribe_accelerator: TranscribeAcceleratorSetting::default(),
         transcribe_gpu_device: default_transcribe_gpu_device(),
+        transcript_archive_enabled: false,
+        transcript_archive_dir: None,
         extra_recording_buffer_ms: 0,
         vad_enabled: default_vad_enabled(),
         vad_backend: VadBackend::default(),
