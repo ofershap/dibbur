@@ -1,23 +1,19 @@
 name: "Unsigned Mac Build"
 
-# Manual, unsigned macOS build for Dibbur. The fork has no Apple signing
-# secrets, so the signing workflows fail on macOS; this one skips signing and
-# uploads the .dmg artifacts directly.
-
 on: workflow_dispatch
-
-permissions: contents: write
 
 jobs:
   build:
+    permissions:
+      contents: write
     strategy:
       fail-fast: false
       matrix:
         include:
-          - platform: "macos-26" # Apple Silicon
+          - platform: "macos-26"
             args: "--target aarch64-apple-darwin"
             target: "aarch64-apple-darwin"
-          - platform: "macos-latest" # Intel
+          - platform: "macos-latest"
             args: "--target x86_64-apple-darwin"
             target: "x86_64-apple-darwin"
     uses: ./.github/workflows/build.yml
@@ -25,6 +21,6 @@ jobs:
       platform: ${{ matrix.platform }}
       target: ${{ matrix.target }}
       build-args: ${{ matrix.args }}
+      upload-artifacts: true
       sign-binaries: false
       asset-prefix: "dibbur"
-      upload-artifacts: true
