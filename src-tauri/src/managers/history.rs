@@ -278,8 +278,7 @@ impl HistoryManager {
 
         // Optional local Markdown archive (off by default). Archive failures
         // never fail history saves.
-        if let Err(e) =
-            crate::managers::transcript_archive::append_entry(&self.app_handle, &entry)
+        if let Err(e) = crate::managers::transcript_archive::append_entry(&self.app_handle, &entry)
         {
             error!("Failed to archive transcript: {}", e);
         }

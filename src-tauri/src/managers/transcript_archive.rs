@@ -15,8 +15,8 @@ use anyhow::Result;
 use chrono::Local;
 use tauri::{AppHandle, Manager};
 
-use crate::settings::get_settings;
 use super::history::HistoryEntry;
+use crate::settings::get_settings;
 
 const DEFAULT_DIR_NAME: &str = "Dibbur Transcripts";
 
