@@ -83,8 +83,8 @@ Included since v0.2: pick the **Lahjat Turbo (Arabic)** model in Settings > Mode
 ## Roadmap
 
 - v0.1 - Hebrew-first Handy fork: ivrit-ai model built in, Hebrew-aware cleanup prompt, Dibbur branding.
-- v0.2 - Arabic dictation (Lahjat Turbo dialectal model, Arabic filler cleanup). (Current release.)
-- v0.3 - Optional transcript archive: daily Markdown files in a folder you choose, plus a read-only MCP server (`transcripts-mcp/`) to list and search them. (In progress.)
+- v0.2 - Arabic dictation (Lahjat Turbo dialectal model, Arabic filler cleanup).
+- v0.3 - Optional transcript archive: daily Markdown files in a folder you choose, plus a read-only MCP server (`transcripts-mcp/`) to list and search them. (Current release.)
 - v0.3 - Hebrew UI translation, floating on-screen dictation button, notarized builds.
 - Later - optional transcript archive with MCP access, auto-start on speech.
 
