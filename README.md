@@ -30,6 +30,7 @@ Dibbur is a free, open-source alternative to Wispr Flow and Dragon for Hebrew sp
 - **Hebrew accuracy first** - ships with the [ivrit-ai](https://huggingface.co/ivrit-ai) Whisper large-v3-turbo model (Apache-2.0), the strongest open Hebrew speech model: about 7% word-error rate on real WhatsApp Hebrew per the [ivrit-ai leaderboard](https://huggingface.co/spaces/ivrit-ai/hebrew-transcription-leaderboard), ahead of the big commercial APIs on Hebrew.
 - **Private by default** - speech-to-text runs on your Mac. Your voice never leaves the computer.
 - **Works in every app** - hold your shortcut, talk, release: the text is pasted wherever your cursor is - WhatsApp, Gmail, Docs, Cursor.
+- **Arabic too** - the optional **Lahjat Turbo** model (oddadmix dialectal fine-tune, Apache-2.0) is the strongest open Arabic dialect model: about 31% WER on Palestinian, 35% Lebanese, 25% Egyptian and 17% Gulf Arabic, where stock Whisper lands at 38-53%.
 - **Optional AI cleanup (off by default)** - removes Hebrew filler words (אממ, כאילו, נו...), fixes punctuation, keeps your language. Works with a free API key (Gemini, Groq), a local model through Ollama, or Apple Intelligence.
 
 ## Install (macOS)
@@ -74,15 +75,16 @@ Code signing needs a paid Apple Developer account, and Dibbur is a zero-budget p
 <details>
 <summary>What about Arabic?</summary>
 
-On the roadmap. The open models for spoken Arabic dialects are still weak, so this needs real testing before it ships.
+Included since v0.2: pick the **Lahjat Turbo (Arabic)** model in Settings > Models (574 MB download). It is a dialectal fine-tune of Whisper large-v3-turbo and the best open option today: about 33% word-error rate averaged across 13 dialects (31% Palestinian, 35% Lebanese, 25% Egyptian, 17% Gulf). Expect it to handle everyday Levantine and Egyptian speech well and to struggle with Maghrebi dialects, where every open model is still weak.
 
 </details>
 
 ## Roadmap
 
-- v0.1 - Hebrew-first Handy fork: ivrit-ai model built in, Hebrew-aware cleanup prompt, Dibbur branding. (Current release.)
-- v0.2 - Hebrew UI translation, floating on-screen dictation button, notarized builds.
-- Later - Arabic support, auto-start on speech.
+- v0.1 - Hebrew-first Handy fork: ivrit-ai model built in, Hebrew-aware cleanup prompt, Dibbur branding.
+- v0.2 - Arabic dictation (Lahjat Turbo dialectal model, Arabic filler cleanup). (Current release.)
+- v0.3 - Hebrew UI translation, floating on-screen dictation button, notarized builds.
+- Later - optional transcript archive with MCP access, auto-start on speech.
 
 ## Building
 

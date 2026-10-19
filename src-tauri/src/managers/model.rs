@@ -782,6 +782,38 @@ impl ModelManager {
         );
 
         available_models.insert(
+            "lahjat-turbo".to_string(),
+            ModelInfo {
+                id: "lahjat-turbo".to_string(),
+                name: "Lahjat Turbo (Arabic)".to_string(),
+                description: "Dialectal-Arabic Whisper large-v3-turbo (oddadmix v2, Apache-2.0). Best open Arabic dialect accuracy: ~31% WER Palestinian, ~35% Lebanese, ~25% Egyptian, ~17% Gulf, vs ~38-53% for stock Whisper."
+                    .to_string(),
+                filename: "ggml-lahjat-large-v3-turbo-q5_0.bin".to_string(),
+                source: ModelSource::Url {
+                    url: "https://huggingface.co/dmouayad/whisper-large-v3-turbo-arabic-dialectal-v2-gguf/resolve/1b15ea5625fea5c0fe8980e7fa66a52722362c53/ggml-model-q5_0.bin"
+                        .to_string(),
+                    sha256: Some(
+                        "2d9a7ea482659f54cf309802fe7719a9b95507260343281049bf6a16fd11cf58"
+                            .to_string(),
+                    ),
+                },
+                size_mb: 548,
+                is_downloaded: false,
+                is_downloading: false,
+                partial_size: 0,
+                accuracy_score: 0.65,
+                speed_score: 0.40,
+                supports_translation: false,
+                is_recommended: false,
+                supported_languages: vec!["ar".to_string()],
+                supports_language_selection: true,
+                is_custom: false,
+                supports_streaming: false,
+                supports_language_detection: true,
+            },
+        );
+
+        available_models.insert(
             "large".to_string(),
             ModelInfo {
                 id: "large".to_string(),
