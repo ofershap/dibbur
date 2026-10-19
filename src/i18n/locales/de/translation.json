@@ -28,7 +28,7 @@
     "customModelDescription": "Nicht offiziell unterstützt",
     "migration": {
       "title": "Deine Modelle brauchen ein Update",
-      "description": "Handy verwendet jetzt eine neuere Art von Modellen. Lade die neue Version herunter, um weiter zu transkribieren. Alte Versionen werden entfernt.",
+      "description": "Dibbur verwendet jetzt eine neuere Art von Modellen. Lade die neue Version herunter, um weiter zu transkribieren. Alte Versionen werden entfernt.",
       "replaces": "Ersetzt {{name}}",
       "oldFormat": "Altes Format",
       "failed": "Download fehlgeschlagen",
@@ -69,7 +69,7 @@
     },
     "permissions": {
       "title": "Berechtigungen erforderlich",
-      "description": "Handy benötigt einige Berechtigungen, um richtig zu funktionieren.",
+      "description": "Dibbur benötigt einige Berechtigungen, um richtig zu funktionieren.",
       "microphone": {
         "title": "Mikrofonzugriff",
         "description": "Erforderlich, um deine Stimme für die Transkription zu hören."

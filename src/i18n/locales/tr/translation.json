@@ -28,7 +28,7 @@
     "customModelDescription": "Resmi olarak desteklenmiyor",
     "migration": {
       "title": "Modellerinizin güncellenmesi gerekiyor",
-      "description": "Handy artık daha yeni bir model türü kullanıyor. Transkripsiyona devam etmek için yeni sürümü indirin. Eski sürümler kaldırılacak.",
+      "description": "Dibbur artık daha yeni bir model türü kullanıyor. Transkripsiyona devam etmek için yeni sürümü indirin. Eski sürümler kaldırılacak.",
       "replaces": "{{name}} yerine geçer",
       "oldFormat": "Eski format",
       "failed": "İndirme başarısız oldu",
@@ -69,7 +69,7 @@
     },
     "permissions": {
       "title": "İzinler Gerekli",
-      "description": "Handy'nin düzgün çalışabilmesi için birkaç izne ihtiyacı var.",
+      "description": "Dibbur'nin düzgün çalışabilmesi için birkaç izne ihtiyacı var.",
       "microphone": {
         "title": "Mikrofon Erişimi",
         "description": "Sesinizi transkripsiyon için alabilmek için gereklidir."

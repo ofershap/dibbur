@@ -28,7 +28,7 @@
     "customModelDescription": "Tidak didukung secara resmi",
     "migration": {
       "title": "Model Anda perlu diperbarui",
-      "description": "Handy kini menggunakan jenis model yang lebih baru. Unduh versi baru untuk terus mentranskripsi. Versi lama akan dihapus.",
+      "description": "Dibbur kini menggunakan jenis model yang lebih baru. Unduh versi baru untuk terus mentranskripsi. Versi lama akan dihapus.",
       "replaces": "Menggantikan {{name}}",
       "oldFormat": "Format lama",
       "failed": "Unduhan gagal",
@@ -69,7 +69,7 @@
     },
     "permissions": {
       "title": "Izin Diperlukan",
-      "description": "Handy memerlukan beberapa izin agar dapat berfungsi dengan baik.",
+      "description": "Dibbur memerlukan beberapa izin agar dapat berfungsi dengan baik.",
       "microphone": {
         "title": "Akses Mikrofon",
         "description": "Diperlukan untuk menangkap suara Anda agar dapat ditranskripsikan."

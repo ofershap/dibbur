@@ -28,7 +28,7 @@
     "customModelDescription": "Ikke officielt understøttet",
     "migration": {
       "title": "Dine modeller skal opdateres",
-      "description": "Handy bruger nu en nyere type model. Download den nye version for at fortsætte med at transskribere. Gamle versioner vil blive fjernet.",
+      "description": "Dibbur bruger nu en nyere type model. Download den nye version for at fortsætte med at transskribere. Gamle versioner vil blive fjernet.",
       "replaces": "Erstatter {{name}}",
       "oldFormat": "Gammelt format",
       "failed": "Download mislykkedes",
@@ -69,7 +69,7 @@
     },
     "permissions": {
       "title": "Tilladelser påkrævet",
-      "description": "Handy har brug for et par tilladelser for at fungere korrekt.",
+      "description": "Dibbur har brug for et par tilladelser for at fungere korrekt.",
       "microphone": {
         "title": "Mikrofonadgang",
         "description": "Påkrævet for at høre din stemme til transskription."

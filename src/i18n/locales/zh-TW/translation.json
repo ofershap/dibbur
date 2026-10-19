@@ -28,7 +28,7 @@
     "customModelDescription": "官方不支援",
     "migration": {
       "title": "您的模型需要更新",
-      "description": "Handy 現在使用更新的模型類型。請下載新版本以繼續轉錄。舊版本將會移除。",
+      "description": "Dibbur 現在使用更新的模型類型。請下載新版本以繼續轉錄。舊版本將會移除。",
       "replaces": "取代 {{name}}",
       "oldFormat": "舊格式",
       "failed": "下載失敗",
@@ -69,7 +69,7 @@
     },
     "permissions": {
       "title": "需要權限",
-      "description": "Handy 需要一些權限才能正常運作",
+      "description": "Dibbur 需要一些權限才能正常運作",
       "microphone": {
         "title": "麥克風存取",
         "description": "需要聽取您的語音進行轉錄"

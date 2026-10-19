@@ -28,7 +28,7 @@
     "customModelDescription": "공식 지원되지 않음",
     "migration": {
       "title": "모델 업데이트가 필요합니다",
-      "description": "Handy가 이제 새로운 종류의 모델을 사용합니다. 계속 음성 인식을 사용하려면 새 버전을 다운로드하세요. 이전 버전은 삭제됩니다.",
+      "description": "Dibbur가 이제 새로운 종류의 모델을 사용합니다. 계속 음성 인식을 사용하려면 새 버전을 다운로드하세요. 이전 버전은 삭제됩니다.",
       "replaces": "{{name}} 대체",
       "oldFormat": "이전 형식",
       "failed": "다운로드 실패",
@@ -69,7 +69,7 @@
     },
     "permissions": {
       "title": "권한 필요",
-      "description": "Handy가 제대로 작동하려면 몇 가지 권한이 필요합니다.",
+      "description": "Dibbur가 제대로 작동하려면 몇 가지 권한이 필요합니다.",
       "microphone": {
         "title": "마이크 접근",
         "description": "음성 인식을 위해 마이크 접근 권한이 필요합니다."

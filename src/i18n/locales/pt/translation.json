@@ -28,7 +28,7 @@
     "customModelDescription": "Não suportado oficialmente",
     "migration": {
       "title": "Seus modelos precisam de uma atualização",
-      "description": "O Handy agora usa um tipo de modelo mais recente. Baixe a nova versão para continuar transcrevendo. As versões antigas serão removidas.",
+      "description": "O Dibbur agora usa um tipo de modelo mais recente. Baixe a nova versão para continuar transcrevendo. As versões antigas serão removidas.",
       "replaces": "Substitui {{name}}",
       "oldFormat": "Formato antigo",
       "failed": "Falha no download",
@@ -69,7 +69,7 @@
     },
     "permissions": {
       "title": "Permissões Necessárias",
-      "description": "O Handy precisa de algumas permissões para funcionar corretamente.",
+      "description": "O Dibbur precisa de algumas permissões para funcionar corretamente.",
       "microphone": {
         "title": "Acesso ao Microfone",
         "description": "Necessário para ouvir sua voz para transcrição."

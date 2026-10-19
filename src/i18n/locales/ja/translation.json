@@ -28,7 +28,7 @@
     "customModelDescription": "公式サポート対象外",
     "migration": {
       "title": "モデルの更新が必要です",
-      "description": "Handy は新しい種類のモデルを使用するようになりました。文字起こしを続けるには、新しいバージョンをダウンロードしてください。古いバージョンは削除されます。",
+      "description": "Dibbur は新しい種類のモデルを使用するようになりました。文字起こしを続けるには、新しいバージョンをダウンロードしてください。古いバージョンは削除されます。",
       "replaces": "{{name}} の後継",
       "oldFormat": "旧形式",
       "failed": "ダウンロードに失敗しました",
@@ -69,7 +69,7 @@
     },
     "permissions": {
       "title": "権限が必要です",
-      "description": "Handy が正常に動作するにはいくつかの権限が必要です。",
+      "description": "Dibbur が正常に動作するにはいくつかの権限が必要です。",
       "microphone": {
         "title": "マイクへのアクセス",
         "description": "文字起こしのためにあなたの声を聞くために必要です。"

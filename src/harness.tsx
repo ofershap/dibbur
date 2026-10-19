@@ -59,11 +59,13 @@ const base = (partial: Partial<ModelInfo>): ModelInfo => ({
   ...partial,
 });
 
+(window as unknown as { qaCalls: string[] }).qaCalls = [];
 const ivrit = base({
   id: "ivrit-turbo",
   name: "Ivrit Turbo (Hebrew)",
   size_mb: 1549,
   is_recommended: true,
+  is_downloaded: state === "installed" || state === "select-failed",
 });
 const lahjat = base({
   id: "lahjat-turbo",
@@ -72,11 +74,26 @@ const lahjat = base({
 });
 
 useModelStore.setState({
-  models: [ivrit, lahjat],
-  isLoading: false,
+  models: state === "catalog-loading" ? [] : [ivrit, lahjat],
+  loading: false,
   error: null,
-  downloadModel: async () => true,
-  selectModel: async () => true,
+  downloadModel: async (id: string) => {
+    const w = window as unknown as { qaCalls: string[] };
+    w.qaCalls.push(`download:${id}`);
+    if (
+      state === "failed" ||
+      (state === "arabic-failed" && id === "lahjat-turbo")
+    )
+      return false;
+    useModelStore.setState((s) => ({
+      downloadingModels: { ...s.downloadingModels, [id]: true },
+    }));
+    return true;
+  },
+  selectModel: async (id: string) => {
+    (window as unknown as { qaCalls: string[] }).qaCalls.push(`select:${id}`);
+    return state !== "select-failed";
+  },
   downloadProgress:
     state === "downloading"
       ? {
@@ -92,8 +109,19 @@ useModelStore.setState({
   verifyingModels: state === "verifying" ? { "ivrit-turbo": true } : {},
 } as never);
 
+(window as unknown as { qaFinish: () => void }).qaFinish = () => {
+  useModelStore.setState({
+    models: [{ ...ivrit, is_downloaded: true }, lahjat],
+    downloadingModels: {},
+    verifyingModels: {},
+  });
+};
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <Onboarding onModelSelected={() => {}} />
+    <Onboarding
+      onModelSelected={() => {
+        (window as unknown as { qaCalls: string[] }).qaCalls.push("ready");
+      }}
+    />
   </React.StrictMode>,
 );

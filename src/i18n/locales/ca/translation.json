@@ -28,7 +28,7 @@
     "customModelDescription": "Sense suport oficial",
     "migration": {
       "title": "Cal actualitzar els vostres models",
-      "description": "Handy ara utilitza un tipus de model més nou. Baixeu la versió nova per continuar transcrivint. Les versions antigues s'eliminaran.",
+      "description": "Dibbur ara utilitza un tipus de model més nou. Baixeu la versió nova per continuar transcrivint. Les versions antigues s'eliminaran.",
       "replaces": "Substitueix {{name}}",
       "oldFormat": "Format antic",
       "failed": "Ha fallat la baixada",
@@ -69,7 +69,7 @@
     },
     "permissions": {
       "title": "Permisos necessaris",
-      "description": "El Handy demana alguns permisos per funcionar correctament.",
+      "description": "El Dibbur demana alguns permisos per funcionar correctament.",
       "microphone": {
         "title": "Accés al micròfon",
         "description": "Necessari per escoltar la vostra veu i transcriure-la."

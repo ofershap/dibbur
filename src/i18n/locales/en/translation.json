@@ -28,7 +28,7 @@
     "customModelDescription": "Not officially supported",
     "migration": {
       "title": "Your models need an update",
-      "description": "Handy now uses a newer kind of model. Download the new version to keep transcribing. Old versions will be removed.",
+      "description": "Dibbur now uses a newer kind of model. Download the new version to keep transcribing. Old versions will be removed.",
       "replaces": "Replaces {{name}}",
       "oldFormat": "Old format",
       "failed": "Download failed",
@@ -69,7 +69,7 @@
     },
     "permissions": {
       "title": "Permissions Required",
-      "description": "Handy needs a couple of permissions to work properly.",
+      "description": "Dibbur needs a couple of permissions to work properly.",
       "microphone": {
         "title": "Microphone Access",
         "description": "Required to hear your voice for transcription."

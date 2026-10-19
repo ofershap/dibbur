@@ -28,7 +28,7 @@
     "customModelDescription": "Oficiálně nepodporováno",
     "migration": {
       "title": "Vaše modely potřebují aktualizaci",
-      "description": "Handy nyní používá novější typ modelů. Stáhněte si novou verzi, abyste mohli dál přepisovat. Staré verze budou odstraněny.",
+      "description": "Dibbur nyní používá novější typ modelů. Stáhněte si novou verzi, abyste mohli dál přepisovat. Staré verze budou odstraněny.",
       "replaces": "Nahrazuje {{name}}",
       "oldFormat": "Starý formát",
       "failed": "Stahování selhalo",
@@ -69,7 +69,7 @@
     },
     "permissions": {
       "title": "Vyžadována oprávnění",
-      "description": "Handy potřebuje několik oprávnění pro správné fungování.",
+      "description": "Dibbur potřebuje několik oprávnění pro správné fungování.",
       "microphone": {
         "title": "Přístup k mikrofonu",
         "description": "Potřebný pro zachycení vašeho hlasu k přepisu."

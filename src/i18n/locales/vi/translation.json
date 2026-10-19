@@ -28,7 +28,7 @@
     "customModelDescription": "Không được hỗ trợ chính thức",
     "migration": {
       "title": "Các mô hình của bạn cần được cập nhật",
-      "description": "Handy hiện sử dụng loại mô hình mới hơn. Hãy tải phiên bản mới để tiếp tục chuyển đổi giọng nói. Các phiên bản cũ sẽ bị xóa.",
+      "description": "Dibbur hiện sử dụng loại mô hình mới hơn. Hãy tải phiên bản mới để tiếp tục chuyển đổi giọng nói. Các phiên bản cũ sẽ bị xóa.",
       "replaces": "Thay thế {{name}}",
       "oldFormat": "Định dạng cũ",
       "failed": "Tải xuống thất bại",
@@ -69,7 +69,7 @@
     },
     "permissions": {
       "title": "Cần cấp quyền",
-      "description": "Handy cần một số quyền để hoạt động bình thường.",
+      "description": "Dibbur cần một số quyền để hoạt động bình thường.",
       "microphone": {
         "title": "Quyền truy cập Micrô",
         "description": "Cần thiết để nghe giọng nói của bạn để chuyển đổi."
