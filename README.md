@@ -7,19 +7,22 @@
 <p align="center">
   <strong>Hebrew voice dictation for Mac that actually works.</strong><br>
   Press a shortcut, speak Hebrew or Arabic,<br>
-  and the text appears in any app. Free, open source, fully offline.
+  and the text appears in any app.<br>
+  Free, open source, and fully offline.
 </p>
 
 <p align="center" dir="rtl">
-  <strong>הכתבה קולית בעברית ובערבית למק — שפשוט עובדת.</strong><br>
+  <strong>הכתבה קולית בעברית ובערבית למק.</strong><br>
   לוחצים על קיצור, מדברים עברית או ערבית,<br>
-  והטקסט מופיע איפה שהסמן נמצא. בחינם, בקוד פתוח, הכל נשאר על המחשב.
+  והטקסט מופיע איפה שהסמן נמצא.<br>
+  בחינם, בקוד פתוח, הכל נשאר על המחשב.
 </p>
 
 <p align="center" dir="rtl">
-  <strong>إملاء صوتي بالعربي والعبري للماك — بشتغل فعلًا.</strong><br>
+  <strong>إملاء صوتي بالعربي والعبري للماك.</strong><br>
   تضغط على الاختصار وتحكي عربي أو عبري،<br>
-  والنص بيطلع وين ما كان المؤشر. مجاني، مفتوح المصدر، وكل شي بضل على جهازك.
+  والنص بيطلع وين ما كان المؤشر.<br>
+  مجاني، مفتوح المصدر، وكل شي على جهازك.
 </p>
 
 <p align="center">
