@@ -19,7 +19,7 @@
     "about": "關於"
   },
   "onboarding": {
-    "subtitle": "首先，請選擇一種模型",
+    "subtitle": "適用於 Mac 的希伯來語與阿拉伯語語音聽寫",
     "existingModelsTitle": "相容的模型",
     "downloadModelsTitle": "可供下載",
     "showAllModels": "顯示全部 {{total}} 個模型",
@@ -86,7 +86,14 @@
         "checkFailed": "檢查權限失敗，請重試",
         "requestFailed": "請求權限失敗，請重試"
       }
-    }
+    },
+    "hebrewModel": "希伯來語語音模型",
+    "downloadingHebrew": "正在下載希伯來語語音模型 - 僅此一次，約 1.6 GB",
+    "verifyingDownload": "正在驗證下載...",
+    "downloadFailed": "下載失敗。請檢查網路連線後重試。",
+    "retry": "重試",
+    "addArabic": "同時新增阿拉伯語 (574 MB)",
+    "downloadingArabic": "正在下載阿拉伯語模型 - 將在背景準備就緒"
   },
   "modelSelector": {
     "custom": "自訂",

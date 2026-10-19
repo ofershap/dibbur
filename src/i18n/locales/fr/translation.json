@@ -19,7 +19,7 @@
     "about": "À propos"
   },
   "onboarding": {
-    "subtitle": "Pour commencer, choisissez un modèle de transcription",
+    "subtitle": "Dictée vocale en hébreu et en arabe pour votre Mac",
     "existingModelsTitle": "Modèles compatibles",
     "downloadModelsTitle": "Disponibles au téléchargement",
     "showAllModels": "Afficher tous les {{total}} modèles",
@@ -86,7 +86,14 @@
         "checkFailed": "Échec de la vérification des autorisations. Veuillez réessayer.",
         "requestFailed": "Échec de la demande d'autorisation. Veuillez réessayer."
       }
-    }
+    },
+    "hebrewModel": "Modèle vocal hébreu",
+    "downloadingHebrew": "Téléchargement du modèle vocal hébreu - une seule fois, environ 1,6 Go",
+    "verifyingDownload": "Vérification du téléchargement...",
+    "downloadFailed": "Échec du téléchargement. Vérifiez la connexion internet et réessayez.",
+    "retry": "Réessayer",
+    "addArabic": "Ajouter aussi l'arabe (574 Mo)",
+    "downloadingArabic": "Téléchargement du modèle arabe - il sera prêt en arrière-plan"
   },
   "modelSelector": {
     "custom": "Personnalisé",

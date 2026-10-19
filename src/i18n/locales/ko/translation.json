@@ -19,7 +19,7 @@
     "about": "정보"
   },
   "onboarding": {
-    "subtitle": "시작하려면 음성 인식 모델을 선택하세요",
+    "subtitle": "Mac용 히브리어·아랍어 음성 받아쓰기",
     "existingModelsTitle": "호환 가능한 모델",
     "downloadModelsTitle": "다운로드 가능",
     "showAllModels": "전체 {{total}}개 모델 표시",
@@ -86,7 +86,14 @@
         "checkFailed": "권한 확인에 실패했습니다. 다시 시도해주세요.",
         "requestFailed": "권한 요청에 실패했습니다. 다시 시도해주세요."
       }
-    }
+    },
+    "hebrewModel": "히브리어 음성 모델",
+    "downloadingHebrew": "히브리어 음성 모델 다운로드 중 - 한 번만, 약 1.6GB",
+    "verifyingDownload": "다운로드 확인 중...",
+    "downloadFailed": "다운로드에 실패했습니다. 인터넷 연결을 확인하고 다시 시도하세요.",
+    "retry": "다시 시도",
+    "addArabic": "아랍어도 추가 (574MB)",
+    "downloadingArabic": "아랍어 모델 다운로드 중 - 백그라운드에서 준비됩니다"
   },
   "modelSelector": {
     "custom": "사용자 정의",

@@ -19,7 +19,7 @@
     "about": "O programie"
   },
   "onboarding": {
-    "subtitle": "Aby rozpocząć, wybierz model transkrypcji",
+    "subtitle": "Dyktowanie głosowe po hebrajsku i arabsku na Maca",
     "existingModelsTitle": "Zgodne modele",
     "downloadModelsTitle": "Dostępne do pobrania",
     "showAllModels": "Pokaż wszystkie modele ({{total}})",
@@ -86,7 +86,14 @@
         "checkFailed": "Nie udało się sprawdzić uprawnień. Spróbuj ponownie.",
         "requestFailed": "Nie udało się poprosić o uprawnienie. Spróbuj ponownie."
       }
-    }
+    },
+    "hebrewModel": "Hebrajski model głosowy",
+    "downloadingHebrew": "Pobieranie hebrajskiego modelu głosowego - jednorazowo, ok. 1,6 GB",
+    "verifyingDownload": "Weryfikowanie pobierania...",
+    "downloadFailed": "Pobieranie nie powiodło się. Sprawdź połączenie z internetem i spróbuj ponownie.",
+    "retry": "Spróbuj ponownie",
+    "addArabic": "Dodaj także arabski (574 MB)",
+    "downloadingArabic": "Pobieranie modelu arabskiego - będzie gotowy w tle"
   },
   "modelSelector": {
     "custom": "Własny",

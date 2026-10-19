@@ -19,7 +19,7 @@
     "about": "Om"
   },
   "onboarding": {
-    "subtitle": "For at komme i gang skal du vælge en transskriptionsmodel",
+    "subtitle": "Stemmediktering på hebraisk og arabisk til din Mac",
     "existingModelsTitle": "Kompatible modeller",
     "downloadModelsTitle": "Tilgængelig til download",
     "showAllModels": "Vis alle {{total}} modeller",
@@ -86,7 +86,14 @@
         "checkFailed": "Kunne ikke tjekke tilladelser. Prøv igen.",
         "requestFailed": "Kunne ikke anmode om tilladelse. Prøv igen."
       }
-    }
+    },
+    "hebrewModel": "Hebraisk stemmemodel",
+    "downloadingHebrew": "Downloader den hebraiske stemmemodel - én gang, ca. 1,6 GB",
+    "verifyingDownload": "Bekræfter download...",
+    "downloadFailed": "Download mislykkedes. Tjek internetforbindelsen og prøv igen.",
+    "retry": "Prøv igen",
+    "addArabic": "Tilføj også arabisk (574 MB)",
+    "downloadingArabic": "Downloader den arabiske model - den bliver klar i baggrunden"
   },
   "modelSelector": {
     "custom": "Brugerdefineret",

@@ -19,7 +19,7 @@
     "about": "Om"
   },
   "onboarding": {
-    "subtitle": "För att komma igång, välj en transkriptionsmodell",
+    "subtitle": "Röstdiktering på hebreiska och arabiska för din Mac",
     "existingModelsTitle": "Kompatibla modeller",
     "downloadModelsTitle": "Tillgängliga för nedladdning",
     "showAllModels": "Visa alla {{total}} modeller",
@@ -86,7 +86,14 @@
         "checkFailed": "Misslyckades med att kontrollera behörigheter. Försök igen.",
         "requestFailed": "Misslyckades med att begära behörighet. Försök igen."
       }
-    }
+    },
+    "hebrewModel": "Hebreisk röstmodell",
+    "downloadingHebrew": "Laddar ner den hebreiska röstmodellen - en gång, cirka 1,6 GB",
+    "verifyingDownload": "Verifierar nedladdningen...",
+    "downloadFailed": "Nedladdningen misslyckades. Kontrollera internetanslutningen och försök igen.",
+    "retry": "Försök igen",
+    "addArabic": "Lägg även till arabiska (574 MB)",
+    "downloadingArabic": "Laddar ner den arabiska modellen - den blir klar i bakgrunden"
   },
   "modelSelector": {
     "custom": "Anpassad",

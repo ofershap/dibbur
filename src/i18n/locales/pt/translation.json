@@ -19,7 +19,7 @@
     "about": "Sobre"
   },
   "onboarding": {
-    "subtitle": "Para começar, escolha um modelo de transcrição",
+    "subtitle": "Ditado por voz em hebraico e árabe para o seu Mac",
     "existingModelsTitle": "Modelos compatíveis",
     "downloadModelsTitle": "Disponíveis para download",
     "showAllModels": "Mostrar todos os {{total}} modelos",
@@ -86,7 +86,14 @@
         "checkFailed": "Erro ao verificar permissões. Por favor, tente novamente.",
         "requestFailed": "Erro ao solicitar permissão. Por favor, tente novamente."
       }
-    }
+    },
+    "hebrewModel": "Modelo de voz em hebraico",
+    "downloadingHebrew": "Baixando o modelo de voz em hebraico - uma única vez, cerca de 1,6 GB",
+    "verifyingDownload": "Verificando o download...",
+    "downloadFailed": "O download falhou. Verifique a conexão com a internet e tente novamente.",
+    "retry": "Tentar novamente",
+    "addArabic": "Adicionar também árabe (574 MB)",
+    "downloadingArabic": "Baixando o modelo em árabe - ficará pronto em segundo plano"
   },
   "modelSelector": {
     "custom": "Personalizado",

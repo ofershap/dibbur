@@ -19,7 +19,7 @@
     "about": "概要"
   },
   "onboarding": {
-    "subtitle": "開始するには、文字起こしのモデルを選択してください",
+    "subtitle": "Mac向けヘブライ語・アラビア語音声入力",
     "existingModelsTitle": "互換性のあるモデル",
     "downloadModelsTitle": "ダウンロード可能",
     "showAllModels": "すべての{{total}}個のモデルを表示",
@@ -86,7 +86,14 @@
         "checkFailed": "権限の確認に失敗しました。もう一度お試しください。",
         "requestFailed": "権限のリクエストに失敗しました。もう一度お試しください。"
       }
-    }
+    },
+    "hebrewModel": "ヘブライ語音声モデル",
+    "downloadingHebrew": "ヘブライ語音声モデルをダウンロード中 - 初回のみ、約1.6GB",
+    "verifyingDownload": "ダウンロードを確認中...",
+    "downloadFailed": "ダウンロードに失敗しました。インターネット接続を確認して再試行してください。",
+    "retry": "再試行",
+    "addArabic": "アラビア語も追加 (574MB)",
+    "downloadingArabic": "アラビア語モデルをダウンロード中 - バックグラウンドで準備されます"
   },
   "modelSelector": {
     "custom": "カスタム",

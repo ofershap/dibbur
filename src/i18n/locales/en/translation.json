@@ -19,7 +19,7 @@
     "about": "About"
   },
   "onboarding": {
-    "subtitle": "To get started, choose a transcription model",
+    "subtitle": "Hebrew and Arabic voice dictation for your Mac",
     "existingModelsTitle": "Compatible Models",
     "downloadModelsTitle": "Available to Download",
     "showAllModels": "Show all {{total}} models",
@@ -86,7 +86,14 @@
         "checkFailed": "Failed to check permissions. Please try again.",
         "requestFailed": "Failed to request permission. Please try again."
       }
-    }
+    },
+    "hebrewModel": "Hebrew voice model",
+    "downloadingHebrew": "Downloading the Hebrew voice model - one time, about 1.6 GB",
+    "verifyingDownload": "Verifying the download...",
+    "downloadFailed": "Download failed. Check the internet connection and try again.",
+    "retry": "Try again",
+    "addArabic": "Also add Arabic (574 MB)",
+    "downloadingArabic": "Downloading the Arabic model - it will be ready in the background"
   },
   "modelSelector": {
     "custom": "Custom",

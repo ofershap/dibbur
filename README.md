@@ -52,7 +52,7 @@ Dibbur is a free, open-source alternative to Wispr Flow and Dragon for Hebrew an
 2. Open the DMG and drag Dibbur into Applications.
 3. First launch: right-click Dibbur > Open > Open. The app is unsigned for now, so macOS asks once.
 4. Allow Microphone and Accessibility when macOS asks.
-5. In Settings > Models, download the recommended **Ivrit Turbo** model (one-time ~1.6 GB).
+5. First run downloads the **Ivrit Turbo** Hebrew model by itself (one-time ~1.6 GB) with a progress bar; adding Arabic is one optional tap on the same screen.
 6. Pick your keyboard shortcut in Settings, press it, and speak Hebrew.
 
 ## FAQ
@@ -103,6 +103,7 @@ Yes. Turn on **Save Transcripts** in Settings > Advanced > History (off by defau
 
 - v0.1 - Hebrew-first Handy fork: ivrit-ai model built in, Hebrew-aware cleanup prompt, Dibbur branding.
 - v0.2 - Arabic dictation (Lahjat Turbo dialectal model, Arabic filler cleanup).
+- v1.0 - zero-setup first run: the Hebrew model downloads automatically, Dibbur branding throughout.
 - v0.3 - Optional transcript archive: daily Markdown files in a folder you choose, plus a read-only MCP server (`transcripts-mcp/`) to list and search them. (Current release.)
 - v0.4 - Hebrew UI translation, floating on-screen dictation button, notarized builds.
 - Later - auto-start on speech.

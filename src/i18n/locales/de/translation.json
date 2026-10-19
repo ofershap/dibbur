@@ -19,7 +19,7 @@
     "about": "Info"
   },
   "onboarding": {
-    "subtitle": "Wähle ein Transkriptionsmodell, um loszulegen",
+    "subtitle": "Hebräische und arabische Spracheingabe für den Mac",
     "existingModelsTitle": "Kompatible Modelle",
     "downloadModelsTitle": "Verfügbar zum Download",
     "showAllModels": "Alle {{total}} Modelle anzeigen",
@@ -86,7 +86,14 @@
         "checkFailed": "Berechtigungsprüfung fehlgeschlagen. Bitte erneut versuchen.",
         "requestFailed": "Berechtigungsanfrage fehlgeschlagen. Bitte erneut versuchen."
       }
-    }
+    },
+    "hebrewModel": "Hebräisches Sprachmodell",
+    "downloadingHebrew": "Das hebräische Sprachmodell wird geladen - einmalig, ca. 1,6 GB",
+    "verifyingDownload": "Download wird geprüft...",
+    "downloadFailed": "Download fehlgeschlagen. Prüfe die Internetverbindung und versuche es erneut.",
+    "retry": "Erneut versuchen",
+    "addArabic": "Auch Arabisch hinzufügen (574 MB)",
+    "downloadingArabic": "Das arabische Modell wird im Hintergrund geladen"
   },
   "modelSelector": {
     "custom": "Benutzerdefiniert",

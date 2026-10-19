@@ -19,7 +19,7 @@
     "about": "Informazioni"
   },
   "onboarding": {
-    "subtitle": "Per cominciare, scegli un modello di riconoscimento vocale",
+    "subtitle": "Dettatura vocale in ebraico e arabo per il tuo Mac",
     "existingModelsTitle": "Modelli compatibili",
     "downloadModelsTitle": "Disponibile per il download",
     "showAllModels": "Mostra tutti e {{total}} modelli",
@@ -86,7 +86,14 @@
         "checkFailed": "Impossibile verificare i permessi. Riprova.",
         "requestFailed": "Impossibile richiedere il permesso. Riprova."
       }
-    }
+    },
+    "hebrewModel": "Modello vocale ebraico",
+    "downloadingHebrew": "Download del modello vocale ebraico - una sola volta, circa 1,6 GB",
+    "verifyingDownload": "Verifica del download...",
+    "downloadFailed": "Download non riuscito. Controlla la connessione a internet e riprova.",
+    "retry": "Riprova",
+    "addArabic": "Aggiungi anche l'arabo (574 MB)",
+    "downloadingArabic": "Download del modello arabo in corso: sarà pronto in background"
   },
   "modelSelector": {
     "custom": "Personalizzato",

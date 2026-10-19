@@ -1,13 +1,16 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
-import { ChevronDown, ChevronLeft } from "lucide-react";
-import type { ModelInfo } from "@/bindings";
-import type { ModelCardStatus } from "./ModelCard";
-import ModelCard, { isLegacySource } from "./ModelCard";
-import HandyTextLogo from "../icons/HandyTextLogo";
+import { ChevronLeft, Loader2, Plus } from "lucide-react";
 import { Button } from "../ui/Button";
+import DibburLogo from "../icons/DibburLogo";
 import { useModelStore } from "../../stores/modelStore";
+
+// Dibbur ships for Hebrew (and Arabic) speakers, so the first run does not
+// ask anyone to compare speech models: it downloads the Hebrew model by
+// itself, and Arabic is one optional tap.
+const HEBREW_MODEL_ID = "ivrit-turbo";
+const ARABIC_MODEL_ID = "lahjat-turbo";
 
 interface OnboardingProps {
   onModelSelected: () => void;
@@ -29,70 +32,51 @@ const Onboarding: React.FC<OnboardingProps> = ({
     downloadingModels,
     verifyingModels,
     downloadProgress,
-    downloadStats,
-    cancelDownload,
   } = useModelStore();
   const [selectedModelId, setSelectedModelId] = useState<string | null>(null);
-  const [showAll, setShowAll] = useState(false);
+  const [arabicRequested, setArabicRequested] = useState(false);
+  const [downloadFailed, setDownloadFailed] = useState(false);
+  const autoStarted = useRef(false);
   const hasStartedSelection = useRef(false);
 
-  const isBusy = selectedModelId !== null;
+  const hebrew = models.find((m) => m.id === HEBREW_MODEL_ID);
+  const arabic = models.find((m) => m.id === ARABIC_MODEL_ID);
 
-  // Curate the download list: legacy (.bin) downloads are deprecated and
-  // never shown here (they still appear in the compatible section if already on
-  // disk). The catalog arrives rank-sorted, so the first two recommended models
-  // are the featured picks — currently Parakeet Unified (English) and Nemotron
-  // Streaming (multilingual). Everything else hides behind "Show all".
-  const { downloadable, topPicks, otherRecommended, rest } = useMemo(() => {
-    const downloadable = models.filter(
-      (m: ModelInfo) => !m.is_downloaded && !isLegacySource(m),
-    );
-    const recommended = downloadable.filter((m: ModelInfo) => m.is_recommended);
-    // `models` arrives in editorial rank order (the backend sorts by rank_of,
-    // then accuracy), so keep that order here: ranked-but-not-recommended models
-    // surface first, then the unranked tail by accuracy.
-    const rest = downloadable.filter((m: ModelInfo) => !m.is_recommended);
-    return {
-      downloadable,
-      topPicks: recommended.slice(0, 2),
-      otherRecommended: recommended.slice(2),
-      rest,
-    };
-  }, [models]);
-
-  const existingModels = models.filter((m: ModelInfo) => m.is_downloaded);
-
-  const hasRecommended = topPicks.length > 0 || otherRecommended.length > 0;
-  // When nothing recommended remains to download (e.g. all already on disk),
-  // there is no curated subset to collapse, so just show the full list.
-  const showRest = showAll || !hasRecommended;
-
-  // Watch for the selected model to finish downloading + verifying
-  useEffect(() => {
-    // Debug previews are inert: never switch the user's active model. Guarded
-    // here as well as in the handlers because this is where the backend call
-    // actually happens.
-    if (preview) return;
-
-    if (!selectedModelId) {
-      hasStartedSelection.current = false;
-      return;
+  const startHebrewDownload = async () => {
+    setDownloadFailed(false);
+    setSelectedModelId(HEBREW_MODEL_ID);
+    const ok = await downloadModel(HEBREW_MODEL_ID);
+    if (!ok) {
+      setSelectedModelId(null);
+      setDownloadFailed(true);
     }
+  };
 
-    const model = models.find((m) => m.id === selectedModelId);
-    const stillDownloading = selectedModelId in downloadingModels;
-    const stillVerifying = selectedModelId in verifyingModels;
+  // Kick off the Hebrew model as soon as the catalog arrives. When it is
+  // already on disk (upgrade path) the effect below selects it directly.
+  useEffect(() => {
+    if (preview || autoStarted.current || models.length === 0) return;
+    autoStarted.current = true;
+    if (hebrew?.is_downloaded) {
+      setSelectedModelId(HEBREW_MODEL_ID);
+    } else {
+      startHebrewDownload();
+    }
+  }, [models.length, preview]);
 
+  // Once the Hebrew model is on disk, select it and move on.
+  useEffect(() => {
+    if (preview || selectedModelId !== HEBREW_MODEL_ID) return;
+    const stillDownloading = HEBREW_MODEL_ID in downloadingModels;
+    const stillVerifying = HEBREW_MODEL_ID in verifyingModels;
     if (
-      model?.is_downloaded &&
+      hebrew?.is_downloaded &&
       !stillDownloading &&
       !stillVerifying &&
       !hasStartedSelection.current
     ) {
       hasStartedSelection.current = true;
-
-      // Model is ready — select it and transition
-      selectModel(selectedModelId).then((success) => {
+      selectModel(HEBREW_MODEL_ID).then((success) => {
         if (success) {
           onModelSelected();
         } else {
@@ -104,7 +88,7 @@ const Onboarding: React.FC<OnboardingProps> = ({
     }
   }, [
     selectedModelId,
-    models,
+    hebrew,
     downloadingModels,
     verifyingModels,
     selectModel,
@@ -113,52 +97,23 @@ const Onboarding: React.FC<OnboardingProps> = ({
     t,
   ]);
 
-  const handleDownloadModel = async (modelId: string) => {
-    if (preview) return;
-
-    setSelectedModelId(modelId);
-
-    // Error toast is handled centrally by the model-download-failed event listener
-    // in modelStore — no toast here to avoid duplicates.
-    const success = await downloadModel(modelId);
-    if (!success) {
-      setSelectedModelId(null);
-    }
+  const handleAddArabic = async () => {
+    if (preview || arabicRequested) return;
+    setArabicRequested(true);
+    await downloadModel(ARABIC_MODEL_ID);
   };
 
-  const handleCancelDownload = async (modelId: string) => {
-    if (preview) return;
-
-    const success = await cancelDownload(modelId);
-    if (success) {
-      setSelectedModelId(null);
-    }
-  };
-
-  const handleSelectExistingModel = (modelId: string) => {
-    if (preview) return;
-
-    setSelectedModelId(modelId);
-  };
-
-  const getModelStatus = (modelId: string): ModelCardStatus => {
-    if (modelId in verifyingModels) return "verifying";
-    if (modelId in downloadingModels) return "downloading";
-    return "downloadable";
-  };
-
-  const getExistingModelStatus = (modelId: string): ModelCardStatus => {
-    if (selectedModelId === modelId) return "switching";
-    return "available";
-  };
-
-  const getModelDownloadProgress = (modelId: string): number | undefined => {
-    return downloadProgress[modelId]?.percentage;
-  };
-
-  const getModelDownloadSpeed = (modelId: string): number | undefined => {
-    return downloadStats[modelId]?.speed;
-  };
+  const hebrewPct = Math.min(
+    100,
+    downloadProgress[HEBREW_MODEL_ID]?.percentage ?? 0,
+  );
+  const arabicPct = Math.min(
+    100,
+    downloadProgress[ARABIC_MODEL_ID]?.percentage ?? 0,
+  );
+  const hebrewVerifying = HEBREW_MODEL_ID in verifyingModels;
+  const hebrewBusy = HEBREW_MODEL_ID in downloadingModels || hebrewVerifying;
+  const arabicBusy = ARABIC_MODEL_ID in downloadingModels;
 
   return (
     <div className="h-screen w-full flex flex-col p-6 gap-4">
@@ -167,118 +122,87 @@ const Onboarding: React.FC<OnboardingProps> = ({
           variant="ghost"
           size="md"
           onClick={onBack}
-          disabled={isBusy}
           className="fixed top-4 start-4 flex items-center gap-1 text-text/70 hover:text-text"
         >
           <ChevronLeft className="w-4 h-4 rtl:rotate-180" />
           {t("common.back")}
         </Button>
       )}
-      <div className="flex flex-col items-center gap-2 shrink-0">
-        <HandyTextLogo width={200} />
-        <p className="text-text/70 max-w-md font-medium mx-auto">
+      <div className="flex flex-col items-center gap-3 shrink-0 mt-8">
+        <DibburLogo size={96} />
+        {/* eslint-disable-next-line i18next/no-literal-string */}
+        <h1 className="text-2xl font-bold text-text">Dibbur (דיבור)</h1>
+        <p className="text-text/70 max-w-md font-medium text-center">
           {t("onboarding.subtitle")}
         </p>
       </div>
 
-      <div className="max-w-[600px] w-full mx-auto text-center flex-1 flex flex-col min-h-0">
-        <div className="space-y-6 pb-6">
-          {existingModels.length > 0 && (
-            <div className="space-y-3">
-              <div className="text-left">
-                <h2 className="text-sm font-medium text-text/60">
-                  {t("onboarding.existingModelsTitle")}
-                </h2>
-              </div>
-              {existingModels.map((model: ModelInfo) => (
-                <ModelCard
-                  key={model.id}
-                  model={model}
-                  status={getExistingModelStatus(model.id)}
-                  disabled={isBusy}
-                  onSelect={handleSelectExistingModel}
-                  showRecommended={false}
-                />
-              ))}
+      <div className="max-w-md w-full mx-auto mt-6 space-y-4">
+        <div className="rounded-xl border border-mid-gray/20 bg-mid-gray/5 p-4 space-y-3">
+          <div className="flex items-center justify-between text-sm font-medium text-text">
+            <span>{t("onboarding.hebrewModel")}</span>
+            {hebrewBusy && (
+              <span className="flex items-center gap-1.5 text-text/60">
+                <Loader2 className="w-4 h-4 animate-spin" />
+                {Math.floor(hebrewPct)}%
+              </span>
+            )}
+          </div>
+          {downloadFailed ? (
+            <div className="space-y-2">
+              <p className="text-sm text-red-400">
+                {t("onboarding.downloadFailed")}
+              </p>
+              <Button size="sm" onClick={startHebrewDownload}>
+                {t("onboarding.retry")}
+              </Button>
             </div>
-          )}
-
-          {downloadable.length > 0 && (
-            <div className="space-y-3">
-              <div className="text-left">
-                <h2 className="text-sm font-medium text-text/60">
-                  {t("onboarding.downloadModelsTitle")}
-                </h2>
+          ) : (
+            <>
+              <div className="h-2 rounded-full bg-mid-gray/20 overflow-hidden">
+                <div
+                  className="h-full bg-logo-primary transition-all duration-300"
+                  style={{ width: `${Math.max(2, hebrewPct)}%` }}
+                />
               </div>
-
-              {topPicks.map((model: ModelInfo) => (
-                <ModelCard
-                  key={model.id}
-                  model={model}
-                  variant="featured"
-                  status={getModelStatus(model.id)}
-                  disabled={isBusy}
-                  onSelect={handleDownloadModel}
-                  onDownload={handleDownloadModel}
-                  onCancel={handleCancelDownload}
-                  downloadProgress={getModelDownloadProgress(model.id)}
-                  downloadSpeed={getModelDownloadSpeed(model.id)}
-                  showRecommended={false}
-                />
-              ))}
-
-              {otherRecommended.map((model: ModelInfo) => (
-                <ModelCard
-                  key={model.id}
-                  model={model}
-                  status={getModelStatus(model.id)}
-                  disabled={isBusy}
-                  onSelect={handleDownloadModel}
-                  onDownload={handleDownloadModel}
-                  onCancel={handleCancelDownload}
-                  downloadProgress={getModelDownloadProgress(model.id)}
-                  downloadSpeed={getModelDownloadSpeed(model.id)}
-                  showRecommended={false}
-                />
-              ))}
-
-              {hasRecommended && rest.length > 0 && (
-                <button
-                  type="button"
-                  onClick={() => setShowAll((v) => !v)}
-                  className="flex items-center justify-center gap-1.5 mx-auto py-1 text-sm font-medium text-text/60 hover:text-text transition-colors"
-                >
-                  {showAll
-                    ? t("onboarding.showFewerModels")
-                    : t("onboarding.showAllModels", {
-                        total: downloadable.length,
-                      })}
-                  <ChevronDown
-                    className={`w-4 h-4 transition-transform duration-200 ${
-                      showAll ? "rotate-180" : ""
-                    }`}
-                  />
-                </button>
-              )}
-
-              {showRest &&
-                rest.map((model: ModelInfo) => (
-                  <ModelCard
-                    key={model.id}
-                    model={model}
-                    status={getModelStatus(model.id)}
-                    disabled={isBusy}
-                    onSelect={handleDownloadModel}
-                    onDownload={handleDownloadModel}
-                    onCancel={handleCancelDownload}
-                    downloadProgress={getModelDownloadProgress(model.id)}
-                    downloadSpeed={getModelDownloadSpeed(model.id)}
-                    showRecommended={false}
-                  />
-                ))}
-            </div>
+              <p className="text-xs text-text/60">
+                {hebrewVerifying
+                  ? t("onboarding.verifyingDownload")
+                  : t("onboarding.downloadingHebrew")}
+              </p>
+            </>
           )}
         </div>
+
+        {!arabic?.is_downloaded &&
+          (arabicRequested ? (
+            <div className="rounded-xl border border-mid-gray/20 bg-mid-gray/5 p-4 space-y-3">
+              <div className="flex items-center justify-between text-sm font-medium text-text">
+                <span>{t("onboarding.downloadingArabic")}</span>
+                {arabicBusy && (
+                  <span className="flex items-center gap-1.5 text-text/60">
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    {Math.floor(arabicPct)}%
+                  </span>
+                )}
+              </div>
+              <div className="h-2 rounded-full bg-mid-gray/20 overflow-hidden">
+                <div
+                  className="h-full bg-logo-primary transition-all duration-300"
+                  style={{ width: `${Math.max(2, arabicPct)}%` }}
+                />
+              </div>
+            </div>
+          ) : (
+            <Button
+              variant="secondary"
+              onClick={handleAddArabic}
+              className="w-full"
+            >
+              <Plus className="w-4 h-4 me-1" />
+              {t("onboarding.addArabic")}
+            </Button>
+          ))}
       </div>
     </div>
   );

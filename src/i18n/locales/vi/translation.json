@@ -19,7 +19,7 @@
     "about": "Giới thiệu"
   },
   "onboarding": {
-    "subtitle": "Để bắt đầu, hãy chọn một mô hình chuyển đổi giọng nói",
+    "subtitle": "Đọc chính tả bằng giọng nói tiếng Do Thái và tiếng Ả Rập cho Mac",
     "existingModelsTitle": "Mô hình tương thích",
     "downloadModelsTitle": "Có sẵn để tải xuống",
     "showAllModels": "Hiển thị tất cả {{total}} mô hình",
@@ -86,7 +86,14 @@
         "checkFailed": "Không thể kiểm tra quyền. Vui lòng thử lại.",
         "requestFailed": "Không thể yêu cầu quyền. Vui lòng thử lại."
       }
-    }
+    },
+    "hebrewModel": "Mô hình giọng nói tiếng Do Thái",
+    "downloadingHebrew": "Đang tải mô hình giọng nói tiếng Do Thái - một lần duy nhất, khoảng 1,6 GB",
+    "verifyingDownload": "Đang xác minh tải xuống...",
+    "downloadFailed": "Tải xuống thất bại. Kiểm tra kết nối internet và thử lại.",
+    "retry": "Thử lại",
+    "addArabic": "Thêm cả tiếng Ả Rập (574 MB)",
+    "downloadingArabic": "Đang tải mô hình tiếng Ả Rập - sẽ sẵn sàng trong nền"
   },
   "modelSelector": {
     "custom": "Tùy chỉnh",

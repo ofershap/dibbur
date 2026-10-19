@@ -19,7 +19,7 @@
     "about": "Quant a"
   },
   "onboarding": {
-    "subtitle": "Per començar, trieu un model de transcripció",
+    "subtitle": "Dictat per veu en hebreu i àrab per al teu Mac",
     "existingModelsTitle": "Models compatibles",
     "downloadModelsTitle": "Disponibles per baixar",
     "showAllModels": "Mostra tots els {{total}} models",
@@ -86,7 +86,14 @@
         "checkFailed": "No s'han pogut comprovar els permisos. Torneu-ho a provar.",
         "requestFailed": "No s'ha pogut sol·licitar el permís. Torneu-ho a provar."
       }
-    }
+    },
+    "hebrewModel": "Model de veu hebreu",
+    "downloadingHebrew": "S'està baixant el model de veu hebreu: una sola vegada, uns 1,6 GB",
+    "verifyingDownload": "S'està verificant la baixada...",
+    "downloadFailed": "La baixada ha fallat. Comprova la connexió a internet i torna-ho a provar.",
+    "retry": "Torna-ho a provar",
+    "addArabic": "Afegeix també l'àrab (574 MB)",
+    "downloadingArabic": "S'està baixant el model àrab: estarà llest en segon pla"
   },
   "modelSelector": {
     "custom": "Personalitzat",

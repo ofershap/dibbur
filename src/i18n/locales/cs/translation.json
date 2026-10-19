@@ -19,7 +19,7 @@
     "about": "O aplikaci"
   },
   "onboarding": {
-    "subtitle": "Pro začátek vyberte model pro přepis",
+    "subtitle": "Hlasové diktování hebrejsky a arabsky pro váš Mac",
     "existingModelsTitle": "Kompatibilní modely",
     "downloadModelsTitle": "Dostupné ke stažení",
     "showAllModels": "Zobrazit všech {{total}} modelů",
@@ -86,7 +86,14 @@
         "checkFailed": "Nepodařilo se zkontrolovat oprávnění. Zkuste to prosím znovu.",
         "requestFailed": "Nepodařilo se požádat o oprávnění. Zkuste to prosím znovu."
       }
-    }
+    },
+    "hebrewModel": "Hebrejský hlasový model",
+    "downloadingHebrew": "Stahujeme hebrejský hlasový model - jednorázově, asi 1,6 GB",
+    "verifyingDownload": "Ověřujeme stažení...",
+    "downloadFailed": "Stahování selhalo. Zkontrolujte připojení k internetu a zkuste to znovu.",
+    "retry": "Zkusit znovu",
+    "addArabic": "Přidat také arabštinu (574 MB)",
+    "downloadingArabic": "Stahujeme arabský model - bude připraven na pozadí"
   },
   "modelSelector": {
     "custom": "Vlastní",

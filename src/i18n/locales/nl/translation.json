@@ -19,7 +19,7 @@
     "about": "Over Handy"
   },
   "onboarding": {
-    "subtitle": "Kies een transcriptiemodel om aan de slag te gaan",
+    "subtitle": "Hebreeuws en Arabisch spraakdicteren voor je Mac",
     "existingModelsTitle": "Compatibele modellen",
     "downloadModelsTitle": "Beschikbaar voor download",
     "showAllModels": "Toon alle {{total}} modellen",
@@ -86,7 +86,14 @@
         "checkFailed": "Machtigingen controleren mislukt. Probeer het opnieuw.",
         "requestFailed": "Machtiging aanvragen mislukt. Probeer het opnieuw."
       }
-    }
+    },
+    "hebrewModel": "Hebreeuws spraakmodel",
+    "downloadingHebrew": "Het Hebreeuwse spraakmodel wordt gedownload - eenmalig, circa 1,6 GB",
+    "verifyingDownload": "Download wordt gecontroleerd...",
+    "downloadFailed": "Downloaden mislukt. Controleer de internetverbinding en probeer opnieuw.",
+    "retry": "Opnieuw proberen",
+    "addArabic": "Voeg ook Arabisch toe (574 MB)",
+    "downloadingArabic": "Het Arabische model wordt gedownload - het is straks op de achtergrond klaar"
   },
   "modelSelector": {
     "custom": "Aangepast",

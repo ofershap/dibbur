@@ -19,7 +19,7 @@
     "about": "Tentang"
   },
   "onboarding": {
-    "subtitle": "Untuk memulai, pilih model transkripsi",
+    "subtitle": "Dikte suara Ibrani dan Arab untuk Mac Anda",
     "existingModelsTitle": "Model yang Kompatibel",
     "downloadModelsTitle": "Tersedia untuk Diunduh",
     "showAllModels": "Tampilkan semua {{total}} model",
@@ -86,7 +86,14 @@
         "checkFailed": "Gagal memeriksa izin. Silakan coba lagi.",
         "requestFailed": "Gagal meminta izin. Silakan coba lagi."
       }
-    }
+    },
+    "hebrewModel": "Model suara Ibrani",
+    "downloadingHebrew": "Mengunduh model suara Ibrani - satu kali, sekitar 1,6 GB",
+    "verifyingDownload": "Memverifikasi unduhan...",
+    "downloadFailed": "Unduhan gagal. Periksa koneksi internet lalu coba lagi.",
+    "retry": "Coba lagi",
+    "addArabic": "Tambahkan juga Arab (574 MB)",
+    "downloadingArabic": "Mengunduh model Arab - akan siap di latar belakang"
   },
   "modelSelector": {
     "custom": "Kustom",

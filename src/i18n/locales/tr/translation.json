@@ -19,7 +19,7 @@
     "about": "Hakkında"
   },
   "onboarding": {
-    "subtitle": "Başlamak için bir transkripsiyon modeli seçin",
+    "subtitle": "Mac'iniz için İbranice ve Arapça sesli dikte",
     "existingModelsTitle": "Uyumlu Modeller",
     "downloadModelsTitle": "İndirilebilir",
     "showAllModels": "{{total}} modelin tümünü göster",
@@ -86,7 +86,14 @@
         "checkFailed": "İzinler kontrol edilemedi. Lütfen tekrar deneyin.",
         "requestFailed": "İzin isteği başarısız oldu. Lütfen tekrar deneyin."
       }
-    }
+    },
+    "hebrewModel": "İbranice ses modeli",
+    "downloadingHebrew": "İbranice ses modeli indiriliyor - tek seferlik, yaklaşık 1,6 GB",
+    "verifyingDownload": "İndirme doğrulanıyor...",
+    "downloadFailed": "İndirme başarısız oldu. İnternet bağlantısını kontrol edip tekrar deneyin.",
+    "retry": "Tekrar dene",
+    "addArabic": "Arapçayı da ekle (574 MB)",
+    "downloadingArabic": "Arapça model indiriliyor - arka planda hazır olacak"
   },
   "modelSelector": {
     "custom": "Özel",

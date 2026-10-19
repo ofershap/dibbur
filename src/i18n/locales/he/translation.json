@@ -19,7 +19,7 @@
     "about": "אודות"
   },
   "onboarding": {
-    "subtitle": "כדי להתחיל, בחר מודל תמלול",
+    "subtitle": "הכתבה קולית בעברית ובערבית למק",
     "existingModelsTitle": "מודלים תואמים",
     "downloadModelsTitle": "זמינים להורדה",
     "showAllModels": "הצג את כל {{total}} המודלים",
@@ -86,7 +86,14 @@
         "checkFailed": "בדיקת ההרשאות נכשלה. נסה שוב.",
         "requestFailed": "בקשת ההרשאה נכשלה. נסה שוב."
       }
-    }
+    },
+    "hebrewModel": "מודל הדיבור העברי",
+    "downloadingHebrew": "מורידים את מודל הדיבור העברי - פעם אחת, כ-1.6GB",
+    "verifyingDownload": "מאמתים את ההורדה...",
+    "downloadFailed": "ההורדה נכשלה. בודקים את החיבור לאינטרנט ומנסים שוב.",
+    "retry": "ניסוי חוזר",
+    "addArabic": "להוסיף גם ערבית (574MB)",
+    "downloadingArabic": "מורידים את המודל הערבי - הוא יהיה מוכן ברקע"
   },
   "modelSelector": {
     "custom": "מותאם אישית",
