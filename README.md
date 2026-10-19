@@ -6,11 +6,20 @@
 
 <p align="center">
   <strong>Hebrew voice dictation for Mac that actually works.</strong><br>
-  Press a shortcut, speak Hebrew, and the text appears in any app. Free, open source, and fully offline.
+  Press a shortcut, speak Hebrew or Arabic,<br>
+  and the text appears in any app. Free, open source, fully offline.
 </p>
 
-<p align="center">
-  לוחצים על קיצור, מדברים עברית, והטקסט מופיע איפה שהסמן נמצא. בחינם, בקוד פתוח, והכל נשאר על המחשב.
+<p align="center" dir="rtl">
+  <strong>הכתבה קולית בעברית ובערבית למק — שפשוט עובדת.</strong><br>
+  לוחצים על קיצור, מדברים עברית או ערבית,<br>
+  והטקסט מופיע איפה שהסמן נמצא. בחינם, בקוד פתוח, הכל נשאר על המחשב.
+</p>
+
+<p align="center" dir="rtl">
+  <strong>إملاء صوتي بالعربي والعبري للماك — بشتغل فعلًا.</strong><br>
+  تضغط على الاختصار وتحكي عربي أو عبري،<br>
+  والنص بيطلع وين ما كان المؤشر. مجاني، مفتوح المصدر، وكل شي بضل على جهازك.
 </p>
 
 <p align="center">
@@ -23,7 +32,7 @@
 
 ---
 
-Dibbur is a free, open-source alternative to Wispr Flow and Dragon for Hebrew speakers. It is a fork of [Handy](https://github.com/cjpais/Handy) (MIT) with one goal: make open-source dictation actually good in Hebrew.
+Dibbur is a free, open-source alternative to Wispr Flow and Dragon for Hebrew and Arabic speakers. It is a fork of [Handy](https://github.com/cjpais/Handy) (MIT) with one goal: make open-source dictation actually good in Hebrew.
 
 ## Why Dibbur?
 
@@ -80,13 +89,20 @@ Included since v0.2: pick the **Lahjat Turbo (Arabic)** model in Settings > Mode
 
 </details>
 
+<details>
+<summary>Can I keep and search my past dictations?</summary>
+
+Yes. Turn on **Save Transcripts** in Settings > Advanced > History (off by default) and every dictation is appended to a daily Markdown file in a folder you pick, default `~/Documents/Dibbur Transcripts`. Everything stays on your Mac; point the folder at iCloud Drive or Google Drive if you want it synced. To ask an AI assistant about the archive, the [`transcripts-mcp/`](transcripts-mcp/) folder in this repo is a small read-only MCP server that lists and searches it.
+
+</details>
+
 ## Roadmap
 
 - v0.1 - Hebrew-first Handy fork: ivrit-ai model built in, Hebrew-aware cleanup prompt, Dibbur branding.
 - v0.2 - Arabic dictation (Lahjat Turbo dialectal model, Arabic filler cleanup).
 - v0.3 - Optional transcript archive: daily Markdown files in a folder you choose, plus a read-only MCP server (`transcripts-mcp/`) to list and search them. (Current release.)
-- v0.3 - Hebrew UI translation, floating on-screen dictation button, notarized builds.
-- Later - optional transcript archive with MCP access, auto-start on speech.
+- v0.4 - Hebrew UI translation, floating on-screen dictation button, notarized builds.
+- Later - auto-start on speech.
 
 ## Building
 
