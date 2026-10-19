@@ -750,6 +750,38 @@ impl ModelManager {
         );
 
         available_models.insert(
+            "ivrit-turbo".to_string(),
+            ModelInfo {
+                id: "ivrit-turbo".to_string(),
+                name: "Ivrit Turbo (Hebrew)".to_string(),
+                description: "Hebrew-optimized Whisper large-v3-turbo by ivrit-ai (Apache-2.0). Best open Hebrew accuracy (~7% WER on WhatsApp messages, per the ivrit-ai leaderboard)."
+                    .to_string(),
+                filename: "ggml-ivrit-large-v3-turbo.bin".to_string(),
+                source: ModelSource::Url {
+                    url: "https://huggingface.co/ivrit-ai/whisper-large-v3-turbo-ggml/resolve/2130c78e4a9cb4914cc4df91a1c3031407789705/ggml-model.bin"
+                        .to_string(),
+                    sha256: Some(
+                        "c8090411113357097bfafc2b8e228ec1639fa7f5fe4ecb5d054ac0ccef8641b1"
+                            .to_string(),
+                    ),
+                },
+                size_mb: 1549,
+                is_downloaded: false,
+                is_downloading: false,
+                partial_size: 0,
+                accuracy_score: 0.90,
+                speed_score: 0.40,
+                supports_translation: false,
+                is_recommended: true,
+                supported_languages: whisper_languages.clone(),
+                supports_language_selection: true,
+                is_custom: false,
+                supports_streaming: false,
+                supports_language_detection: true,
+            },
+        );
+
+        available_models.insert(
             "large".to_string(),
             ModelInfo {
                 id: "large".to_string(),
