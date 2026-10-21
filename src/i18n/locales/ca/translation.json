@@ -85,6 +85,14 @@
       "errors": {
         "checkFailed": "No s'han pogut comprovar els permisos. Torneu-ho a provar.",
         "requestFailed": "No s'ha pogut sol·licitar el permís. Torneu-ho a provar."
+      },
+      "stale": {
+        "title": "Already allowed, but this screen is still waiting?",
+        "description": "After an app update, macOS can show Dibbur as allowed while the permission is still tied to the previous version. Reset it and allow again:",
+        "fix": "Reset and fix for me",
+        "fixing": "Fixing...",
+        "manual": "Or manually: remove Dibbur from the list (the - button), add it again with +, and make sure the toggle is on.",
+        "error": "Reset failed - please try the manual steps below."
       }
     },
     "hebrewModel": "Model de veu hebreu",

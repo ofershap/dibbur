@@ -220,7 +220,11 @@ if (view === "settings") {
   // The first-run permissions screen, including the usage-tip card.
   ReactDOM.createRoot(document.getElementById("root")!).render(
     <React.StrictMode>
-      <AccessibilityOnboarding onComplete={() => {}} preview />
+      <AccessibilityOnboarding
+        onComplete={() => {}}
+        preview
+        previewState={params.get("pstate") === "waiting" ? "waiting" : "needed"}
+      />
     </React.StrictMode>,
   );
 } else {

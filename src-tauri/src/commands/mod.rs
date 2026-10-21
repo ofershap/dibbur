@@ -214,3 +214,39 @@ pub fn initialize_shortcuts(app: AppHandle) -> Result<(), String> {
     log::info!("Shortcuts initialized successfully");
     Ok(())
 }
+
+/// Reset this app's own TCC entry for the given service (macOS only).
+///
+/// Unsigned (ad-hoc signed) builds get a new code signature on every build,
+/// so after an update macOS can show Dibbur as granted in System Settings
+/// while the permission database still ties the grant to the previous
+/// build's signature. Removing the stale entry and re-requesting the
+/// permission is the only fix. `service` is allowlisted to the two services
+/// Dibbur needs.
+#[tauri::command]
+#[specta::specta]
+pub fn reset_macos_tcc_permission(app: AppHandle, service: String) -> Result<(), String> {
+    #[cfg(target_os = "macos")]
+    {
+        let service = match service.as_str() {
+            "Accessibility" => "Accessibility",
+            "Microphone" => "Microphone",
+            other => return Err(format!("Unsupported TCC service: {other}")),
+        };
+        let bundle_id = app.package_info().identifier.clone();
+        let status = std::process::Command::new("tccutil")
+            .args(["reset", service, &bundle_id])
+            .status()
+            .map_err(|e| format!("Failed to run tccutil: {e}"))?;
+        if status.success() {
+            Ok(())
+        } else {
+            Err(format!("tccutil reset {service} exited with {status}"))
+        }
+    }
+    #[cfg(not(target_os = "macos"))]
+    {
+        let _ = (app, service);
+        Err("TCC reset is only supported on macOS".to_string())
+    }
+}

@@ -18,6 +18,9 @@ import { Keyboard, Mic, Check, Loader2 } from "lucide-react";
 interface AccessibilityOnboardingProps {
   onComplete: () => void;
   preview?: boolean;
+  /** QA preview only: render a permission stuck in "waiting" to show the
+      stale-permission self-repair box (appears after 8s). */
+  previewState?: "needed" | "waiting";
 }
 
 type PermissionStatus = "checking" | "needed" | "waiting" | "granted";
@@ -31,6 +34,7 @@ interface PermissionsState {
 const AccessibilityOnboarding: React.FC<AccessibilityOnboardingProps> = ({
   onComplete,
   preview = false,
+  previewState = "needed",
 }) => {
   const { t } = useTranslation();
   const osType = useOsType();
@@ -53,6 +57,12 @@ const AccessibilityOnboarding: React.FC<AccessibilityOnboardingProps> = ({
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const errorCountRef = useRef<number>(0);
   const MAX_POLLING_ERRORS = 3;
+  // Seconds any permission has been sitting in "waiting". Unsigned builds get
+  // a new signature every release, so after an update macOS can show Dibbur
+  // as granted while the permission is still tied to the old build - polling
+  // then never flips to "granted" and we surface a self-repair box.
+  const [stuckFor, setStuckFor] = useState(0);
+  const [fixing, setFixing] = useState<string | null>(null);
 
   const isMacOS = permissionPlatform === "macos";
   const isWindows = permissionPlatform === "windows";
@@ -105,7 +115,8 @@ const AccessibilityOnboarding: React.FC<AccessibilityOnboardingProps> = ({
 
   // Check platform and permission status on mount
   useEffect(() => {
-    const currentPlatform = platform();
+    // Previews always show the macOS layout - this screen only exists for macOS.
+    const currentPlatform = preview ? "macos" : platform();
     const nextPlatform: PermissionPlatform =
       currentPlatform === "macos"
         ? "macos"
@@ -119,8 +130,18 @@ const AccessibilityOnboarding: React.FC<AccessibilityOnboardingProps> = ({
     // without checking or changing operating-system permissions.
     if (preview) {
       setPermissions({
-        accessibility: nextPlatform === "macos" ? "needed" : "granted",
-        microphone: nextPlatform === "other" ? "granted" : "needed",
+        accessibility:
+          nextPlatform === "macos"
+            ? previewState === "waiting"
+              ? "waiting"
+              : "needed"
+            : "granted",
+        microphone:
+          nextPlatform === "other"
+            ? "granted"
+            : previewState === "waiting"
+              ? "granted"
+              : "needed",
       });
       return;
     }
@@ -274,6 +295,65 @@ const AccessibilityOnboarding: React.FC<AccessibilityOnboardingProps> = ({
     }, 1000);
   }, [completeOnboarding, hasWindowsMicrophoneAccess, permissionPlatform, t]);
 
+  const anyWaiting =
+    permissions.accessibility === "waiting" ||
+    permissions.microphone === "waiting";
+
+  useEffect(() => {
+    if (!anyWaiting) {
+      setStuckFor(0);
+      return;
+    }
+    const iv = setInterval(() => setStuckFor((s) => s + 1), 1000);
+    return () => clearInterval(iv);
+  }, [anyWaiting]);
+
+  // Self-repair for stale TCC entries after an app update: reset this app's
+  // own permission entry and re-request, so macOS creates a fresh grant.
+  const handleStaleFix = async (service: "Accessibility" | "Microphone") => {
+    if (preview) return;
+    setFixing(service);
+    try {
+      const res = await commands.resetMacosTccPermission(service);
+      if (res.status === "error") throw new Error(res.error);
+      if (service === "Accessibility") {
+        await requestAccessibilityPermission();
+      } else {
+        await requestMicrophonePermission();
+      }
+      setStuckFor(0);
+      startPolling();
+    } catch (e) {
+      console.error("TCC self-repair failed:", e);
+      toast.error(t("onboarding.permissions.stale.error"));
+    } finally {
+      setFixing(null);
+    }
+  };
+
+  const renderStaleHelp = (service: "Accessibility" | "Microphone") => (
+    <div className="mt-3 p-3 rounded-lg bg-amber-500/10 border border-amber-500/30 text-sm">
+      <p className="font-medium text-text mb-1">
+        {t("onboarding.permissions.stale.title")}
+      </p>
+      <p className="text-text/70 mb-3">
+        {t("onboarding.permissions.stale.description")}
+      </p>
+      <button
+        onClick={() => handleStaleFix(service)}
+        disabled={fixing !== null}
+        className="px-3 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-600 text-white text-sm font-medium transition-colors disabled:opacity-50"
+      >
+        {fixing === service
+          ? t("onboarding.permissions.stale.fixing")
+          : t("onboarding.permissions.stale.fix")}
+      </button>
+      <p className="text-text/60 mt-3">
+        {t("onboarding.permissions.stale.manual")}
+      </p>
+    </div>
+  );
+
   // Cleanup polling and timeouts on unmount
   useEffect(() => {
     return () => {
@@ -384,9 +464,12 @@ const AccessibilityOnboarding: React.FC<AccessibilityOnboardingProps> = ({
                     {t("onboarding.permissions.granted")}
                   </div>
                 ) : permissions.microphone === "waiting" ? (
-                  <div className="flex items-center gap-2 text-text/50 text-sm">
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                    {t("onboarding.permissions.waiting")}
+                  <div>
+                    <div className="flex items-center gap-2 text-text/50 text-sm">
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      {t("onboarding.permissions.waiting")}
+                    </div>
+                    {stuckFor >= 8 && renderStaleHelp("Microphone")}
                   </div>
                 ) : (
                   <button
@@ -423,9 +506,12 @@ const AccessibilityOnboarding: React.FC<AccessibilityOnboardingProps> = ({
                     {t("onboarding.permissions.granted")}
                   </div>
                 ) : permissions.accessibility === "waiting" ? (
-                  <div className="flex items-center gap-2 text-text/50 text-sm">
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                    {t("onboarding.permissions.waiting")}
+                  <div>
+                    <div className="flex items-center gap-2 text-text/50 text-sm">
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      {t("onboarding.permissions.waiting")}
+                    </div>
+                    {stuckFor >= 8 && renderStaleHelp("Accessibility")}
                   </div>
                 ) : (
                   <button

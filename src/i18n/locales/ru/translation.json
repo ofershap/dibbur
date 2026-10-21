@@ -85,6 +85,14 @@
       "errors": {
         "checkFailed": "Не удалось проверить разрешения. Пожалуйста, попробуйте снова.",
         "requestFailed": "Не удалось запросить разрешение. Пожалуйста, попробуйте снова."
+      },
+      "stale": {
+        "title": "Already allowed, but this screen is still waiting?",
+        "description": "After an app update, macOS can show Dibbur as allowed while the permission is still tied to the previous version. Reset it and allow again:",
+        "fix": "Reset and fix for me",
+        "fixing": "Fixing...",
+        "manual": "Or manually: remove Dibbur from the list (the - button), add it again with +, and make sure the toggle is on.",
+        "error": "Reset failed - please try the manual steps below."
       }
     },
     "hebrewModel": "Модель речи на иврите",

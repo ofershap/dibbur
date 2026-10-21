@@ -158,10 +158,15 @@ fn settle(
         !ownership_lost && NSPasteboard::generalPasteboard().changeCount() == p.change_count;
     if !still_ours {
         info!("[reliable-paste] clipboard changed externally; leaving it untouched");
-    } else if p.preserve_transcript {
-        // The user asked for the transcript to stay on the clipboard: replace
-        // the concealed promise with plain text so clipboard managers record
-        // it and it survives this app exiting.
+    } else if p.preserve_transcript || !receipt_seen {
+        // Keep the transcript on the clipboard not only when the user asked
+        // for it, but also whenever the paste was never confirmed: without a
+        // receipt the text almost certainly did not land (e.g. the target
+        // field lost focus), and restoring the old clipboard would lose the
+        // transcript entirely. Leaving it as plain text is the safe fallback
+        // - the user can still Cmd+V it manually. The promise is replaced
+        // with plain text so clipboard managers record it and it survives
+        // this app exiting.
         let _ = app_handle.clipboard().write_text(&p.transcript);
         info!("[reliable-paste] left transcript on clipboard as plain text");
     } else {

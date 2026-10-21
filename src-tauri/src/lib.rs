@@ -8,6 +8,7 @@ mod catalog;
 mod chinese_script;
 pub mod cli;
 mod clipboard;
+mod focus;
 mod commands;
 pub mod engine_supervisor;
 mod helpers;
@@ -719,6 +720,7 @@ pub fn run(cli_args: CliArgs) {
             show_main_window_command,
             commands::cancel_operation,
             commands::finish_dictation,
+            commands::reset_macos_tcc_permission,
             commands::is_portable,
             commands::is_update_checks_locked,
             commands::get_app_dir_path,

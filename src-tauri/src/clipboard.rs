@@ -789,6 +789,14 @@ pub fn paste(text: String, app_handle: AppHandle) -> Result<(), String> {
         paste_method, paste_delay_ms, paste_delay_after_ms
     );
 
+    // If interacting with Dibbur (e.g. the overlay's Done button) stole
+    // activation from the app the user was dictating into, give it back
+    // before injecting any keystrokes, and wait a beat for the switch to
+    // settle. No-op when the captured app is still frontmost.
+    if crate::focus::restore_frontmost() {
+        std::thread::sleep(std::time::Duration::from_millis(180));
+    }
+
     // Perform the paste operation
     match paste_method {
         PasteMethod::None => {
