@@ -264,26 +264,31 @@ const RecordingOverlay: React.FC = () => {
     </div>
   );
 
-  // Finishes the dictation exactly like the shortcut's stop press
-  // (stop recording -> transcribe -> type). The X next to it cancels.
-  const doneBtn = (
+  // The recording dot doubles as the finish control: at rest it is the
+  // familiar accent dot; on hover it springs open into the Done button.
+  // Finishing runs the same stop path as the shortcut's stop press
+  // (stop recording -> transcribe -> type). The X on the far side cancels.
+  const doneMorph = (
     <button
-      className="sdone"
+      className={`sdm ${captureReady ? "ready" : "arming"}`}
       aria-label={t("overlay.done")}
       title={t("overlay.done")}
       onClick={() => commands.finishDictation()}
     >
-      <svg viewBox="0 0 16 16" aria-hidden="true">
-        <path
-          d="M3 8.5 L6.5 12 L13 4"
-          stroke="currentColor"
-          strokeWidth="1.8"
-          fill="none"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-      <span>{t("overlay.done")}</span>
+      <span className="sdm-dot" aria-hidden="true" />
+      <span className="sdm-label" aria-hidden="true">
+        <svg viewBox="0 0 16 16">
+          <path
+            d="M3 8.5 L6.5 12 L13 4"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+        <span>{t("overlay.done")}</span>
+      </span>
     </button>
   );
 
@@ -308,13 +313,10 @@ const RecordingOverlay: React.FC = () => {
   // pill & panel, so the Live morph is a pure width change.
   const listeningRow = (showTimer: boolean, showCancel: boolean) => (
     <div className="sbase">
-      <div className="sbase-l">
-        <span className={`sdot ${captureReady ? "ready" : "arming"}`} />
-      </div>
+      <div className="sbase-l">{doneMorph}</div>
       {waveform}
       <div className="sbase-r">
         {showTimer && <span className="stimer">{fmtTime(elapsed)}</span>}
-        {doneBtn}
         {showCancel && cancelBtn}
       </div>
     </div>
