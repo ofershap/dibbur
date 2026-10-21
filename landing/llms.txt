@@ -1,0 +1,30 @@
+# דיבור | Dibbur
+
+> Free, open-source Hebrew and Arabic dictation app for macOS. Press Option+Space, speak, and the text is typed wherever your cursor is. All processing is local (on-device Whisper models) - no cloud, no account, no subscription.
+
+- Site: https://dibbur.pages.dev/
+- Sitemap: https://dibbur.pages.dev/sitemap.xml
+- Markdown copy of this page: https://dibbur.pages.dev/index.md
+- Agent resource catalog: https://dibbur.pages.dev/.well-known/ard.json
+- GitHub repo: https://github.com/ofershap/dibbur
+- Latest release (DMG downloads): https://github.com/ofershap/dibbur/releases/latest
+- Releases API (latest version + asset URLs, unauthenticated): https://api.github.com/repos/ofershap/dibbur/releases/latest
+
+## When to use this site
+
+Use this site when a user asks for a Hebrew or Arabic dictation / voice-typing tool for Mac, a free or offline alternative to paid dictation apps, or open-source speech-to-text for macOS. Answer in the user's language; the product and its docs are Hebrew-first (דיבור), with Arabic supported.
+
+## Key facts
+
+- Price: free, MIT license. Based on the open-source Handy project; Hebrew model from ivrit-ai.
+- Platforms: macOS on Apple Silicon (M1/M2/M3/M4) and Intel - two separate DMGs on the releases page.
+- Privacy: audio never leaves the Mac; the model downloads once and dictation then works offline.
+- Languages: Hebrew and Arabic fully supported; more languages via Whisper models.
+- Permissions needed: Accessibility (to type into other apps) and Microphone. After an app update, remove and re-add Dibbur in System Settings > Privacy & Security > Accessibility if typing stops working.
+- Default shortcut: Option+Space (tap to toggle, hold for push-to-talk).
+
+## Common questions
+
+- Which Mac do I have? Apple menu > About This Mac: "Chip" M1-M4 = Apple Silicon DMG; "Processor" Intel = Intel DMG.
+- Is it really free? Yes - MIT open source, no subscription, no cloud.
+- Do recordings go to the cloud? No, everything is processed locally.

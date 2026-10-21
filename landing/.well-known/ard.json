@@ -1,0 +1,46 @@
+{
+  "specVersion": "1.0",
+  "entries": [
+    {
+      "@context": "https://agenticresourcediscovery.org/context/v1",
+      "identifier": "urn:air:dibbur.pages.dev:docs:llms",
+      "displayName": "Dibbur site reading list for agents",
+      "type": "text/plain",
+      "url": "https://dibbur.pages.dev/llms.txt",
+      "capabilities": ["SiteDocs"],
+      "description": "Curated facts about Dibbur (דיבור), the free open-source Hebrew and Arabic dictation app for macOS: what it is, download links, install steps, permissions and FAQ. The homepage also has a Markdown copy at /index.md (link rel=alternate type=text/markdown).",
+      "representativeQueries": [
+        "הקלדה קולית בעברית למק",
+        "Hebrew dictation app for Mac free",
+        "Arabic voice typing macOS open source"
+      ]
+    },
+    {
+      "@context": "https://agenticresourcediscovery.org/context/v1",
+      "identifier": "urn:air:dibbur.pages.dev:api:github-releases",
+      "displayName": "Dibbur latest release and DMG downloads",
+      "type": "application/json",
+      "url": "https://api.github.com/repos/ofershap/dibbur/releases/latest",
+      "capabilities": ["GetLatestVersion", "GetDownloadUrls"],
+      "description": "Unauthenticated GitHub API response with the latest Dibbur version, release notes and browser_download_url for each DMG asset (Apple Silicon *_aarch64.dmg, Intel *_x64.dmg).",
+      "representativeQueries": [
+        "what is the latest Dibbur version",
+        "download Dibbur for Apple Silicon",
+        "הורדת דיבור למק"
+      ]
+    },
+    {
+      "@context": "https://agenticresourcediscovery.org/context/v1",
+      "identifier": "urn:air:dibbur.pages.dev:repo:github",
+      "displayName": "Dibbur source code (MIT)",
+      "type": "text/html",
+      "url": "https://github.com/ofershap/dibbur",
+      "capabilities": ["ReadSource", "OpenIssue"],
+      "description": "MIT-licensed source (Tauri + Rust + React) of Dibbur, forked from Handy. Issues and contributions welcome.",
+      "representativeQueries": [
+        "Dibbur source code",
+        "report a Dibbur bug"
+      ]
+    }
+  ]
+}
