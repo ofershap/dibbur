@@ -167,7 +167,7 @@ const Onboarding: React.FC<OnboardingProps> = ({
 
       <div
         aria-live="polite"
-        className="max-w-md w-full mx-auto mt-6 space-y-4"
+        className="max-w-lg w-full mx-auto mt-6 space-y-4"
       >
         <div className="rounded-xl border border-mid-gray/20 bg-mid-gray/5 p-4 space-y-3">
           <div className="flex items-center justify-between text-sm font-medium text-text">

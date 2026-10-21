@@ -434,7 +434,7 @@ const AccessibilityOnboarding: React.FC<AccessibilityOnboardingProps> = ({
         <DibburLogo size={80} />
       </div>
 
-      <div className="max-w-md w-full flex flex-col items-center gap-4">
+      <div className="max-w-lg w-full flex flex-col items-center gap-4">
         <div className="text-center mb-2">
           <h2 className="text-xl font-semibold text-text mb-2">
             {t("onboarding.permissions.title")}
