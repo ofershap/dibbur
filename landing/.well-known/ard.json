@@ -37,10 +37,7 @@
       "url": "https://github.com/ofershap/dibbur",
       "capabilities": ["ReadSource", "OpenIssue"],
       "description": "MIT-licensed source (Tauri + Rust + React) of Dibbur, forked from Handy. Issues and contributions welcome.",
-      "representativeQueries": [
-        "Dibbur source code",
-        "report a Dibbur bug"
-      ]
+      "representativeQueries": ["Dibbur source code", "report a Dibbur bug"]
     }
   ]
 }
