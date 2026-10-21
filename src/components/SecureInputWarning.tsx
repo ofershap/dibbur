@@ -6,8 +6,7 @@ import { ExternalLink, TriangleAlert, X } from "lucide-react";
 import { commands, type SecureInputStatus } from "@/bindings";
 
 // Detailed remediation steps live in the docs rather than in the banner
-export const SECURE_INPUT_HELP_URL =
-  "https://handy.computer/docs/troubleshooting#shortcuts-stopped-working-on-macos-secure-input";
+export const SECURE_INPUT_HELP_URL = "https://github.com/ofershap/dibbur";
 
 /**
  * Compact warning banner shown while macOS Secure Input is stuck on.

@@ -1388,7 +1388,7 @@ fn worker_exe() -> io::Result<PathBuf> {
     if let Some((path, launched)) = LAUNCHED_EXE.get().and_then(Option::as_ref) {
         if file_id(path).ok().as_ref() != Some(launched) {
             return Err(io::Error::other(
-                "Handy was updated or moved while it was running; restart Handy",
+                "Dibbur was updated or moved while it was running; restart Dibbur",
             ));
         }
     }

@@ -84,7 +84,7 @@
         in
         {
           handy = pkgs.rustPlatform.buildRustPackage {
-            pname = "handy";
+            pname = "dibbur";
             inherit version;
             src = self;
 
@@ -175,9 +175,9 @@
 
             meta = {
               description = "A free, open source, and extensible speech-to-text application that works completely offline";
-              homepage = "https://github.com/cjpais/Handy";
+              homepage = "https://github.com/ofershap/dibbur";
               license = lib.licenses.mit;
-              mainProgram = "handy";
+              mainProgram = "dibbur";
               platforms = supportedSystems;
             };
           };
