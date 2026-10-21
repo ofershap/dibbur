@@ -7,6 +7,65 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      // Minimal Tauri IPC stub, installed before any app module loads so the
+      // real components mount in a plain browser. Commands get a plausible
+      // answer or a clean rejection (their catch blocks use defaults).
+      (function () {
+        var qaCallbacks = new Map();
+        var qaListeners = new Map();
+        var qaCallbackSeq = 1;
+        var qaEventSeq = 1;
+        window.__qaEmit = function (event, payload) {
+          var cbId = qaListeners.get(event);
+          if (cbId === undefined) return;
+          var cb = qaCallbacks.get(cbId);
+          if (cb) cb({ event: event, id: qaEventSeq++, payload: payload });
+        };
+        window.__TAURI_INTERNALS__ = {
+          transformCallback: function (cb) {
+            var id = qaCallbackSeq++;
+            qaCallbacks.set(id, cb);
+            return id;
+          },
+          unregisterCallback: function (id) {
+            qaCallbacks.delete(id);
+          },
+          invoke: async function (cmd, args) {
+            if (cmd === "plugin:event|listen") {
+              qaListeners.set(args.event, args.handler);
+              return qaEventSeq++;
+            }
+            if (cmd === "plugin:event|unlisten" || cmd === "plugin:event|emit")
+              return null;
+            if (cmd === "get_app_settings")
+              return {
+                overlay_position: "bottom",
+                always_on_microphone: true,
+                audio_feedback: true,
+                mute_while_recording: true,
+                selected_language: "auto",
+                theme: "dark",
+              };
+            throw new Error("harness stub: no Tauri backend for " + cmd);
+          },
+          convertFileSrc: function (p) {
+            return p;
+          },
+          metadata: {},
+          plugins: {},
+        };
+        window.__TAURI_OS_PLUGIN_INTERNALS__ = {
+          eol: "\n",
+          platform: "macos",
+          version: "15.0",
+          family: "unix",
+          os_type: "macos",
+          arch: "aarch64",
+          exe_extension: "",
+        };
+      })();
+    </script>
     <script type="module" src="/src/harness.tsx"></script>
   </body>
 </html>

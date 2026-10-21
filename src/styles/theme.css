@@ -1,4 +1,4 @@
-/* Handy Colors */
+/* Dibbur Colors */
 
 :root {
   /* Palette source of truth. Each themed color is defined once as a
@@ -6,13 +6,20 @@
      in App.css reference these, so a hex value lives in exactly one place. */
   --light-color-text: #0f0f0f;
   --light-color-background: #fbfbfb;
-  --light-color-logo-primary: #faa2ca;
-  --light-color-logo-stroke: #382731;
+  /* Accent blue sampled from the Dibbur logo (src-tauri/icons/logo.png):
+     the dominant deep blue of the mic mark. */
+  --light-color-logo-primary: #0f1a66;
+  --light-color-logo-stroke: #0a1245;
+  --light-color-background-ui: #0f1a66;
 
   --dark-color-text: #fbfbfb;
   --dark-color-background: #2c2b29;
-  --dark-color-logo-primary: #f28cbb;
-  --dark-color-logo-stroke: #fad1ed;
+  /* On the dark surface the deep logo blue disappears, so dark theme uses
+     lighter tints of the same hue: #93a7ff keeps the old accent's ~6:1
+     readability, #5566f5 keeps white button text at ~4.6:1. */
+  --dark-color-logo-primary: #93a7ff;
+  --dark-color-logo-stroke: #dbe4ff;
+  --dark-color-background-ui: #5566f5;
 
   /* Semantic status colors. First used by SecureInputWarning; intended to
      replace the ad-hoc yellow-500/red-500 usages (e.g. ui/Alert.tsx) over
@@ -23,7 +30,6 @@
   --dark-color-error: #f87171;
 
   /* Tokens that do not change between light and dark */
-  --color-background-ui: #da5893;
   --color-text-stroke: #f6f6f6;
   --color-mid-gray: #808080;
 
@@ -33,6 +39,7 @@
   --color-background: var(--light-color-background);
   --color-logo-primary: var(--light-color-logo-primary);
   --color-logo-stroke: var(--light-color-logo-stroke);
+  --color-background-ui: var(--light-color-background-ui);
   --color-warning: var(--light-color-warning);
   --color-error: var(--light-color-error);
 }
@@ -43,6 +50,7 @@
     --color-background: var(--dark-color-background);
     --color-logo-primary: var(--dark-color-logo-primary);
     --color-logo-stroke: var(--dark-color-logo-stroke);
+    --color-background-ui: var(--dark-color-background-ui);
     --color-warning: var(--dark-color-warning);
     --color-error: var(--dark-color-error);
   }
@@ -63,6 +71,7 @@
   --color-background: var(--light-color-background);
   --color-logo-primary: var(--light-color-logo-primary);
   --color-logo-stroke: var(--light-color-logo-stroke);
+  --color-background-ui: var(--light-color-background-ui);
   --color-warning: var(--light-color-warning);
   --color-error: var(--light-color-error);
 }
@@ -72,6 +81,7 @@
   --color-background: var(--dark-color-background);
   --color-logo-primary: var(--dark-color-logo-primary);
   --color-logo-stroke: var(--dark-color-logo-stroke);
+  --color-background-ui: var(--dark-color-background-ui);
   --color-warning: var(--dark-color-warning);
   --color-error: var(--dark-color-error);
 }

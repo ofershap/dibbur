@@ -130,7 +130,7 @@ impl Default for TrayState {
 pub enum AppTheme {
     Dark,
     Light,
-    Colored, // Pink/colored theme for Linux
+    Colored, // Colored theme for Linux
 }
 
 /// Gets the current app theme, with Linux defaulting to Colored theme
