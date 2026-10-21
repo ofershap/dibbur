@@ -28,10 +28,7 @@ pub fn finish_dictation(app: AppHandle) {
     use crate::managers::audio::AudioRecordingManager;
     use crate::TranscriptionCoordinator;
 
-    if !app
-        .state::<Arc<AudioRecordingManager>>()
-        .is_recording()
-    {
+    if !app.state::<Arc<AudioRecordingManager>>().is_recording() {
         return;
     }
     if let Some(coordinator) = app.try_state::<TranscriptionCoordinator>() {
