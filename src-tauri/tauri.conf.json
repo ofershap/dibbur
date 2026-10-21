@@ -1,7 +1,7 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
   "productName": "Dibbur",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "identifier": "com.dibbur.app",
   "build": {
     "beforeDevCommand": "bun run dev",
@@ -25,7 +25,7 @@
   },
   "bundle": {
     "active": true,
-    "createUpdaterArtifacts": false,
+    "createUpdaterArtifacts": true,
     "targets": "all",
     "resources": ["resources/**/*"],
     "license": "MIT",
@@ -79,7 +79,7 @@
   },
   "plugins": {
     "updater": {
-      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEJBQjcyMDk1MjA2NjAxRjkKUldUNUFXWWdsU0MzdXRRZi8zYzhqV2FaNUVDbDd2Rk5VM1IvWWowVXdmRFNKQ1BrMXF5RFFsLy8K",
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDdCQ0EzNDlBQTFENUM5OEMKUldTTXlkV2htalRLZXlTalJta0srUnB4RjErc01VUU1NeXRwUW84bnBtQ0RjRlJMalJEUERweGgK",
       "endpoints": [
         "https://github.com/ofershap/dibbur/releases/latest/download/latest.json"
       ]

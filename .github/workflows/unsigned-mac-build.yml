@@ -58,6 +58,8 @@ jobs:
       - name: Build with Tauri (stable self-signed)
         env:
           APPLE_SIGNING_IDENTITY: "Dibbur Local Signing"
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY }}
+          TAURI_SIGNING_PRIVATE_KEY_PASSWORD: ${{ secrets.TAURI_SIGNING_PRIVATE_KEY_PASSWORD }}
         run: bun run tauri build --target ${{ matrix.target }}
 
       - name: Verify signature
@@ -66,8 +68,11 @@ jobs:
           codesign -dv --verbose=2 "$APP" 2>&1 | grep -E 'Signature|Authority|TeamIdentifier|CDHash' || true
           codesign --verify --deep --strict --verbose=2 "$APP"
 
-      - name: Upload dmg
+      - name: Upload dmg and updater artifacts
         uses: actions/upload-artifact@v4
         with:
           name: dibbur-${{ matrix.target }}
-          path: src-tauri/target/${{ matrix.target }}/release/bundle/dmg/*.dmg
+          path: |
+            src-tauri/target/${{ matrix.target }}/release/bundle/dmg/*.dmg
+            src-tauri/target/${{ matrix.target }}/release/bundle/macos/*.app.tar.gz
+            src-tauri/target/${{ matrix.target }}/release/bundle/macos/*.app.tar.gz.sig
