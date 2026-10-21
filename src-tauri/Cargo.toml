@@ -1,6 +1,6 @@
 [package]
 name = "dibbur"
-version = "1.0.6"
+version = "1.0.7"
 description = "Dibbur - Hebrew and Arabic voice dictation for Mac"
 authors = ["Ofer Shapira"]
 edition = "2021"
