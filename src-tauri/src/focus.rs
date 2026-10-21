@@ -62,8 +62,9 @@ pub fn restore_frontmost() -> bool {
     if app.isTerminated() {
         return false;
     }
-    let activated =
-        unsafe { app.activateWithOptions(NSApplicationActivationOptions::ActivateIgnoringOtherApps) };
+    let activated = unsafe {
+        app.activateWithOptions(NSApplicationActivationOptions::ActivateIgnoringOtherApps)
+    };
     if activated {
         log::info!("[focus] restored frontmost app before paste (pid {pid})");
     } else {
