@@ -26,6 +26,7 @@
 </p>
 
 <p align="center">
+  <a href="https://dibbur.pages.dev"><img src="https://img.shields.io/badge/%D7%94%D7%AA%D7%A7%D7%A0%D7%94-%D7%9E%D7%93%D7%A8%D7%99%D7%9A%20%D7%A2%D7%9D%20%D7%AA%D7%9E%D7%95%D7%A0%D7%95%D7%AA-blue" alt="מדריך התקנה" /></a>
   <a href="https://github.com/ofershap/dibbur/releases/latest"><img src="https://img.shields.io/github/v/release/ofershap/dibbur?label=Download" alt="Download" /></a>
   <a href="https://github.com/ofershap/dibbur/actions/workflows/test.yml"><img src="https://github.com/ofershap/dibbur/actions/workflows/test.yml/badge.svg" alt="Tests" /></a>
   <img src="https://img.shields.io/badge/platform-macOS-lightgrey?logo=apple" alt="macOS" />
@@ -48,12 +49,21 @@ Dibbur is a free, open-source alternative to Wispr Flow and Dragon for Hebrew an
 
 ## Install (macOS)
 
-1. Download the DMG from [Releases](https://github.com/ofershap/dibbur/releases/latest): `aarch64` for Apple Silicon (M1/M2/M3/M4), `x64` for Intel.
+Step-by-step with screenshots, in Hebrew: **[dibbur.pages.dev](https://dibbur.pages.dev)**.
+
+1. Download the DMG from [Releases](https://github.com/ofershap/dibbur/releases/latest): `aarch64` for Apple Silicon (M1/M2/M3/M4), `x64` for Intel. (Apple menu > About This Mac says "Chip" for Apple Silicon, "Processor Intel" for Intel.)
 2. Open the DMG and drag Dibbur into Applications.
-3. First launch: right-click Dibbur > Open > Open. The app is unsigned for now, so macOS asks once.
-4. Allow Microphone and Accessibility when macOS asks.
+3. **First launch - the app is unsigned, so macOS blocks it once.** Dismiss the warning, then open **System Settings > Privacy & Security**, scroll down and click **"Open Anyway"** next to the Dibbur message. Open Dibbur again and confirm.
+4. **Grant the two permissions Dibbur needs:**
+   - **Microphone** - macOS asks on the first recording; allow it. (Later: System Settings > Privacy & Security > Microphone.)
+   - **Accessibility** - required so Dibbur can type into other apps: System Settings > Privacy & Security > Accessibility, add Dibbur from Applications and switch it on.
+   - If the keyboard shortcut stops responding: System Settings > Privacy & Security > **Input Monitoring**, enable Dibbur.
 5. First run downloads the **Ivrit Turbo** Hebrew model by itself (one-time ~1.6 GB) with a progress bar; adding Arabic is one optional tap on the same screen.
-6. Pick your keyboard shortcut in Settings, press it, and speak Hebrew.
+6. Press **Option+Space**, speak Hebrew, press it again (or hover the blue dot and click **סיום**) - the text is typed wherever your cursor is.
+
+### Updating
+
+Quit first (menu-bar icon > Quit), then replace the app in Applications with the new DMG. If typing into other apps stops working after an update, remove Dibbur from the Accessibility list and add it again (macOS keeps a stale entry for unsigned apps). There is no auto-update in unsigned builds - watch [Releases](https://github.com/ofershap/dibbur/releases/latest) or [dibbur.pages.dev](https://dibbur.pages.dev) for new versions.
 
 ## FAQ
 
