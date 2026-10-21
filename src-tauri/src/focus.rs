@@ -62,9 +62,9 @@ pub fn restore_frontmost() -> bool {
     if app.isTerminated() {
         return false;
     }
-    let activated = unsafe {
-        app.activateWithOptions(NSApplicationActivationOptions::ActivateIgnoringOtherApps)
-    };
+    // Note: ActivateIgnoringOtherApps is deprecated and a no-op since
+    // macOS 14, so plain activation (empty options) is the modern equivalent.
+    let activated = app.activateWithOptions(NSApplicationActivationOptions::empty());
     if activated {
         log::info!("[focus] restored frontmost app before paste (pid {pid})");
     } else {

@@ -233,7 +233,7 @@ pub fn reset_macos_tcc_permission(app: AppHandle, service: String) -> Result<(),
             "Microphone" => "Microphone",
             other => return Err(format!("Unsupported TCC service: {other}")),
         };
-        let bundle_id = app.package_info().identifier.clone();
+        let bundle_id = app.config().identifier.clone();
         let status = std::process::Command::new("tccutil")
             .args(["reset", service, &bundle_id])
             .status()
