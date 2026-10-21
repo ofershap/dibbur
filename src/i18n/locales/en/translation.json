@@ -93,7 +93,11 @@
     "downloadFailed": "Download failed. Check the internet connection and try again.",
     "retry": "Try again",
     "addArabic": "Also add Arabic (574 MB)",
-    "downloadingArabic": "Downloading the Arabic model - it will be ready in the background"
+    "downloadingArabic": "Downloading the Arabic model - it will be ready in the background",
+    "usageTip": {
+      "title": "How to dictate",
+      "body": "Press {{shortcut}} and start speaking. To finish, press it again - or click Done on the recording pill - and the text is typed wherever your cursor is."
+    }
   },
   "modelSelector": {
     "custom": "Custom",
@@ -708,7 +712,11 @@
   "overlay": {
     "transcribing": "Transcribing...",
     "processing": "Processing...",
-    "loadingModel": "Loading model..."
+    "loadingModel": "Loading model...",
+    "done": "Done",
+    "hintToggle": "Press {{shortcut}} again to finish",
+    "hintPushToTalk": "Release {{shortcut}} to finish",
+    "hintHoldOrToggle": "Release or press {{shortcut}} again to finish"
   },
   "secureInput": {
     "blockedWithCulprit_one": "{{name}} may be blocking 1 shortcut",

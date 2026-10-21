@@ -93,7 +93,11 @@
     "downloadFailed": "ההורדה נכשלה. בודקים את החיבור לאינטרנט ומנסים שוב.",
     "retry": "לנסות שוב",
     "addArabic": "להוסיף גם ערבית (574MB)",
-    "downloadingArabic": "מורידים את המודל הערבי - הוא יהיה מוכן ברקע"
+    "downloadingArabic": "מורידים את המודל הערבי - הוא יהיה מוכן ברקע",
+    "usageTip": {
+      "title": "איך מכתיבים?",
+      "body": "לוחצים על {{shortcut}} ומתחילים לדבר. לסיום, לוחצים שוב - או על כפתור ״סיום״ בשורת ההקלטה - והטקסט מוקלד איפה שהסמן נמצא."
+    }
   },
   "modelSelector": {
     "custom": "מותאם אישית",
@@ -705,7 +709,11 @@
   "overlay": {
     "transcribing": "מתמלל...",
     "processing": "מעבד...",
-    "loadingModel": "טוען מודל..."
+    "loadingModel": "טוען מודל...",
+    "done": "סיום",
+    "hintToggle": "לחצו שוב על {{shortcut}} לסיום",
+    "hintPushToTalk": "שחררו את {{shortcut}} לסיום",
+    "hintHoldOrToggle": "שחררו או לחצו שוב על {{shortcut}} לסיום"
   },
   "whatsNew": {
     "title": "חדש ב-דיבור v{{version}}"

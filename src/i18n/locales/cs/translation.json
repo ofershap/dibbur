@@ -93,7 +93,11 @@
     "downloadFailed": "Stahování selhalo. Zkontrolujte připojení k internetu a zkuste to znovu.",
     "retry": "Zkusit znovu",
     "addArabic": "Přidat také arabštinu (574 MB)",
-    "downloadingArabic": "Stahujeme arabský model - bude připraven na pozadí"
+    "downloadingArabic": "Stahujeme arabský model - bude připraven na pozadí",
+    "usageTip": {
+      "title": "Jak diktovat",
+      "body": "Stiskněte {{shortcut}} a začněte mluvit. Pro dokončení stiskněte znovu - nebo klikněte na Hotovo v pruhu nahrávání - a text se napíše tam, kde je kurzor."
+    }
   },
   "modelSelector": {
     "custom": "Vlastní",
@@ -705,7 +709,11 @@
   "overlay": {
     "transcribing": "Přepisuji...",
     "processing": "Zpracovávám...",
-    "loadingModel": "Načítání modelu..."
+    "loadingModel": "Načítání modelu...",
+    "done": "Hotovo",
+    "hintToggle": "Stiskněte {{shortcut}} znovu pro dokončení",
+    "hintPushToTalk": "Uvolněte {{shortcut}} pro dokončení",
+    "hintHoldOrToggle": "Uvolněte nebo stiskněte {{shortcut}} znovu pro dokončení"
   },
   "whatsNew": {
     "title": "Novinky v Dibbur v{{version}}"

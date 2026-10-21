@@ -93,7 +93,11 @@
     "downloadFailed": "İndirme başarısız oldu. İnternet bağlantısını kontrol edip tekrar deneyin.",
     "retry": "Tekrar dene",
     "addArabic": "Arapçayı da ekle (574 MB)",
-    "downloadingArabic": "Arapça model indiriliyor - arka planda hazır olacak"
+    "downloadingArabic": "Arapça model indiriliyor - arka planda hazır olacak",
+    "usageTip": {
+      "title": "Nasıl dikte edilir",
+      "body": "{{shortcut}} kısayoluna basın ve konuşmaya başlayın. Bitirmek için tekrar basın - ya da kayıt çubuğundaki Bitti düğmesine tıklayın - metin imlecin olduğu yere yazılır."
+    }
   },
   "modelSelector": {
     "custom": "Özel",
@@ -705,7 +709,11 @@
   "overlay": {
     "transcribing": "Transkribe ediliyor...",
     "processing": "İşleniyor...",
-    "loadingModel": "Model yükleniyor..."
+    "loadingModel": "Model yükleniyor...",
+    "done": "Bitti",
+    "hintToggle": "Bitirmek için {{shortcut}} kısayoluna tekrar basın",
+    "hintPushToTalk": "Bitirmek için {{shortcut}} kısayolunu bırakın",
+    "hintHoldOrToggle": "Bitirmek için {{shortcut}} kısayolunu bırakın veya tekrar basın"
   },
   "whatsNew": {
     "title": "Dibbur v{{version}} yenilikleri"

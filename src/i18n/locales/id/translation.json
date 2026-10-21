@@ -93,7 +93,11 @@
     "downloadFailed": "Unduhan gagal. Periksa koneksi internet lalu coba lagi.",
     "retry": "Coba lagi",
     "addArabic": "Tambahkan juga Arab (574 MB)",
-    "downloadingArabic": "Mengunduh model Arab - akan siap di latar belakang"
+    "downloadingArabic": "Mengunduh model Arab - akan siap di latar belakang",
+    "usageTip": {
+      "title": "Cara mendikte",
+      "body": "Tekan {{shortcut}} dan mulailah berbicara. Untuk selesai, tekan lagi - atau klik Selesai di bilah perekaman - dan teks akan diketik di posisi kursor."
+    }
   },
   "modelSelector": {
     "custom": "Kustom",
@@ -708,7 +712,11 @@
   "overlay": {
     "transcribing": "Mentranskripsikan...",
     "processing": "Memproses...",
-    "loadingModel": "Memuat model..."
+    "loadingModel": "Memuat model...",
+    "done": "Selesai",
+    "hintToggle": "Tekan {{shortcut}} lagi untuk selesai",
+    "hintPushToTalk": "Lepaskan {{shortcut}} untuk selesai",
+    "hintHoldOrToggle": "Lepaskan atau tekan {{shortcut}} lagi untuk selesai"
   },
   "secureInput": {
     "blockedWithCulprit_one": "{{name}} mungkin memblokir 1 pintasan",

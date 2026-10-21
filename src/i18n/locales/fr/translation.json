@@ -93,7 +93,11 @@
     "downloadFailed": "Échec du téléchargement. Vérifiez la connexion internet et réessayez.",
     "retry": "Réessayer",
     "addArabic": "Ajouter aussi l'arabe (574 Mo)",
-    "downloadingArabic": "Téléchargement du modèle arabe - il sera prêt en arrière-plan"
+    "downloadingArabic": "Téléchargement du modèle arabe - il sera prêt en arrière-plan",
+    "usageTip": {
+      "title": "Comment dicter",
+      "body": "Appuyez sur {{shortcut}} et parlez. Pour terminer, appuyez à nouveau - ou cliquez sur Terminer dans la barre d'enregistrement - et le texte est inséré à la position du curseur."
+    }
   },
   "modelSelector": {
     "custom": "Personnalisé",
@@ -705,7 +709,11 @@
   "overlay": {
     "transcribing": "Transcription...",
     "processing": "Traitement...",
-    "loadingModel": "Chargement du modèle..."
+    "loadingModel": "Chargement du modèle...",
+    "done": "Terminer",
+    "hintToggle": "Appuyez à nouveau sur {{shortcut}} pour terminer",
+    "hintPushToTalk": "Relâchez {{shortcut}} pour terminer",
+    "hintHoldOrToggle": "Relâchez ou appuyez à nouveau sur {{shortcut}} pour terminer"
   },
   "whatsNew": {
     "title": "Nouveautés de Dibbur v{{version}}"

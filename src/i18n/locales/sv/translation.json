@@ -93,7 +93,11 @@
     "downloadFailed": "Nedladdningen misslyckades. Kontrollera internetanslutningen och försök igen.",
     "retry": "Försök igen",
     "addArabic": "Lägg även till arabiska (574 MB)",
-    "downloadingArabic": "Laddar ner den arabiska modellen - den blir klar i bakgrunden"
+    "downloadingArabic": "Laddar ner den arabiska modellen - den blir klar i bakgrunden",
+    "usageTip": {
+      "title": "Så dikterar du",
+      "body": "Tryck på {{shortcut}} och börja tala. Tryck igen för att avsluta - eller klicka på Klar i inspelningsraden - så skrivs texten där markören står."
+    }
   },
   "modelSelector": {
     "custom": "Anpassad",
@@ -705,7 +709,11 @@
   "overlay": {
     "transcribing": "Transkriberar...",
     "processing": "Bearbetar...",
-    "loadingModel": "Laddar modell..."
+    "loadingModel": "Laddar modell...",
+    "done": "Klar",
+    "hintToggle": "Tryck på {{shortcut}} igen för att avsluta",
+    "hintPushToTalk": "Släpp {{shortcut}} för att avsluta",
+    "hintHoldOrToggle": "Släpp eller tryck på {{shortcut}} igen för att avsluta"
   },
   "whatsNew": {
     "title": "Nytt i Dibbur v{{version}}"

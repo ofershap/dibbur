@@ -93,7 +93,11 @@
     "downloadFailed": "Tải xuống thất bại. Kiểm tra kết nối internet và thử lại.",
     "retry": "Thử lại",
     "addArabic": "Thêm cả tiếng Ả Rập (574 MB)",
-    "downloadingArabic": "Đang tải mô hình tiếng Ả Rập - sẽ sẵn sàng trong nền"
+    "downloadingArabic": "Đang tải mô hình tiếng Ả Rập - sẽ sẵn sàng trong nền",
+    "usageTip": {
+      "title": "Cách đọc chính tả",
+      "body": "Nhấn {{shortcut}} và bắt đầu nói. Để kết thúc, nhấn lần nữa - hoặc bấm Xong trên thanh ghi âm - và văn bản sẽ được gõ tại vị trí con trỏ."
+    }
   },
   "modelSelector": {
     "custom": "Tùy chỉnh",
@@ -705,7 +709,11 @@
   "overlay": {
     "transcribing": "Đang chuyển đổi...",
     "processing": "Đang xử lý...",
-    "loadingModel": "Đang tải mô hình..."
+    "loadingModel": "Đang tải mô hình...",
+    "done": "Xong",
+    "hintToggle": "Nhấn {{shortcut}} lần nữa để kết thúc",
+    "hintPushToTalk": "Thả {{shortcut}} để kết thúc",
+    "hintHoldOrToggle": "Thả hoặc nhấn {{shortcut}} lần nữa để kết thúc"
   },
   "whatsNew": {
     "title": "Điểm mới trong Dibbur v{{version}}"

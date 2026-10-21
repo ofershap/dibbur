@@ -93,7 +93,11 @@
     "downloadFailed": "فشل التحميل. تحقق من الاتصال بالإنترنت وحاول مجددًا.",
     "retry": "حاول مجددًا",
     "addArabic": "أضِف العربية أيضًا (574MB)",
-    "downloadingArabic": "جاري تحميل النموذج العربي - سيكون جاهزًا في الخلفية"
+    "downloadingArabic": "جاري تحميل النموذج العربي - سيكون جاهزًا في الخلفية",
+    "usageTip": {
+      "title": "كيف تُملي؟",
+      "body": "اضغط {{shortcut}} وابدأ الكلام. للإنهاء، اضغطه مرة أخرى - أو زر «إنهاء» في شريط التسجيل - وسيُكتب النص حيث يكون المؤشر."
+    }
   },
   "modelSelector": {
     "custom": "مخصص",
@@ -705,7 +709,11 @@
   "overlay": {
     "transcribing": "جاري التفريغ...",
     "processing": "جاري المعالجة...",
-    "loadingModel": "جارٍ تحميل النموذج..."
+    "loadingModel": "جارٍ تحميل النموذج...",
+    "done": "إنهاء",
+    "hintToggle": "اضغط {{shortcut}} مرة أخرى للإنهاء",
+    "hintPushToTalk": "حرر {{shortcut}} للإنهاء",
+    "hintHoldOrToggle": "حرر {{shortcut}} أو اضغطه مرة أخرى للإنهاء"
   },
   "whatsNew": {
     "title": "الجديد في Dibbur v{{version}}"

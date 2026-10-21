@@ -15,6 +15,7 @@ import { getLanguageDirection, updateDocumentDirection } from "./lib/utils/rtl";
 import { useModelStore } from "./stores/modelStore";
 import type { ModelInfo } from "./bindings";
 import Onboarding from "./components/onboarding/Onboarding";
+import AccessibilityOnboarding from "./components/onboarding/AccessibilityOnboarding";
 import {
   Sidebar,
   SECTIONS_CONFIG,
@@ -213,6 +214,13 @@ if (view === "settings") {
   ReactDOM.createRoot(document.getElementById("root")!).render(
     <React.StrictMode>
       <RecordingOverlay />
+    </React.StrictMode>,
+  );
+} else if (view === "permissions") {
+  // The first-run permissions screen, including the usage-tip card.
+  ReactDOM.createRoot(document.getElementById("root")!).render(
+    <React.StrictMode>
+      <AccessibilityOnboarding onComplete={() => {}} preview />
     </React.StrictMode>,
   );
 } else {

@@ -93,7 +93,11 @@
     "downloadFailed": "O download falhou. Verifique a conexão com a internet e tente novamente.",
     "retry": "Tentar novamente",
     "addArabic": "Adicionar também árabe (574 MB)",
-    "downloadingArabic": "Baixando o modelo em árabe - ficará pronto em segundo plano"
+    "downloadingArabic": "Baixando o modelo em árabe - ficará pronto em segundo plano",
+    "usageTip": {
+      "title": "Como ditar",
+      "body": "Pressione {{shortcut}} e comece a falar. Para concluir, pressione novamente - ou clique em Concluir na barra de gravação - e o texto é digitado onde estiver o cursor."
+    }
   },
   "modelSelector": {
     "custom": "Personalizado",
@@ -705,7 +709,11 @@
   "overlay": {
     "transcribing": "Transcrevendo...",
     "processing": "Processando...",
-    "loadingModel": "Carregando modelo..."
+    "loadingModel": "Carregando modelo...",
+    "done": "Concluir",
+    "hintToggle": "Pressione {{shortcut}} novamente para concluir",
+    "hintPushToTalk": "Solte {{shortcut}} para concluir",
+    "hintHoldOrToggle": "Solte ou pressione {{shortcut}} novamente para concluir"
   },
   "whatsNew": {
     "title": "Novidades no Dibbur v{{version}}"

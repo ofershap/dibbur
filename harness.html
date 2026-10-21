@@ -46,6 +46,16 @@
                 mute_while_recording: true,
                 selected_language: "auto",
                 theme: "dark",
+                shortcut_activation: "hold_or_toggle",
+                bindings: {
+                  transcribe: {
+                    id: "transcribe",
+                    name: "Transcribe Shortcut",
+                    description: "",
+                    default_binding: "option+space",
+                    current_binding: "option+space",
+                  },
+                },
               };
             throw new Error("harness stub: no Tauri backend for " + cmd);
           },

@@ -16,6 +16,29 @@ pub fn cancel_operation(app: AppHandle) {
     cancel_current_operation(&app);
 }
 
+/// The recording overlay's Done button: finish the current dictation exactly
+/// like the transcribe shortcut's toggle press (stop recording, transcribe,
+/// paste). Guarded so a late click on an already-hidden overlay can never
+/// *start* a recording.
+#[tauri::command]
+#[specta::specta]
+pub fn finish_dictation(app: AppHandle) {
+    use std::sync::Arc;
+
+    use crate::managers::audio::AudioRecordingManager;
+    use crate::TranscriptionCoordinator;
+
+    if !app
+        .state::<Arc<AudioRecordingManager>>()
+        .is_recording()
+    {
+        return;
+    }
+    if let Some(coordinator) = app.try_state::<TranscriptionCoordinator>() {
+        coordinator.send_external_input("transcribe", "overlay done button");
+    }
+}
+
 #[tauri::command]
 #[specta::specta]
 pub fn is_portable() -> bool {

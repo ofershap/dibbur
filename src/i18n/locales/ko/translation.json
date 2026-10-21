@@ -93,7 +93,11 @@
     "downloadFailed": "다운로드에 실패했습니다. 인터넷 연결을 확인하고 다시 시도하세요.",
     "retry": "다시 시도",
     "addArabic": "아랍어도 추가 (574MB)",
-    "downloadingArabic": "아랍어 모델 다운로드 중 - 백그라운드에서 준비됩니다"
+    "downloadingArabic": "아랍어 모델 다운로드 중 - 백그라운드에서 준비됩니다",
+    "usageTip": {
+      "title": "받아쓰기 방법",
+      "body": "{{shortcut}}을(를) 누르고 말하기 시작하세요. 종료하려면 다시 누르거나 녹음 바의 완료 버튼을 클릭하세요. 커서가 있는 곳에 텍스트가 입력됩니다."
+    }
   },
   "modelSelector": {
     "custom": "사용자 정의",
@@ -705,7 +709,11 @@
   "overlay": {
     "transcribing": "텍스트로 변환 중...",
     "processing": "처리 중...",
-    "loadingModel": "모델 로딩 중..."
+    "loadingModel": "모델 로딩 중...",
+    "done": "완료",
+    "hintToggle": "{{shortcut}}을(를) 다시 눌러 종료",
+    "hintPushToTalk": "{{shortcut}}을(를) 놓아서 종료",
+    "hintHoldOrToggle": "{{shortcut}}을(를) 놓거나 다시 눌러 종료"
   },
   "whatsNew": {
     "title": "Dibbur v{{version}}의 새 소식"

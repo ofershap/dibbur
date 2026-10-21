@@ -93,7 +93,11 @@
     "downloadFailed": "Download mislykkedes. Tjek internetforbindelsen og prøv igen.",
     "retry": "Prøv igen",
     "addArabic": "Tilføj også arabisk (574 MB)",
-    "downloadingArabic": "Downloader den arabiske model - den bliver klar i baggrunden"
+    "downloadingArabic": "Downloader den arabiske model - den bliver klar i baggrunden",
+    "usageTip": {
+      "title": "Sådan dikterer du",
+      "body": "Tryk på {{shortcut}} og begynd at tale. Tryk igen for at afslutte - eller klik på Færdig på optagelseslinjen - og teksten skrives der, hvor markøren er."
+    }
   },
   "modelSelector": {
     "custom": "Brugerdefineret",
@@ -708,7 +712,11 @@
   "overlay": {
     "transcribing": "Transskriberer...",
     "processing": "Behandler...",
-    "loadingModel": "Indlæser model..."
+    "loadingModel": "Indlæser model...",
+    "done": "Færdig",
+    "hintToggle": "Tryk på {{shortcut}} igen for at afslutte",
+    "hintPushToTalk": "Slip {{shortcut}} for at afslutte",
+    "hintHoldOrToggle": "Slip eller tryk på {{shortcut}} igen for at afslutte"
   },
   "secureInput": {
     "blockedWithCulprit_one": "{{name}} blokerer muligvis 1 genvej",

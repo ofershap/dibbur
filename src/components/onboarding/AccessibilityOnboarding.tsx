@@ -10,6 +10,8 @@ import {
 import { toast } from "sonner";
 import { commands } from "@/bindings";
 import { useSettingsStore } from "@/stores/settingsStore";
+import { formatKeyCombination } from "@/lib/utils/keyboard";
+import { useOsType } from "@/hooks/useOsType";
 import DibburLogo from "../icons/DibburLogo";
 import { Keyboard, Mic, Check, Loader2 } from "lucide-react";
 
@@ -31,6 +33,10 @@ const AccessibilityOnboarding: React.FC<AccessibilityOnboardingProps> = ({
   preview = false,
 }) => {
   const { t } = useTranslation();
+  const osType = useOsType();
+  // The user's transcribe shortcut, for the first-run usage tip below. The
+  // default binding is the right fallback before settings load.
+  const [shortcutDisplay, setShortcutDisplay] = useState<string>("");
   const refreshAudioDevices = useSettingsStore(
     (state) => state.refreshAudioDevices,
   );
@@ -75,6 +81,27 @@ const AccessibilityOnboarding: React.FC<AccessibilityOnboardingProps> = ({
 
     return microphoneStatus.overall_access !== "denied";
   }, []);
+
+  // Load the current transcribe shortcut once, for the usage tip.
+  useEffect(() => {
+    if (preview) {
+      setShortcutDisplay(formatKeyCombination("option+space", osType));
+      return;
+    }
+    commands
+      .getAppSettings()
+      .then((result) => {
+        if (result.status === "ok") {
+          const binding = result.data.bindings?.transcribe?.current_binding;
+          setShortcutDisplay(
+            formatKeyCombination(binding || "option+space", osType),
+          );
+        }
+      })
+      .catch(() =>
+        setShortcutDisplay(formatKeyCombination("option+space", osType)),
+      );
+  }, [preview, osType]);
 
   // Check platform and permission status on mount
   useEffect(() => {
@@ -412,6 +439,18 @@ const AccessibilityOnboarding: React.FC<AccessibilityOnboardingProps> = ({
             </div>
           </div>
         )}
+
+        {/* First-run usage tip: press the shortcut, speak, press again (or
+            click Done on the recording pill) to type. Nothing told the user
+            this before v1.0.3. */}
+        <div className="w-full p-4 rounded-lg bg-logo-primary/10 border border-logo-primary/20">
+          <h3 className="font-medium text-text mb-1">
+            {t("onboarding.usageTip.title")}
+          </h3>
+          <p className="text-sm text-text/70">
+            {t("onboarding.usageTip.body", { shortcut: shortcutDisplay })}
+          </p>
+        </div>
       </div>
     </div>
   );

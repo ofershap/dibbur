@@ -93,7 +93,11 @@
     "downloadFailed": "La baixada ha fallat. Comprova la connexió a internet i torna-ho a provar.",
     "retry": "Torna-ho a provar",
     "addArabic": "Afegeix també l'àrab (574 MB)",
-    "downloadingArabic": "S'està baixant el model àrab: estarà llest en segon pla"
+    "downloadingArabic": "S'està baixant el model àrab: estarà llest en segon pla",
+    "usageTip": {
+      "title": "Com dictar",
+      "body": "Prem {{shortcut}} i comença a parlar. Per acabar, torna-hi a prémer - o fes clic a Fet a la barra d'enregistrament - i el text s'escriu on sigui el cursor."
+    }
   },
   "modelSelector": {
     "custom": "Personalitzat",
@@ -708,7 +712,11 @@
   "overlay": {
     "transcribing": "S'està transcrivint...",
     "processing": "S'està processant...",
-    "loadingModel": "S'està carregant el model..."
+    "loadingModel": "S'està carregant el model...",
+    "done": "Fet",
+    "hintToggle": "Torna a prémer {{shortcut}} per acabar",
+    "hintPushToTalk": "Deixa anar {{shortcut}} per acabar",
+    "hintHoldOrToggle": "Deixa anar o torna a prémer {{shortcut}} per acabar"
   },
   "secureInput": {
     "blockedWithCulprit_one": "{{name}} pot estar blocant 1 drecera",

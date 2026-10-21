@@ -93,7 +93,11 @@
     "downloadFailed": "ダウンロードに失敗しました。インターネット接続を確認して再試行してください。",
     "retry": "再試行",
     "addArabic": "アラビア語も追加 (574MB)",
-    "downloadingArabic": "アラビア語モデルをダウンロード中 - バックグラウンドで準備されます"
+    "downloadingArabic": "アラビア語モデルをダウンロード中 - バックグラウンドで準備されます",
+    "usageTip": {
+      "title": "音声入力の使い方",
+      "body": "{{shortcut}} を押して話し始めてください。終了するにはもう一度押すか、録音バーの「完了」をクリックします。テキストはカーソル位置に入力されます。"
+    }
   },
   "modelSelector": {
     "custom": "カスタム",
@@ -705,7 +709,11 @@
   "overlay": {
     "transcribing": "文字起こし中…",
     "processing": "処理中…",
-    "loadingModel": "モデルを読み込み中…"
+    "loadingModel": "モデルを読み込み中…",
+    "done": "完了",
+    "hintToggle": "もう一度 {{shortcut}} を押して終了",
+    "hintPushToTalk": "{{shortcut}} を離して終了",
+    "hintHoldOrToggle": "{{shortcut}} を離すか、もう一度押して終了"
   },
   "whatsNew": {
     "title": "Dibbur v{{version}} の新機能"

@@ -12,6 +12,8 @@ import type {
 import i18n, { syncLanguageFromSettings } from "@/i18n";
 import type { ModelStateEvent } from "@/lib/types/events";
 import { getLanguageDirection } from "@/lib/utils/rtl";
+import { formatKeyCombination } from "@/lib/utils/keyboard";
+import { useOsType } from "@/hooks/useOsType";
 
 type OverlayState = "recording" | "streaming" | "transcribing" | "processing";
 
@@ -27,7 +29,11 @@ const SLOW_MODEL_LOAD_MS = 2000;
 
 const RecordingOverlay: React.FC = () => {
   const { t } = useTranslation();
+  const osType = useOsType();
   const [isVisible, setIsVisible] = useState(false);
+  // How to stop the current recording, with the user's actual shortcut -
+  // the pill itself is the only place a first-time user looks for this.
+  const [shortcutHint, setShortcutHint] = useState<string | null>(null);
   const [state, setState] = useState<OverlayState>("recording");
   // `Stream::play()` returning does not mean hardware callbacks are flowing.
   // Stay visually in an arming state until the backend processes the first
@@ -93,9 +99,26 @@ const RecordingOverlay: React.FC = () => {
             setPosition(
               settings.data.overlay_position === "top" ? "top" : "bottom",
             );
+            const binding =
+              settings.data.bindings?.transcribe?.current_binding ?? "";
+            const activation =
+              settings.data.shortcut_activation ?? "hold_or_toggle";
+            const hintKey =
+              activation === "toggle"
+                ? "overlay.hintToggle"
+                : activation === "push_to_talk"
+                  ? "overlay.hintPushToTalk"
+                  : "overlay.hintHoldOrToggle";
+            setShortcutHint(
+              binding
+                ? t(hintKey, {
+                    shortcut: formatKeyCombination(binding, osType),
+                  })
+                : null,
+            );
           }
         } catch {
-          // Keep the previous/default placement if settings can't be read.
+          // Keep the previous/default placement and hint if settings can't be read.
         }
         setState(overlayState);
         if (overlayState === "streaming") {
@@ -241,6 +264,29 @@ const RecordingOverlay: React.FC = () => {
     </div>
   );
 
+  // Finishes the dictation exactly like the shortcut's stop press
+  // (stop recording -> transcribe -> type). The X next to it cancels.
+  const doneBtn = (
+    <button
+      className="sdone"
+      aria-label={t("overlay.done")}
+      title={t("overlay.done")}
+      onClick={() => commands.finishDictation()}
+    >
+      <svg viewBox="0 0 16 16" aria-hidden="true">
+        <path
+          d="M3 8.5 L6.5 12 L13 4"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          fill="none"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+      <span>{t("overlay.done")}</span>
+    </button>
+  );
+
   const cancelBtn = (
     <button
       className="sx"
@@ -268,6 +314,7 @@ const RecordingOverlay: React.FC = () => {
       {waveform}
       <div className="sbase-r">
         {showTimer && <span className="stimer">{fmtTime(elapsed)}</span>}
+        {doneBtn}
         {showCancel && cancelBtn}
       </div>
     </div>
@@ -358,9 +405,14 @@ const RecordingOverlay: React.FC = () => {
       className={`ov-stage ${position} ov-fade ${isVisible ? "show" : ""}`}
     >
       <div
-        className={`scard compact ${working && isVisible ? "cworking" : ""}`}
+        className={`scard compact ${working && isVisible ? "cworking" : ""} ${
+          !working && shortcutHint ? "withhint" : ""
+        }`}
       >
         {working ? workingRow(workLabel, true) : listeningRow(false, true)}
+        {!working && shortcutHint && (
+          <div className="shint">{shortcutHint}</div>
+        )}
       </div>
     </div>
   );

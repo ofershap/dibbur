@@ -93,7 +93,11 @@
     "downloadFailed": "下載失敗。請檢查網路連線後重試。",
     "retry": "重試",
     "addArabic": "同時新增阿拉伯語 (574 MB)",
-    "downloadingArabic": "正在下載阿拉伯語模型 - 將在背景準備就緒"
+    "downloadingArabic": "正在下載阿拉伯語模型 - 將在背景準備就緒",
+    "usageTip": {
+      "title": "如何聽寫",
+      "body": "按下 {{shortcut}} 開始說話。結束時再按一次 - 或點擊錄音列上的「完成」 - 文字會輸入到游標所在位置。"
+    }
   },
   "modelSelector": {
     "custom": "自訂",
@@ -705,7 +709,11 @@
   "overlay": {
     "transcribing": "正在轉錄...",
     "processing": "處理中...",
-    "loadingModel": "正在載入模型..."
+    "loadingModel": "正在載入模型...",
+    "done": "完成",
+    "hintToggle": "再按一次 {{shortcut}} 結束",
+    "hintPushToTalk": "放開 {{shortcut}} 結束",
+    "hintHoldOrToggle": "放開或再按一次 {{shortcut}} 結束"
   },
   "whatsNew": {
     "title": "Dibbur v{{version}} 新功能"

@@ -93,7 +93,11 @@
     "downloadFailed": "Downloaden mislukt. Controleer de internetverbinding en probeer opnieuw.",
     "retry": "Opnieuw proberen",
     "addArabic": "Voeg ook Arabisch toe (574 MB)",
-    "downloadingArabic": "Het Arabische model wordt gedownload - het is straks op de achtergrond klaar"
+    "downloadingArabic": "Het Arabische model wordt gedownload - het is straks op de achtergrond klaar",
+    "usageTip": {
+      "title": "Zo dicteer je",
+      "body": "Druk op {{shortcut}} en begin te spreken. Druk nogmaals om te stoppen - of klik op Klaar in de opnamebalk - en de tekst wordt getypt waar de cursor staat."
+    }
   },
   "modelSelector": {
     "custom": "Aangepast",
@@ -708,7 +712,11 @@
   "overlay": {
     "transcribing": "Transcriberen...",
     "processing": "Verwerken...",
-    "loadingModel": "Model laden..."
+    "loadingModel": "Model laden...",
+    "done": "Klaar",
+    "hintToggle": "Druk nogmaals op {{shortcut}} om te stoppen",
+    "hintPushToTalk": "Laat {{shortcut}} los om te stoppen",
+    "hintHoldOrToggle": "Laat {{shortcut}} los of druk nogmaals om te stoppen"
   },
   "secureInput": {
     "blockedWithCulprit_one": "{{name}} blokkeert mogelijk 1 sneltoets",
