@@ -272,6 +272,54 @@
         color: var(--ink);
         font-weight: 600;
       }
+      .steps .howto {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 10px;
+      }
+      .steps .hrow {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+      }
+      .steps .hnum {
+        flex: none;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #fff;
+        border: 1px solid var(--line);
+        color: var(--blue);
+        font-size: 0.75rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 1px;
+      }
+      .steps .htxt .he {
+        display: block;
+        color: var(--ink);
+        font-weight: 600;
+      }
+      .steps .htxt .en {
+        display: inline-block;
+        direction: ltr;
+        margin-top: 3px;
+        font-size: 0.8rem;
+        color: var(--muted);
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        padding: 1px 8px;
+      }
+      .steps .gear {
+        width: 15px;
+        height: 15px;
+        vertical-align: -2px;
+        color: var(--muted);
+      }
       kbd {
         background: #fff;
         border: 1px solid var(--line);
@@ -441,12 +489,50 @@
           <li>
             <strong>בפתיחה הראשונה - אשרו את הפתיחה</strong>
             <span class="path"
-              >דיבור אינה חתומה בתעודת Apple, ולכן macOS יחסום את הפתיחה הראשונה
-              עם הודעת אזהרה. סגרו את ההודעה, פתחו את
-              <b>הגדרות המערכת ← פרטיות ואבטחה</b> (System Settings ← Privacy
-              &amp; Security), גללו מטה ולחצו <b>״פתח בכל זאת״</b> (Open Anyway)
-              ליד ההודעה על דיבור. לאחר מכן פתחו את האפליקציה שוב ואשרו.</span
-            >
+              >דיבור אינה חתומה בתעודת Apple, ולכן macOS חוסם את הפתיחה
+              הראשונה עם הודעת אזהרה. כך מאשרים, צעד צעד:
+              <span class="howto">
+                <span class="hrow"
+                  ><span class="hnum">1</span
+                  ><span class="htxt"
+                    ><span class="he">סגרו את הודעת האזהרה</span></span
+                  ></span
+                >
+                <span class="hrow"
+                  ><span class="hnum">2</span
+                  ><span class="htxt"
+                    ><span class="he">פתחו את <svg class="gear" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg> הגדרות המערכת</span
+                    ><span class="en" dir="ltr">System Settings</span></span
+                  ></span
+                >
+                <span class="hrow"
+                  ><span class="hnum">3</span
+                  ><span class="htxt"
+                    ><span class="he">עברו אל פרטיות ואבטחה</span
+                    ><span class="en" dir="ltr">Privacy &amp; Security</span></span
+                  ></span
+                >
+                <span class="hrow"
+                  ><span class="hnum">4</span
+                  ><span class="htxt"
+                    ><span class="he">גללו מטה עד ההודעה על דיבור</span></span
+                  ></span
+                >
+                <span class="hrow"
+                  ><span class="hnum">5</span
+                  ><span class="htxt"
+                    ><span class="he">לחצו ״פתח בכל זאת״</span
+                    ><span class="en" dir="ltr">Open Anyway</span></span
+                  ></span
+                >
+                <span class="hrow"
+                  ><span class="hnum">6</span
+                  ><span class="htxt"
+                    ><span class="he">פתחו את דיבור שוב ואשרו</span></span
+                  ></span
+                >
+              </span>
+            </span>
           </li>
         </ol>
       </div>
