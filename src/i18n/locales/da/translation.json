@@ -502,7 +502,7 @@
       "updateChecks": {
         "label": "Tjek for opdateringer",
         "description": "Tjek automatisk for nye versioner af Dibbur",
-        "lockedDescription": "Deaktiveret af systemkonfiguration (HANDY_DISABLE_UPDATER)"
+        "lockedDescription": "Deaktiveret af systemkonfiguration (DIBBUR_DISABLE_UPDATER)"
       },
       "whatsNewPreview": {
         "title": "Forhåndsvisning af nyheder",

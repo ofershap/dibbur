@@ -502,7 +502,7 @@
       "updateChecks": {
         "label": "Controleren op updates",
         "description": "Automatisch controleren op nieuwe versies van Dibbur",
-        "lockedDescription": "Uitgeschakeld door systeemconfiguratie (HANDY_DISABLE_UPDATER)"
+        "lockedDescription": "Uitgeschakeld door systeemconfiguratie (DIBBUR_DISABLE_UPDATER)"
       },
       "whatsNewPreview": {
         "title": "Voorbeeld van release-notes",

@@ -12,7 +12,7 @@ export const SECURE_INPUT_HELP_URL = "https://github.com/ofershap/dibbur";
  * Compact warning banner shown while macOS Secure Input is stuck on.
  *
  * Secure Input (password fields, Terminal's "Secure Keyboard Entry", a stuck
- * loginwindow) blocks key events from reaching Handy's keyboard listener, so
+ * loginwindow) blocks key events from reaching Dibbur's keyboard listener, so
  * keyed shortcuts silently stop firing (issue #1578). The backend monitor
  * emits `secure-input-changed` on state transitions; `sustained` filters out
  * the normal momentary activation from focusing a password field.

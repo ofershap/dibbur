@@ -502,7 +502,7 @@
       "updateChecks": {
         "label": "Verificar Atualizações",
         "description": "Verificar automaticamente novas versões do Dibbur",
-        "lockedDescription": "Desativado pela configuração do sistema (HANDY_DISABLE_UPDATER)"
+        "lockedDescription": "Desativado pela configuração do sistema (DIBBUR_DISABLE_UPDATER)"
       },
       "soundTheme": {
         "label": "Tema de Som",

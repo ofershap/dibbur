@@ -4,13 +4,13 @@
 //! multiple backend implementations:
 //!
 //! - `tauri`: Uses Tauri's built-in global-shortcut plugin
-//! - `handy_keys`: Uses the handy-keys library for more control
+//! - `dibbur_keys`: Uses the handy-keys library for more control
 //!
 //! The active implementation is determined by the `keyboard_implementation`
 //! setting and can be changed at runtime.
 
 mod handler;
-pub mod handy_keys;
+pub mod dibbur_keys;
 pub mod tauri_impl;
 
 use log::{debug, error, info, warn};
@@ -28,7 +28,7 @@ use crate::settings::{
 };
 use crate::tray;
 
-// Note: Commands are accessed via shortcut::handy_keys:: in lib.rs
+// Note: Commands are accessed via shortcut::dibbur_keys:: in lib.rs
 
 /// Initialize shortcuts using the configured implementation
 pub fn init_shortcuts(app: &AppHandle) {
@@ -39,13 +39,13 @@ pub fn init_shortcuts(app: &AppHandle) {
         KeyboardImplementation::Tauri => {
             tauri_impl::init_shortcuts(app);
         }
-        KeyboardImplementation::HandyKeys => {
-            if let Err(e) = handy_keys::init_shortcuts(app) {
+        KeyboardImplementation::DibburKeys => {
+            if let Err(e) = dibbur_keys::init_shortcuts(app) {
                 error!("Failed to initialize handy-keys shortcuts: {}", e);
                 // Fall back to Tauri implementation and persist this fallback
                 warn!("Falling back to Tauri global shortcut implementation and saving fallback to settings");
 
-                // Update settings to persist the fallback so we don't retry HandyKeys on next launch
+                // Update settings to persist the fallback so we don't retry DibburKeys on next launch
                 let mut settings = settings::get_settings(app);
                 settings.keyboard_implementation = KeyboardImplementation::Tauri;
                 settings::write_settings(app, settings);
@@ -134,7 +134,7 @@ pub fn register_shortcut(app: &AppHandle, binding: ShortcutBinding) -> Result<()
     let settings = get_settings(app);
     match settings.keyboard_implementation {
         KeyboardImplementation::Tauri => tauri_impl::register_shortcut(app, binding),
-        KeyboardImplementation::HandyKeys => handy_keys::register_shortcut(app, binding),
+        KeyboardImplementation::DibburKeys => dibbur_keys::register_shortcut(app, binding),
     }
 }
 
@@ -143,7 +143,7 @@ pub fn unregister_shortcut(app: &AppHandle, binding: ShortcutBinding) -> Result<
     let settings = get_settings(app);
     match settings.keyboard_implementation {
         KeyboardImplementation::Tauri => tauri_impl::unregister_shortcut(app, binding),
-        KeyboardImplementation::HandyKeys => handy_keys::unregister_shortcut(app, binding),
+        KeyboardImplementation::DibburKeys => dibbur_keys::unregister_shortcut(app, binding),
     }
 }
 
@@ -384,8 +384,8 @@ pub fn change_keyboard_implementation_setting(
         crate::secure_input::reconcile_fallback(&app);
     }
 
-    // Initialize new implementation if needed (HandyKeys needs state)
-    if new_impl == KeyboardImplementation::HandyKeys && initialize_handy_keys_with_rollback(&app)? {
+    // Initialize new implementation if needed (DibburKeys needs state)
+    if new_impl == KeyboardImplementation::DibburKeys && initialize_dibbur_keys_with_rollback(&app)? {
         // Shortcuts already registered during init.
         crate::secure_input::reconcile_fallback(&app);
         return Ok(ImplementationChangeResult {
@@ -423,7 +423,7 @@ pub fn get_keyboard_implementation(app: AppHandle) -> String {
     let settings = settings::get_settings(&app);
     match settings.keyboard_implementation {
         KeyboardImplementation::Tauri => "tauri".to_string(),
-        KeyboardImplementation::HandyKeys => "handy_keys".to_string(),
+        KeyboardImplementation::DibburKeys => "dibbur_keys".to_string(),
     }
 }
 
@@ -438,7 +438,7 @@ fn validate_shortcut_for_implementation(
 ) -> Result<(), String> {
     match implementation {
         KeyboardImplementation::Tauri => tauri_impl::validate_shortcut(raw),
-        KeyboardImplementation::HandyKeys => handy_keys::validate_shortcut(raw),
+        KeyboardImplementation::DibburKeys => dibbur_keys::validate_shortcut(raw),
     }
 }
 
@@ -446,7 +446,7 @@ fn validate_shortcut_for_implementation(
 fn parse_keyboard_implementation(s: &str) -> KeyboardImplementation {
     match s {
         "tauri" => KeyboardImplementation::Tauri,
-        "handy_keys" => KeyboardImplementation::HandyKeys,
+        "dibbur_keys" | "handy_keys" => KeyboardImplementation::DibburKeys,
         other => {
             warn!(
                 "Invalid keyboard implementation '{}', defaulting to tauri",
@@ -469,7 +469,7 @@ fn unregister_all_shortcuts(app: &AppHandle, implementation: KeyboardImplementat
 
         let result = match implementation {
             KeyboardImplementation::Tauri => tauri_impl::unregister_shortcut(app, binding),
-            KeyboardImplementation::HandyKeys => handy_keys::unregister_shortcut(app, binding),
+            KeyboardImplementation::DibburKeys => dibbur_keys::unregister_shortcut(app, binding),
         };
 
         if let Err(e) = result {
@@ -527,7 +527,7 @@ fn register_all_shortcuts_for_implementation(
         // Register with the appropriate implementation
         let result = match implementation {
             KeyboardImplementation::Tauri => tauri_impl::register_shortcut(app, binding),
-            KeyboardImplementation::HandyKeys => handy_keys::register_shortcut(app, binding),
+            KeyboardImplementation::DibburKeys => dibbur_keys::register_shortcut(app, binding),
         };
 
         if let Err(e) = result {
@@ -546,14 +546,14 @@ fn register_all_shortcuts_for_implementation(
     reset_bindings
 }
 
-/// Initialize HandyKeys if not already initialized, with rollback on failure
-fn initialize_handy_keys_with_rollback(app: &AppHandle) -> Result<bool, String> {
-    if app.try_state::<handy_keys::HandyKeysState>().is_some() {
+/// Initialize DibburKeys if not already initialized, with rollback on failure
+fn initialize_dibbur_keys_with_rollback(app: &AppHandle) -> Result<bool, String> {
+    if app.try_state::<dibbur_keys::DibburKeysState>().is_some() {
         return Ok(false); // Already initialized, caller should continue
     }
 
-    if let Err(e) = handy_keys::init_shortcuts(app) {
-        error!("Failed to initialize HandyKeys: {}", e);
+    if let Err(e) = dibbur_keys::init_shortcuts(app) {
+        error!("Failed to initialize DibburKeys: {}", e);
         // Rollback to Tauri
         let mut settings = settings::get_settings(app);
         settings.keyboard_implementation = KeyboardImplementation::Tauri;
@@ -561,7 +561,7 @@ fn initialize_handy_keys_with_rollback(app: &AppHandle) -> Result<bool, String> 
         crate::secure_input::reconcile_fallback(app);
         tauri_impl::init_shortcuts(app);
         return Err(format!(
-            "Failed to initialize HandyKeys: {}. Reverted to Tauri.",
+            "Failed to initialize DibburKeys: {}. Reverted to Tauri.",
             e
         ));
     }
@@ -815,7 +815,7 @@ pub fn change_autostart_setting(app: AppHandle, enabled: bool) -> Result<(), Str
 pub fn change_update_checks_setting(app: AppHandle, enabled: bool) -> Result<(), String> {
     if settings::update_checks_forced_disabled() {
         return Err(
-            "Update checks are disabled by system configuration (HANDY_DISABLE_UPDATER)".into(),
+            "Update checks are disabled by system configuration (DIBBUR_DISABLE_UPDATER)".into(),
         );
     }
 
@@ -1542,7 +1542,7 @@ mod tests {
             "printscreen",
         ] {
             assert!(key.parse::<Shortcut>().is_ok(), "Tauri rejected {key}");
-            assert!(key.parse::<Hotkey>().is_ok(), "HandyKeys rejected {key}");
+            assert!(key.parse::<Hotkey>().is_ok(), "DibburKeys rejected {key}");
         }
     }
 }

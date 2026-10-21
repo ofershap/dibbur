@@ -1,5 +1,5 @@
 {
-  description = "Handy - A free, open source, and extensible speech-to-text application that works completely offline";
+  description = "Dibbur - Hebrew and Arabic voice dictation for Mac, forked from Handy";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -169,7 +169,7 @@
                 # Self-update can't work against an immutable /nix/store install
                 # (downloadAndInstall would try to overwrite the store path), so
                 # the Nix-built package always disables the updater.
-                --set HANDY_DISABLE_UPDATER 1
+                --set DIBBUR_DISABLE_UPDATER 1
               )
             '';
 
@@ -237,7 +237,7 @@
             XDG_DATA_DIRS = "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}:${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}:${pkgs.hicolor-icon-theme}/share";
 
             shellHook = ''
-              echo "Handy development environment"
+              echo "Dibbur development environment"
               bun install
               echo "Run 'bun run tauri dev' to start"
             '';

@@ -1,4 +1,4 @@
-# NixOS module for Handy speech-to-text
+# NixOS module for Dibbur speech-to-text
 #
 # Handles system-level configuration that the package wrapper cannot:
 #   - udev rule for /dev/uinput (rdev grab() needs it for virtual input)

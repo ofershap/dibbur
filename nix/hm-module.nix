@@ -1,4 +1,4 @@
-# Home-manager module for Handy speech-to-text
+# Home-manager module for Dibbur speech-to-text
 #
 # Provides a systemd user service for autostart.
 # Usage: imports = [ handy.homeManagerModules.default ];

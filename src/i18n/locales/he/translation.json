@@ -502,7 +502,7 @@
       "updateChecks": {
         "label": "בדוק עדכונים",
         "description": "בדוק אוטומטית אם קיימות גרסאות חדשות של דיבור",
-        "lockedDescription": "מושבת על ידי תצורת המערכת (HANDY_DISABLE_UPDATER)"
+        "lockedDescription": "מושבת על ידי תצורת המערכת (DIBBUR_DISABLE_UPDATER)"
       },
       "soundTheme": {
         "label": "ערכת צלילים",

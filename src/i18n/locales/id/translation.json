@@ -502,7 +502,7 @@
       "updateChecks": {
         "label": "Periksa Pembaruan",
         "description": "Periksa versi baru Dibbur secara otomatis",
-        "lockedDescription": "Dinonaktifkan oleh konfigurasi sistem (HANDY_DISABLE_UPDATER)"
+        "lockedDescription": "Dinonaktifkan oleh konfigurasi sistem (DIBBUR_DISABLE_UPDATER)"
       },
       "whatsNewPreview": {
         "title": "Pratinjau Yang Baru",
