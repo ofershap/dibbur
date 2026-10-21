@@ -1,242 +1,483 @@
-<!DOCTYPE html>
+<!doctype html>
 <html dir="rtl" lang="he">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>דיבור - הקלדה קולית בעברית ובערבית ל-Mac</title>
-<meta name="description" content="דיבור: אפליקציה חינמית ופתוחה להקלדה קולית בעברית ובערבית על Mac. לחצו Option+Space, דברו, והטקסט מוקלד - הכל מקומי ופרטי.">
-<link rel="icon" type="image/png" href="icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --blue: #2563eb;
-    --blue-dark: #1d4ed8;
-    --ink: #0f172a;
-    --muted: #475569;
-    --line: #e2e8f0;
-    --bg-soft: #f8fafc;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: 'Heebo', -apple-system, 'Segoe UI', sans-serif;
-    color: var(--ink);
-    background: #fff;
-    line-height: 1.7;
-  }
-  .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>דיבור - הקלדה קולית בעברית ובערבית ל-Mac</title>
+    <meta
+      name="description"
+      content="דיבור: אפליקציה חינמית ופתוחה להקלדה קולית בעברית ובערבית על Mac. לחצו Option+Space, דברו, והטקסט מוקלד - הכל מקומי ופרטי."
+    />
+    <link rel="icon" type="image/png" href="icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --blue: #2563eb;
+        --blue-dark: #1d4ed8;
+        --ink: #0f172a;
+        --muted: #475569;
+        --line: #e2e8f0;
+        --bg-soft: #f8fafc;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family:
+          "Heebo",
+          -apple-system,
+          "Segoe UI",
+          sans-serif;
+        color: var(--ink);
+        background: #fff;
+        line-height: 1.7;
+      }
+      .wrap {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 0 24px;
+      }
 
-  header.hero {
-    text-align: center;
-    padding: 72px 24px 48px;
-    background: linear-gradient(180deg, #eff6ff 0%, #fff 100%);
-  }
-  .hero img.logo { width: 108px; height: 108px; border-radius: 26px; box-shadow: 0 12px 32px rgba(37,99,235,.25); }
-  .hero h1 { font-size: 3rem; font-weight: 800; margin: 20px 0 6px; letter-spacing: -0.5px; }
-  .hero .tag { font-size: 1.3rem; color: var(--muted); font-weight: 500; }
-  .hero .free { display: inline-block; margin-top: 14px; padding: 4px 14px; background: #dbeafe; color: var(--blue-dark); border-radius: 999px; font-size: .95rem; font-weight: 600; }
+      header.hero {
+        text-align: center;
+        padding: 72px 24px 48px;
+        background: linear-gradient(180deg, #eff6ff 0%, #fff 100%);
+      }
+      .hero img.logo {
+        width: 108px;
+        height: 108px;
+        border-radius: 26px;
+        box-shadow: 0 12px 32px rgba(37, 99, 235, 0.25);
+      }
+      .hero h1 {
+        font-size: 3rem;
+        font-weight: 800;
+        margin: 20px 0 6px;
+        letter-spacing: -0.5px;
+      }
+      .hero .tag {
+        font-size: 1.3rem;
+        color: var(--muted);
+        font-weight: 500;
+      }
+      .hero .free {
+        display: inline-block;
+        margin-top: 14px;
+        padding: 4px 14px;
+        background: #dbeafe;
+        color: var(--blue-dark);
+        border-radius: 999px;
+        font-size: 0.95rem;
+        font-weight: 600;
+      }
 
-  .dl-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-top: 34px; }
-  .btn {
-    display: inline-flex; align-items: center; gap: 10px;
-    padding: 15px 30px; border-radius: 14px;
-    font-size: 1.12rem; font-weight: 700; text-decoration: none;
-    transition: transform .15s ease, box-shadow .15s ease;
-  }
-  .btn-primary { background: var(--blue); color: #fff; box-shadow: 0 8px 24px rgba(37,99,235,.35); }
-  .btn-primary:hover { background: var(--blue-dark); transform: translateY(-2px); box-shadow: 0 12px 28px rgba(37,99,235,.4); }
-  .btn-ghost { background: #fff; color: var(--ink); border: 2px solid var(--line); }
-  .btn-ghost:hover { border-color: var(--blue); color: var(--blue); }
-  .dl-note { margin-top: 14px; font-size: .92rem; color: var(--muted); }
-  .dl-note a { color: var(--blue); }
+      .dl-row {
+        display: flex;
+        gap: 14px;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 34px;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 15px 30px;
+        border-radius: 14px;
+        font-size: 1.12rem;
+        font-weight: 700;
+        text-decoration: none;
+        transition:
+          transform 0.15s ease,
+          box-shadow 0.15s ease;
+      }
+      .btn-primary {
+        background: var(--blue);
+        color: #fff;
+        box-shadow: 0 8px 24px rgba(37, 99, 235, 0.35);
+      }
+      .btn-primary:hover {
+        background: var(--blue-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 12px 28px rgba(37, 99, 235, 0.4);
+      }
+      .btn-ghost {
+        background: #fff;
+        color: var(--ink);
+        border: 2px solid var(--line);
+      }
+      .btn-ghost:hover {
+        border-color: var(--blue);
+        color: var(--blue);
+      }
+      .dl-note {
+        margin-top: 14px;
+        font-size: 0.92rem;
+        color: var(--muted);
+      }
+      .dl-note a {
+        color: var(--blue);
+      }
 
-  section { padding: 46px 0; }
-  section + section { border-top: 1px solid var(--line); }
-  h2 { font-size: 1.75rem; font-weight: 800; margin-bottom: 8px; }
-  h2 .num { color: var(--blue); }
-  .sub { color: var(--muted); margin-bottom: 26px; }
+      section {
+        padding: 46px 0;
+      }
+      section + section {
+        border-top: 1px solid var(--line);
+      }
+      h2 {
+        font-size: 1.75rem;
+        font-weight: 800;
+        margin-bottom: 8px;
+      }
+      h2 .num {
+        color: var(--blue);
+      }
+      .sub {
+        color: var(--muted);
+        margin-bottom: 26px;
+      }
 
-  .steps { list-style: none; counter-reset: step; }
-  .steps li {
-    counter-increment: step;
-    position: relative;
-    padding: 16px 62px 16px 18px;
-    background: var(--bg-soft);
-    border: 1px solid var(--line);
-    border-radius: 14px;
-    margin-bottom: 12px;
-  }
-  .steps li::before {
-    content: counter(step);
-    position: absolute; top: 16px; right: 16px;
-    width: 32px; height: 32px; border-radius: 50%;
-    background: var(--blue); color: #fff;
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 700;
-  }
-  .steps strong { display: block; margin-bottom: 2px; }
-  .steps .path { font-size: .95rem; color: var(--muted); }
-  .steps .path b { color: var(--ink); font-weight: 600; }
-  kbd {
-    background: #fff; border: 1px solid var(--line); border-bottom-width: 3px;
-    border-radius: 7px; padding: 1px 8px; font-family: inherit; font-weight: 600; font-size: .95em;
-    direction: ltr; display: inline-block;
-  }
+      .steps {
+        list-style: none;
+        counter-reset: step;
+      }
+      .steps li {
+        counter-increment: step;
+        position: relative;
+        padding: 16px 62px 16px 18px;
+        background: var(--bg-soft);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        margin-bottom: 12px;
+      }
+      .steps li::before {
+        content: counter(step);
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: var(--blue);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+      }
+      .steps strong {
+        display: block;
+        margin-bottom: 2px;
+      }
+      .steps .path {
+        font-size: 0.95rem;
+        color: var(--muted);
+      }
+      .steps .path b {
+        color: var(--ink);
+        font-weight: 600;
+      }
+      kbd {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-bottom-width: 3px;
+        border-radius: 7px;
+        padding: 1px 8px;
+        font-family: inherit;
+        font-weight: 600;
+        font-size: 0.95em;
+        direction: ltr;
+        display: inline-block;
+      }
 
-  .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; }
-  .feature { border: 1px solid var(--line); border-radius: 14px; padding: 20px; }
-  .feature .ic { font-size: 1.6rem; }
-  .feature h3 { font-size: 1.08rem; margin: 8px 0 4px; }
-  .feature p { font-size: .95rem; color: var(--muted); }
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+        gap: 14px;
+      }
+      .feature {
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 20px;
+      }
+      .feature .ic {
+        font-size: 1.6rem;
+      }
+      .feature h3 {
+        font-size: 1.08rem;
+        margin: 8px 0 4px;
+      }
+      .feature p {
+        font-size: 0.95rem;
+        color: var(--muted);
+      }
 
-  .note {
-    background: #fffbeb; border: 1px solid #fde68a; border-radius: 14px;
-    padding: 16px 20px; margin-top: 18px; font-size: .98rem;
-  }
-  .note b { color: #92400e; }
+      .note {
+        background: #fffbeb;
+        border: 1px solid #fde68a;
+        border-radius: 14px;
+        padding: 16px 20px;
+        margin-top: 18px;
+        font-size: 0.98rem;
+      }
+      .note b {
+        color: #92400e;
+      }
 
-  footer {
-    border-top: 1px solid var(--line);
-    padding: 34px 0 46px; text-align: center;
-    color: var(--muted); font-size: .95rem;
-  }
-  footer a { color: var(--blue); text-decoration: none; font-weight: 600; }
-  footer .gh-btn {
-    display: inline-block; margin-bottom: 14px; padding: 10px 22px;
-    border: 2px solid var(--ink); border-radius: 12px; color: var(--ink);
-    font-weight: 700;
-  }
-  footer .gh-btn:hover { background: var(--ink); color: #fff; }
-</style>
-</head>
-<body>
+      footer {
+        border-top: 1px solid var(--line);
+        padding: 34px 0 46px;
+        text-align: center;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+      footer a {
+        color: var(--blue);
+        text-decoration: none;
+        font-weight: 600;
+      }
+      footer .gh-btn {
+        display: inline-block;
+        margin-bottom: 14px;
+        padding: 10px 22px;
+        border: 2px solid var(--ink);
+        border-radius: 12px;
+        color: var(--ink);
+        font-weight: 700;
+      }
+      footer .gh-btn:hover {
+        background: var(--ink);
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="hero">
+      <img class="logo" src="icon.png" alt="הלוגו של דיבור - מיקרופון כחול" />
+      <h1>דיבור</h1>
+      <p class="tag">הקלדה קולית בעברית ובערבית, על ה-Mac שלך</p>
+      <span class="free">חינם · קוד פתוח · עובד אופליין</span>
+      <div class="dl-row">
+        <a
+          class="btn btn-primary"
+          id="dl-arm"
+          href="https://github.com/ofershap/dibbur/releases/latest"
+        >
+          <span>⬇</span> הורדה ל-Mac עם שבב Apple
+        </a>
+        <a
+          class="btn btn-ghost"
+          id="dl-intel"
+          href="https://github.com/ofershap/dibbur/releases/latest"
+        >
+          הורדה ל-Mac עם Intel
+        </a>
+      </div>
+      <p class="dl-note" id="dl-note">
+        לא בטוחים איזה Mac יש לכם? <a href="#which-mac">בדקו כאן</a> ·
+        <a href="https://github.com/ofershap/dibbur/releases/latest"
+          >כל הגרסאות ב-GitHub</a
+        >
+      </p>
+    </header>
 
-<header class="hero">
-  <img class="logo" src="icon.png" alt="הלוגו של דיבור - מיקרופון כחול">
-  <h1>דיבור</h1>
-  <p class="tag">הקלדה קולית בעברית ובערבית, על ה-Mac שלך</p>
-  <span class="free">חינם · קוד פתוח · עובד אופליין</span>
-  <div class="dl-row">
-    <a class="btn btn-primary" id="dl-arm" href="https://github.com/ofershap/dibbur/releases/latest">
-      <span>⬇</span> הורדה ל-Mac עם שבב Apple
-    </a>
-    <a class="btn btn-ghost" id="dl-intel" href="https://github.com/ofershap/dibbur/releases/latest">
-      הורדה ל-Mac עם Intel
-    </a>
-  </div>
-  <p class="dl-note" id="dl-note">לא בטוחים איזה Mac יש לכם? <a href="#which-mac">בדקו כאן</a> · <a href="https://github.com/ofershap/dibbur/releases/latest">כל הגרסאות ב-GitHub</a></p>
-</header>
+    <section>
+      <div class="wrap">
+        <h2><span class="num">1.</span> התקנה</h2>
+        <p class="sub">דקה אחת ואתם מוכנים.</p>
+        <ol class="steps">
+          <li>
+            <strong>הורידו ופתחו את קובץ ה-DMG</strong>
+            <span class="path"
+              >בחרו למעלה את הגרסה שמתאימה ל-Mac שלכם ופתחו את הקובץ
+              שהורד.</span
+            >
+          </li>
+          <li>
+            <strong>גררו את דיבור לתיקיית Applications</strong>
+            <span class="path"
+              >בחלון שנפתח, גררו את האייקון של דיבור על גבי תיקיית
+              היישומים.</span
+            >
+          </li>
+          <li>
+            <strong>בפתיחה הראשונה - אשרו את הפתיחה</strong>
+            <span class="path"
+              >דיבור אינה חתומה בתעודת Apple, ולכן macOS יחסום את הפתיחה הראשונה
+              עם הודעת אזהרה. סגרו את ההודעה, פתחו את
+              <b>הגדרות המערכת ← פרטיות ואבטחה</b> (System Settings ← Privacy
+              &amp; Security), גללו מטה ולחצו <b>״פתח בכל זאת״</b> (Open Anyway)
+              ליד ההודעה על דיבור. לאחר מכן פתחו את האפליקציה שוב ואשרו.</span
+            >
+          </li>
+        </ol>
+      </div>
+    </section>
 
-<section>
-  <div class="wrap">
-    <h2><span class="num">1.</span> התקנה</h2>
-    <p class="sub">דקה אחת ואתם מוכנים.</p>
-    <ol class="steps">
-      <li>
-        <strong>הורידו ופתחו את קובץ ה-DMG</strong>
-        <span class="path">בחרו למעלה את הגרסה שמתאימה ל-Mac שלכם ופתחו את הקובץ שהורד.</span>
-      </li>
-      <li>
-        <strong>גררו את דיבור לתיקיית Applications</strong>
-        <span class="path">בחלון שנפתח, גררו את האייקון של דיבור על גבי תיקיית היישומים.</span>
-      </li>
-      <li>
-        <strong>בפתיחה הראשונה - אשרו את הפתיחה</strong>
-        <span class="path">דיבור אינה חתומה בתעודת Apple, ולכן macOS יחסום את הפתיחה הראשונה עם הודעת אזהרה. סגרו את ההודעה, פתחו את <b>הגדרות המערכת ← פרטיות ואבטחה</b> (System Settings ← Privacy &amp; Security), גללו מטה ולחצו <b>״פתח בכל זאת״</b> (Open Anyway) ליד ההודעה על דיבור. לאחר מכן פתחו את האפליקציה שוב ואשרו.</span>
-      </li>
-    </ol>
-  </div>
-</section>
+    <section>
+      <div class="wrap">
+        <h2><span class="num">2.</span> הרשאות - חובה כדי שזה יעבוד</h2>
+        <p class="sub">
+          דיבור צריכה שתי הרשאות מערכת כדי להקשיב ולהקליד עבורכם.
+        </p>
+        <ol class="steps">
+          <li>
+            <strong>מיקרופון</strong>
+            <span class="path"
+              >בהקלטה הראשונה macOS ישאל אם לאפשר לדיבור להשתמש במיקרופון -
+              אשרו. אם דילגתם:
+              <b>הגדרות המערכת ← פרטיות ואבטחה ← מיקרופון</b> (Microphone)
+              והפעילו את דיבור.</span
+            >
+          </li>
+          <li>
+            <strong
+              >נגישות (Accessibility) - כדי שהטקסט יוקלד באפליקציות
+              אחרות</strong
+            >
+            <span class="path"
+              ><b>הגדרות המערכת ← פרטיות ואבטחה ← נגישות</b> (Accessibility),
+              לחצו על + והוסיפו את דיבור מ-Applications, וודאו שהמתג דלוק.</span
+            >
+          </li>
+          <li>
+            <strong
+              >ניטור קלט (Input Monitoring) - אם קיצור המקלדת לא מגיב</strong
+            >
+            <span class="path"
+              ><b>הגדרות המערכת ← פרטיות ואבטחה ← ניטור קלט</b> (Input
+              Monitoring) והפעילו את דיבור.</span
+            >
+          </li>
+        </ol>
+      </div>
+    </section>
 
-<section>
-  <div class="wrap">
-    <h2><span class="num">2.</span> הרשאות - חובה כדי שזה יעבוד</h2>
-    <p class="sub">דיבור צריכה שתי הרשאות מערכת כדי להקשיב ולהקליד עבורכם.</p>
-    <ol class="steps">
-      <li>
-        <strong>מיקרופון</strong>
-        <span class="path">בהקלטה הראשונה macOS ישאל אם לאפשר לדיבור להשתמש במיקרופון - אשרו. אם דילגתם: <b>הגדרות המערכת ← פרטיות ואבטחה ← מיקרופון</b> (Microphone) והפעילו את דיבור.</span>
-      </li>
-      <li>
-        <strong>נגישות (Accessibility) - כדי שהטקסט יוקלד באפליקציות אחרות</strong>
-        <span class="path"><b>הגדרות המערכת ← פרטיות ואבטחה ← נגישות</b> (Accessibility), לחצו על + והוסיפו את דיבור מ-Applications, וודאו שהמתג דלוק.</span>
-      </li>
-      <li>
-        <strong>ניטור קלט (Input Monitoring) - אם קיצור המקלדת לא מגיב</strong>
-        <span class="path"><b>הגדרות המערכת ← פרטיות ואבטחה ← ניטור קלט</b> (Input Monitoring) והפעילו את דיבור.</span>
-      </li>
-    </ol>
-  </div>
-</section>
+    <section>
+      <div class="wrap">
+        <h2><span class="num">3.</span> שימוש יומיומי</h2>
+        <p class="sub">עובד בכל אפליקציה, בכל שדה טקסט.</p>
+        <ol class="steps">
+          <li>
+            <strong
+              >לחצו <kbd>Option</kbd> + <kbd>Space</kbd> והתחילו לדבר</strong
+            >
+            <span class="path"
+              >יופיע חלונית הקלטה קטנה עם נקודה כחולה. לחיצה ארוכה על הקיצור
+              עובדת כמו walkie-talkie: מדברים כל עוד לוחצים.</span
+            >
+          </li>
+          <li>
+            <strong
+              >לסיום - שוב <kbd>Option</kbd> + <kbd>Space</kbd>, או הנקודה
+              הכחולה</strong
+            >
+            <span class="path"
+              >רחפו עם העכבר מעל הנקודה הכחולה והיא תהפוך לכפתור <b>סיום</b>.
+              הטקסט מוקלד אוטומטית במקום שהסמן נמצא.</span
+            >
+          </li>
+        </ol>
+        <div class="feature-grid" style="margin-top: 24px">
+          <div class="feature">
+            <div class="ic">🔒</div>
+            <h3>פרטי לגמרי</h3>
+            <p>הזיהוי רץ על המחשב עצמו. השמע שלכם לא יוצא לשום שרת.</p>
+          </div>
+          <div class="feature">
+            <div class="ic">🇮🇱</div>
+            <h3>עברית אמיתית</h3>
+            <p>מודל הדיבור של ivrit-ai מובנה, עם ניקוד תקין של פיסוק וסגנון.</p>
+          </div>
+          <div class="feature">
+            <div class="ic">⚡</div>
+            <h3>בכל מקום</h3>
+            <p>מייל, הודעות, מסמכים, קוד - כל מקום שמקלידים בו, אפשר לדבר.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<section>
-  <div class="wrap">
-    <h2><span class="num">3.</span> שימוש יומיומי</h2>
-    <p class="sub">עובד בכל אפליקציה, בכל שדה טקסט.</p>
-    <ol class="steps">
-      <li>
-        <strong>לחצו <kbd>Option</kbd> + <kbd>Space</kbd> והתחילו לדבר</strong>
-        <span class="path">יופיע חלונית הקלטה קטנה עם נקודה כחולה. לחיצה ארוכה על הקיצור עובדת כמו walkie-talkie: מדברים כל עוד לוחצים.</span>
-      </li>
-      <li>
-        <strong>לסיום - שוב <kbd>Option</kbd> + <kbd>Space</kbd>, או הנקודה הכחולה</strong>
-        <span class="path">רחפו עם העכבר מעל הנקודה הכחולה והיא תהפוך לכפתור <b>סיום</b>. הטקסט מוקלד אוטומטית במקום שהסמן נמצא.</span>
-      </li>
-    </ol>
-    <div class="feature-grid" style="margin-top: 24px;">
-      <div class="feature"><div class="ic">🔒</div><h3>פרטי לגמרי</h3><p>הזיהוי רץ על המחשב עצמו. השמע שלכם לא יוצא לשום שרת.</p></div>
-      <div class="feature"><div class="ic">🇮🇱</div><h3>עברית אמיתית</h3><p>מודל הדיבור של ivrit-ai מובנה, עם ניקוד תקין של פיסוק וסגנון.</p></div>
-      <div class="feature"><div class="ic">⚡</div><h3>בכל מקום</h3><p>מייל, הודעות, מסמכים, קוד - כל מקום שמקלידים בו, אפשר לדבר.</p></div>
-    </div>
-  </div>
-</section>
+    <section>
+      <div class="wrap">
+        <h2>שאלות נפוצות</h2>
+        <p class="sub"></p>
+        <ol class="steps" id="which-mac">
+          <li>
+            <strong>איזה Mac יש לי - Apple או Intel?</strong>
+            <span class="path"
+              >תפריט התפוח () ← <b>אודות Mac זה</b> (About This Mac). אם כתוב
+              "שבב" (Chip) עם M1/M2/M3/M4 - בחרו בגרסת Apple. אם כתוב "מעבד"
+              (Processor) Intel - בחרו בגרסת Intel.</span
+            >
+          </li>
+          <li>
+            <strong>איך מעדכנים לגרסה חדשה?</strong>
+            <span class="path"
+              >קודם צאו מהאפליקציה: אייקון דיבור בשורת התפריטים ←
+              <b>יציאה</b> (Quit). אחר כך הורידו את הגרסה החדשה והחליפו את
+              האפליקציה ב-Applications. אם אחרי עדכון ההקלדה מפסיקה לעבוד: הסירו
+              את דיבור מרשימת הנגישות והוסיפו מחדש.</span
+            >
+          </li>
+          <li>
+            <strong>זה באמת חינם?</strong>
+            <span class="path"
+              >כן. קוד פתוח ברישיון MIT, בלי מנוי ובלי ענן. מבוסס על פרויקט
+              Handy הפתוח.</span
+            >
+          </li>
+        </ol>
+      </div>
+    </section>
 
-<section>
-  <div class="wrap">
-    <h2>שאלות נפוצות</h2>
-    <p class="sub"></p>
-    <ol class="steps" id="which-mac">
-      <li>
-        <strong>איזה Mac יש לי - Apple או Intel?</strong>
-        <span class="path">תפריט התפוח () ← <b>אודות Mac זה</b> (About This Mac). אם כתוב "שבב" (Chip) עם M1/M2/M3/M4 - בחרו בגרסת Apple. אם כתוב "מעבד" (Processor) Intel - בחרו בגרסת Intel.</span>
-      </li>
-      <li>
-        <strong>איך מעדכנים לגרסה חדשה?</strong>
-        <span class="path">קודם צאו מהאפליקציה: אייקון דיבור בשורת התפריטים ← <b>יציאה</b> (Quit). אחר כך הורידו את הגרסה החדשה והחליפו את האפליקציה ב-Applications. אם אחרי עדכון ההקלדה מפסיקה לעבוד: הסירו את דיבור מרשימת הנגישות והוסיפו מחדש.</span>
-      </li>
-      <li>
-        <strong>זה באמת חינם?</strong>
-        <span class="path">כן. קוד פתוח ברישיון MIT, בלי מנוי ובלי ענן. מבוסס על פרויקט Handy הפתוח.</span>
-      </li>
-    </ol>
-  </div>
-</section>
+    <footer>
+      <div class="wrap">
+        <a class="gh-btn" href="https://github.com/ofershap/dibbur"
+          >★ דיבור ב-GitHub</a
+        >
+        <p>
+          נבנה על ידי <a href="https://github.com/ofershap">עופר שפירא</a> ·
+          מבוסס על <a href="https://github.com/cjpais/Handy">Handy</a> (MIT) ·
+          מודל הדיבור העברי של <a href="https://www.ivrit.ai/">ivrit-ai</a>
+        </p>
+      </div>
+    </footer>
 
-<footer>
-  <div class="wrap">
-    <a class="gh-btn" href="https://github.com/ofershap/dibbur">★ דיבור ב-GitHub</a>
-    <p>נבנה על ידי <a href="https://github.com/ofershap">עופר שפירא</a> · מבוסס על <a href="https://github.com/cjpais/Handy">Handy</a> (MIT) · מודל הדיבור העברי של <a href="https://www.ivrit.ai/">ivrit-ai</a></p>
-  </div>
-</footer>
-
-<script>
-(async function () {
-  const note = document.getElementById('dl-note');
-  try {
-    const res = await fetch('https://api.github.com/repos/ofershap/dibbur/releases/latest');
-    if (!res.ok) return;
-    const rel = await res.json();
-    const arm = rel.assets.find(a => /_aarch64\.dmg$/.test(a.name));
-    const intel = rel.assets.find(a => /_x64\.dmg$/.test(a.name));
-    if (arm) document.getElementById('dl-arm').href = arm.browser_download_url;
-    if (intel) document.getElementById('dl-intel').href = intel.browser_download_url;
-    if (rel.tag_name) {
-      note.innerHTML = 'גרסה נוכחית: <b>' + rel.tag_name + '</b> · לא בטוחים איזה Mac יש לכם? <a href="#which-mac">בדקו כאן</a> · <a href="https://github.com/ofershap/dibbur/releases/latest">כל הגרסאות</a>';
-    }
-  } catch (e) { /* static fallback links stay */ }
-})();
-</script>
-
-</body>
+    <script>
+      (async function () {
+        const note = document.getElementById("dl-note");
+        try {
+          const res = await fetch(
+            "https://api.github.com/repos/ofershap/dibbur/releases/latest",
+          );
+          if (!res.ok) return;
+          const rel = await res.json();
+          const arm = rel.assets.find((a) => /_aarch64\.dmg$/.test(a.name));
+          const intel = rel.assets.find((a) => /_x64\.dmg$/.test(a.name));
+          if (arm)
+            document.getElementById("dl-arm").href = arm.browser_download_url;
+          if (intel)
+            document.getElementById("dl-intel").href =
+              intel.browser_download_url;
+          if (rel.tag_name) {
+            note.innerHTML =
+              "גרסה נוכחית: <b>" +
+              rel.tag_name +
+              '</b> · לא בטוחים איזה Mac יש לכם? <a href="#which-mac">בדקו כאן</a> · <a href="https://github.com/ofershap/dibbur/releases/latest">כל הגרסאות</a>';
+          }
+        } catch (e) {
+          /* static fallback links stay */
+        }
+      })();
+    </script>
+  </body>
 </html>

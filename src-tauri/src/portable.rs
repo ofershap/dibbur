@@ -118,7 +118,10 @@ pub fn store_path(relative: &str) -> PathBuf {
 /// Extracted for testability.
 fn is_valid_portable_marker(path: &std::path::Path) -> bool {
     std::fs::read_to_string(path)
-        .map(|s| s.trim().starts_with("Dibbur Portable Mode") || s.trim().starts_with("Handy Portable Mode"))
+        .map(|s| {
+            s.trim().starts_with("Dibbur Portable Mode")
+                || s.trim().starts_with("Handy Portable Mode")
+        })
         .unwrap_or(false)
 }
 

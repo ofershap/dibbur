@@ -9,8 +9,8 @@
 //! The active implementation is determined by the `keyboard_implementation`
 //! setting and can be changed at runtime.
 
-mod handler;
 pub mod dibbur_keys;
+mod handler;
 pub mod tauri_impl;
 
 use log::{debug, error, info, warn};
@@ -385,7 +385,8 @@ pub fn change_keyboard_implementation_setting(
     }
 
     // Initialize new implementation if needed (DibburKeys needs state)
-    if new_impl == KeyboardImplementation::DibburKeys && initialize_dibbur_keys_with_rollback(&app)? {
+    if new_impl == KeyboardImplementation::DibburKeys && initialize_dibbur_keys_with_rollback(&app)?
+    {
         // Shortcuts already registered during init.
         crate::secure_input::reconcile_fallback(&app);
         return Ok(ImplementationChangeResult {
