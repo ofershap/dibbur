@@ -1,0 +1,49 @@
+name: Windows prototype checks
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, contrib/windows-prototype-issue-2]
+    paths:
+      - "windows-prototype/**"
+      - ".github/workflows/windows-prototype.yml"
+  pull_request:
+    paths:
+      - "windows-prototype/**"
+      - ".github/workflows/windows-prototype.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: windows-prototype-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  windows-smoke:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Portable regression tests
+        shell: pwsh
+        run: python -m unittest discover -s windows-prototype/tests -v
+      - name: Parse shortcut script without creating shortcuts
+        shell: pwsh
+        run: |
+          $tokens = $null
+          $errors = $null
+          [void][System.Management.Automation.Language.Parser]::ParseFile(
+            (Join-Path $PWD "windows-prototype/create_shortcuts.ps1"),
+            [ref]$tokens, [ref]$errors)
+          if ($errors.Count) { $errors | Write-Error; exit 1 }
+      - name: Install Python runtime dependencies
+        shell: pwsh
+        run: python -m pip install -r windows-prototype/requirements.txt
+      - name: Windows native imports only (no microphone or model downloads)
+        shell: pwsh
+        run: |
+          python -c "import runpy; from faster_whisper import WhisperModel; runpy.run_path('windows-prototype/dictation.py', run_name='native_import_check'); print('Windows runtime imports passed; no app, microphone or model started')"

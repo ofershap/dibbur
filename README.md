@@ -140,3 +140,7 @@ Nearly all of the code, and all of the hard problems (shortcuts, recording, VAD,
 ## License
 
 [MIT](LICENSE) &copy; [Ofer Shapira](https://github.com/ofershap), same as upstream Handy.
+
+### Windows prototype
+
+A separate [experimental Windows dictation prototype](windows-prototype/README.md), contributed by [Gina1](https://github.com/ofershap/dibbur/issues/2), is available as Python source. This is not an official Windows release of the desktop app.
