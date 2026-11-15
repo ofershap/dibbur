@@ -1,4 +1,16 @@
-![Dibbur - tired of fixing Hebrew dictation? Local Hebrew and Arabic voice typing for Mac.](assets/hero.png)
+<p align="center">
+  <img src="assets/logo.png" alt="Dibbur logo" width="120" height="120" />
+</p>
+
+<h1 align="center">Dibbur (דיבור)</h1>
+
+<p align="center">
+  <strong>Hebrew voice dictation for Mac that actually works.</strong><br>
+  Press a shortcut, speak Hebrew or Arabic,<br>
+  and the text appears in any app.<br>
+  Free and open source. Transcription runs locally.<br>
+  Optional AI cleanup can use an online provider.
+</p>
 
 <p align="center" dir="rtl">
   <strong>הכתבה קולית בעברית ובערבית למק.</strong><br>
