@@ -65,6 +65,19 @@ Step-by-step with screenshots, in Hebrew: **[dibbur.pages.dev](https://dibbur.pa
 
 Recent releases include an in-app update route. Follow the update prompt when available. For a manual reinstall, quit Dibbur, download the correct DMG from [Releases](https://github.com/ofershap/dibbur/releases/latest), and replace the app in Applications. If paste into other apps stops working afterward, remove Dibbur from Accessibility and add it again. Keep the installed version and any error message when [reporting an update problem](https://github.com/ofershap/dibbur/issues/new/choose).
 
+## Install (Windows - experimental)
+
+A separate Python prototype, contributed by [Gina1](https://github.com/ofershap/dibbur/issues/2). This is **source code with a setup script**, not a standalone EXE/MSI or a Windows port of the Mac app.
+
+1. Download **[Dibbur for Windows - experimental source ZIP](https://github.com/ofershap/dibbur/releases/download/windows-prototype-v0.1.0/Dibbur-Windows-prototype-v0.1.0.zip)**. Use **Extract All** and keep the extracted `Dibbur-Windows` folder somewhere permanent, for example `C:\Apps\Dibbur-Windows`. Do not run it from inside the ZIP.
+2. Install **64-bit Python 3.12** from [python.org](https://www.python.org/downloads/) and select **Add python.exe to PATH** during setup.
+3. Open the extracted folder and run `install.bat`. It creates a local Python environment, installs the required packages and adds a desktop shortcut. Starting automatically with Windows is optional. Internet is needed for installation and the first speech-model downloads; allow several GB of disk space.
+4. Wait for the ready indicator, click a text field, **hold Left Ctrl + Left Shift**, speak and release. CPU-only recognition may be slow.
+
+Native Windows CI passed dependency imports, PowerShell parsing and 24 mocked regression tests. Live microphone use, transcription quality, CUDA, tray behavior, startup and paste into real apps still need hands-on verification. The contributor reports testing on Windows 11 with an NVIDIA MX250.
+
+See the [Windows setup, privacy and uninstall guide](windows-prototype/README.md), [download/checksum release](https://github.com/ofershap/dibbur/releases/tag/windows-prototype-v0.1.0) and [`windows-prototype/` source folder](windows-prototype/). Audio is processed locally; text is briefly placed on the system clipboard, whose history/sync settings may retain it.
+
 ## FAQ
 
 <details>
@@ -140,7 +153,3 @@ Nearly all of the code, and all of the hard problems (shortcuts, recording, VAD,
 ## License
 
 [MIT](LICENSE) &copy; [Ofer Shapira](https://github.com/ofershap), same as upstream Handy.
-
-### Windows prototype
-
-A separate [experimental Windows dictation prototype](windows-prototype/README.md), contributed by [Gina1](https://github.com/ofershap/dibbur/issues/2), is available as Python source. This is not an official Windows release of the desktop app.
