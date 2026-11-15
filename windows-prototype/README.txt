@@ -1,3 +1,5 @@
+EXPERIMENTAL SOURCE PROTOTYPE - see README.md for verification limits and attribution.
+
 Hebrew Dictation (הקלדה קולית) for Windows
 ===========================================
 
@@ -14,13 +16,13 @@ HOW TO USE
   Normal shortcuts (Ctrl+C, Ctrl+Shift+T, Ctrl+click...) still work as usual.
 
 START / STOP
-  Starts automatically with Windows. There's also a "Hebrew Dictation" icon on the Desktop.
+  Use the "Hebrew Dictation" Desktop shortcut. Starting with Windows is optional during setup.
   Look for the blue microphone icon near the clock (it may be under the ^ arrow).
   Right-click it to pause the app or quit.
 
 SETTINGS  (config.json in this folder; quit and restart the app after editing)
   language        "auto" (Hebrew/English), "he" or "en"
-  hold_delay_sec  how long you hold Ctrl before it starts recording (default 0.3)
+  hold_delay_sec  how long you hold Ctrl+Shift before the indicator appears (config: 0.1 sec)
   beam_size       1 = fastest, 5 = slightly more accurate but slower
   beeps           true / false
   device          "auto" (uses the NVIDIA graphics card), or "cpu" (very slow on this laptop)
@@ -28,10 +30,15 @@ SETTINGS  (config.json in this folder; quit and restart the app after editing)
   log_text        false (default) = your dictated text is never saved; true = written to dictation.log
 
 PRIVACY
-  Fully offline: audio and text never leave this computer (ivrit.ai model runs locally).
+  Installation and first model download require internet. Inference runs locally.
+  Audio and text are not sent to an online transcription provider.
   To detect the Ctrl+Shift hotkey, the app listens to all keyboard presses, like every
   dictation/hotkey app. It only reacts to Ctrl+Shift and does not record or store other keys.
-  Audio is recorded only while you hold Ctrl+Shift, and is never saved to disk.
+  Audio starts buffering when both hotkey keys are held, including the short hold delay.
+  Audio is never saved to disk.
 
 PROBLEMS
-  See dictation.log in this folder (timings and errors only, not your text).
+  See dictation.log in this folder (timings and error types; text only if log_text is enabled).
+  To remove automatic startup: press Win+R, open shell:startup, delete Hebrew Dictation.lnk.
+  To uninstall: quit the tray app, remove its shortcuts, then delete this folder.
+  Downloaded models remain in the Hugging Face cache unless removed separately.

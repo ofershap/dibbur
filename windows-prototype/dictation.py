@@ -10,7 +10,6 @@ import queue
 import sys
 import threading
 import time
-import traceback
 import winsound
 
 import numpy as np
@@ -30,7 +29,7 @@ DEFAULT_CONFIG = {
     "english_model": "small",    # also used to detect Hebrew vs English
     "language": "auto",          # "auto" (Hebrew/English), "he" or "en"
     "device": "auto",            # "auto" (graphics card if possible), "cuda" or "cpu"
-    "hold_delay_sec": 0.3,       # how long Ctrl must be held alone before it counts as dictation
+    "hold_delay_sec": 0.3,       # how long Ctrl+Shift must be held before dictation
     "min_audio_sec": 0.5,
     "beam_size": 1,              # 1 = fastest; 5 = a bit more accurate, slower
     "beeps": True,
@@ -62,7 +61,9 @@ def load_config():
     return cfg
 
 
-CFG = load_config()
+CFG = dict(DEFAULT_CONFIG)
+# Load user settings only when starting the app, never on module import.
+NVIDIA_DLL_HANDLES = []
 
 
 def beep(kind):
@@ -112,7 +113,7 @@ def _add_nvidia_dlls():
         for p in list(nvidia.cublas.__path__) + list(nvidia.cudnn.__path__):
             b = os.path.join(p, "bin")
             if os.path.isdir(b):
-                os.add_dll_directory(b)
+                NVIDIA_DLL_HANDLES.append(os.add_dll_directory(b))
                 os.environ["PATH"] = b + os.pathsep + os.environ["PATH"]
     except Exception as e:
         log(f"no nvidia libs: {e}")
@@ -164,13 +165,22 @@ class Transcriber:
                 self.en.detect_language(silence)
             log(f"models ready on {self.device}")
         except Exception as e:
-            self.error = str(e)
-            log("model load failed: " + traceback.format_exc())
+            self.error = type(e).__name__
+            log("model load failed: " + self.error)
         on_ready()
 
     @property
     def model(self):
         return self.he or self.en
+
+    @property
+    def ready(self):
+        lang = CFG["language"]
+        return not self.error and (
+            (lang == "auto" and self.he is not None and self.en is not None)
+            or (lang == "he" and self.he is not None)
+            or (lang == "en" and self.en is not None)
+        )
 
     def _run(self, model, audio, language):
         segments, _ = model.transcribe(
@@ -179,6 +189,8 @@ class Transcriber:
         return " ".join(s.text.strip() for s in segments).strip()
 
     def transcribe(self, audio):
+        if not self.ready:
+            raise RuntimeError("Configured speech models are not ready")
         lang = CFG["language"]
         if lang == "auto":
             _, _, probs = self.en.detect_language(audio)
@@ -189,37 +201,40 @@ class Transcriber:
 
 
 # ---------------------------------------------------------------- paste
-kb = keyboard.Controller()
-
-
 def paste_text(text):
     try:
         old = pyperclip.paste()
     except Exception:
         old = None
     pyperclip.copy(text)
-    time.sleep(0.05)
-    # Press the physical Ctrl+V keys (virtual-key codes), so it works with a Hebrew keyboard layout too
-    import ctypes
-    u32 = ctypes.windll.user32
-    VK_CONTROL, VK_V, KEYUP = 0x11, 0x56, 0x0002
-    # Wait until you've let go of Ctrl and Shift, so it's a clean Ctrl+V
-    deadline = time.time() + 3
-    while time.time() < deadline and any(u32.GetAsyncKeyState(k) & 0x8000
-                                         for k in (0xA0, 0xA1, 0xA2, 0xA3)):
-        time.sleep(0.02)
-    u32.keybd_event(VK_CONTROL, 0x1D, 0, 0)
-    u32.keybd_event(VK_V, 0x2F, 0, 0)
-    time.sleep(0.02)
-    u32.keybd_event(VK_V, 0x2F, KEYUP, 0)
-    u32.keybd_event(VK_CONTROL, 0x1D, KEYUP, 0)
-    log("pasted")
-    time.sleep(0.4)
-    if old is not None:
+    try:
+        time.sleep(0.05)
+        # Physical VK codes also work while the Hebrew keyboard layout is active.
+        import ctypes
+        u32 = ctypes.windll.user32
+        VK_CONTROL, VK_V, KEYUP = 0x11, 0x56, 0x0002
+        deadline = time.monotonic() + 3
+        while any(u32.GetAsyncKeyState(k) & 0x8000 for k in (0xA0, 0xA1, 0xA2, 0xA3)):
+            if time.monotonic() >= deadline:
+                raise TimeoutError("Release Ctrl and Shift before pasting")
+            time.sleep(0.02)
         try:
-            pyperclip.copy(old)
-        except Exception:
-            pass
+            u32.keybd_event(VK_CONTROL, 0x1D, 0, 0)
+            u32.keybd_event(VK_V, 0x2F, 0, 0)
+            time.sleep(0.02)
+        finally:
+            u32.keybd_event(VK_V, 0x2F, KEYUP, 0)
+            u32.keybd_event(VK_CONTROL, 0x1D, KEYUP, 0)
+        log("pasted")
+        time.sleep(0.4)
+    finally:
+        # Do not erase a clipboard change made by the user or another app.
+        if old is not None:
+            try:
+                if pyperclip.paste() == text:
+                    pyperclip.copy(old)
+            except Exception:
+                pass
 
 
 # ---------------------------------------------------------------- indicator window
@@ -259,6 +274,12 @@ class Indicator:
 # ---------------------------------------------------------------- app
 class App:
     def __init__(self):
+        global CFG
+        CFG = load_config()
+        if CFG["language"] not in ("auto", "he", "en"):
+            raise ValueError("language must be auto, he or en")
+        if CFG["device"] not in ("auto", "cpu", "cuda"):
+            raise ValueError("device must be auto, cpu or cuda")
         self.root = tk.Tk()
         self.root.withdraw()
         self.ui_queue = queue.Queue()
@@ -269,7 +290,7 @@ class App:
         self.held = set()
         self.enabled = True
         self.ui("show", "טוען מודל עברית... (בפעם הראשונה זה לוקח כמה דקות)", "load")
-        self.transcriber = Transcriber(self._model_ready)
+        self.transcriber = Transcriber(lambda: self.ui("model_ready"))
         self._start_tray()
         self.listener = keyboard.Listener(on_press=self._on_press, on_release=self._on_release,
                                           win32_event_filter=self._filter)
@@ -299,7 +320,9 @@ class App:
         try:
             while True:
                 cmd, *a = self.ui_queue.get_nowait()
-                if cmd == "show":
+                if cmd == "model_ready":
+                    self._model_ready()
+                elif cmd == "show":
                     self.indicator.show(*a)
                 elif cmd == "hide":
                     self.indicator.hide()
@@ -318,7 +341,7 @@ class App:
         self.root.after(30, self._pump)
 
     def _model_ready(self):
-        if self.transcriber.model is None:
+        if not self.transcriber.ready:
             self.state = "error"
             self.ui("show", "שגיאה בטעינת המודל. ראו dictation.log", "err")
             beep("error")
@@ -355,7 +378,7 @@ class App:
                 self.recorder.start()   # start right away so the first word isn't cut
                 self.state = "armed"
             except Exception as e:
-                log(f"mic error: {e}")
+                log("mic error: " + type(e).__name__)
                 self.ui("show", "לא נמצא מיקרופון", "err")
                 self.ui("hide_later", 2500)
 
@@ -385,12 +408,12 @@ class App:
             shown = text if CFG["log_text"] else f"[{len(text)} chars]"
             log(f"{len(audio)/SAMPLE_RATE:.1f}s audio -> {time.time()-t0:.1f}s: {shown}")
             self.ui("hide")
-            if text:
+            if text and self.enabled:
                 if CFG["add_trailing_space"]:
                     text += " "
                 paste_text(text)
-        except Exception:
-            log("transcribe failed: " + traceback.format_exc())
+        except Exception as e:
+            log("transcribe failed: " + type(e).__name__)
             beep("error")
             self.ui("show", "שגיאה בהמרה", "err")
             self.ui("hide_later", 2500)
@@ -409,13 +432,19 @@ class App:
 
     def _toggle(self, icon, item):
         self.enabled = not self.enabled
+        if not self.enabled:
+            self._cancel_if_armed()
 
     def _open_folder(self, icon, item):
         os.startfile(APP_DIR)
 
     def _quit(self, icon, item):
         icon.stop()
+        self.enabled = False
+        self._cancel_if_armed()
         self.listener.stop()
+        self.mouse_listener.stop()
+        self.recorder.stop()
         self.ui("quit")
 
     def _start_tray(self):
@@ -435,11 +464,14 @@ class App:
 if __name__ == "__main__":
     # Single instance guard
     import ctypes
+    ctypes.windll.kernel32.CreateMutexW.restype = ctypes.c_void_p
     mutex = ctypes.windll.kernel32.CreateMutexW(None, False, "HebrewDictationSingleInstance")
+    if not mutex:
+        raise ctypes.WinError()
     if ctypes.windll.kernel32.GetLastError() == 183:
         sys.exit(0)
     try:
         App().run()
     except Exception:
-        log("fatal: " + traceback.format_exc())
+        log("fatal error (details suppressed to protect dictated text)")
         raise
