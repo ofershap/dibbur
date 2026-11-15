@@ -1,6 +1,6 @@
-# Contributing Translations to Handy
+# Contributing Translations to Dibbur
 
-Thank you for helping translate Handy! This guide explains how to add or improve translations.
+Thank you for helping translate Dibbur! This guide explains how to add or improve translations.
 
 ## Quick Start
 

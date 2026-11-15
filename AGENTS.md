@@ -2,6 +2,10 @@
 
 This file provides guidance to AI coding assistants working with code in this repository.
 
+## Repository readiness
+
+Before calling a Dibbur release or public repository ready, follow [docs/maintainers/repo-readiness.md](docs/maintainers/repo-readiness.md). Run `python3 scripts/check-repo-readiness.py --live` and inspect the GitHub issue chooser and contribution routes. Keep the upstream Main Branch Build workflow disabled unless the owner changes that decision. Do not confuse a proposed Windows/Linux port with a tested Dibbur release.
+
 ## Development Commands
 
 **Prerequisites:**

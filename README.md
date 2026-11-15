@@ -1,15 +1,4 @@
-<p align="center">
-  <img src="assets/logo.png" alt="Dibbur logo" width="120" height="120" />
-</p>
-
-<h1 align="center">Dibbur (דיבור)</h1>
-
-<p align="center">
-  <strong>Hebrew voice dictation for Mac that actually works.</strong><br>
-  Press a shortcut, speak Hebrew or Arabic,<br>
-  and the text appears in any app.<br>
-  Free, open source, and fully offline.
-</p>
+![Dibbur - tired of fixing Hebrew dictation? Local Hebrew and Arabic voice typing for Mac.](assets/hero.png)
 
 <p align="center" dir="rtl">
   <strong>הכתבה קולית בעברית ובערבית למק.</strong><br>
@@ -28,7 +17,6 @@
 <p align="center">
   <a href="https://dibbur.pages.dev"><img src="https://img.shields.io/badge/%D7%94%D7%AA%D7%A7%D7%A0%D7%94-%D7%9E%D7%93%D7%A8%D7%99%D7%9A%20%D7%A2%D7%9D%20%D7%AA%D7%9E%D7%95%D7%A0%D7%95%D7%AA-blue" alt="מדריך התקנה" /></a>
   <a href="https://github.com/ofershap/dibbur/releases/latest"><img src="https://img.shields.io/github/v/release/ofershap/dibbur?label=Download" alt="Download" /></a>
-  <a href="https://github.com/ofershap/dibbur/actions/workflows/test.yml"><img src="https://github.com/ofershap/dibbur/actions/workflows/test.yml/badge.svg" alt="Tests" /></a>
   <img src="https://img.shields.io/badge/platform-macOS-lightgrey?logo=apple" alt="macOS" />
   <img src="https://img.shields.io/badge/speech_Whisper-ivrit--ai_large--v3--turbo-blueviolet" alt="ivrit-ai Whisper large-v3-turbo" />
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT" /></a>
@@ -40,10 +28,10 @@ Dibbur is a free, open-source alternative to Wispr Flow and Dragon for Hebrew an
 
 ## Why Dibbur?
 
-- **Hebrew accuracy first** - ships with the [ivrit-ai](https://huggingface.co/ivrit-ai) Whisper large-v3-turbo model (Apache-2.0), the strongest open Hebrew speech model: about 7% word-error rate on real WhatsApp Hebrew per the [ivrit-ai leaderboard](https://huggingface.co/spaces/ivrit-ai/hebrew-transcription-leaderboard), ahead of the big commercial APIs on Hebrew.
-- **Private by default** - speech-to-text runs on your Mac. Your voice never leaves the computer.
+- **Hebrew-first model** - includes the [ivrit-ai](https://huggingface.co/ivrit-ai) Whisper large-v3-turbo model (Apache-2.0).
+- **Local transcription** - speech-to-text runs on your Mac. Optional AI cleanup may send transcript text to the provider you choose; it is off by default.
 - **Works in every app** - hold your shortcut, talk, release: the text is pasted wherever your cursor is - WhatsApp, Gmail, Docs, Cursor.
-- **Arabic too** - the optional **Lahjat Turbo** model (oddadmix dialectal fine-tune, Apache-2.0) is the strongest open Arabic dialect model: about 31% WER on Palestinian, 35% Lebanese, 25% Egyptian and 17% Gulf Arabic, where stock Whisper lands at 38-53%.
+- **Arabic too** - an optional Lahjat Turbo dialectal Whisper model. Accuracy varies with dialect, microphone and recording conditions.
 - **Transcript archive (optional)** - turn on **Save Transcripts** in Settings > Advanced > History and every dictation is appended to a daily Markdown file in a local folder (default `~/Documents/Dibbur Transcripts`). Nothing leaves your Mac unless you put the folder inside iCloud Drive or Google Drive. Off by default.
 - **Optional AI cleanup (off by default)** - removes Hebrew filler words (אממ, כאילו, נו...), fixes punctuation, keeps your language. Works with a free API key (Gemini, Groq), a local model through Ollama, or Apple Intelligence.
 
@@ -53,7 +41,7 @@ Step-by-step with screenshots, in Hebrew: **[dibbur.pages.dev](https://dibbur.pa
 
 1. Download the DMG from [Releases](https://github.com/ofershap/dibbur/releases/latest): `aarch64` for Apple Silicon (M1/M2/M3/M4), `x64` for Intel. (Apple menu > About This Mac says "Chip" for Apple Silicon, "Processor Intel" for Intel.)
 2. Open the DMG and drag Dibbur into Applications.
-3. **First launch - the app is unsigned, so macOS blocks it once.** Dismiss the warning, then open **System Settings > Privacy & Security**, scroll down and click **"Open Anyway"** next to the Dibbur message. Open Dibbur again and confirm.
+3. **First launch - the app is not Apple-notarized, so macOS may block it.** Dismiss the warning, then open **System Settings > Privacy & Security**, scroll down and click **"Open Anyway"** next to the Dibbur message. Open Dibbur again and confirm.
 4. **Grant the two permissions Dibbur needs:**
    - **Microphone** - macOS asks on the first recording; allow it. (Later: System Settings > Privacy & Security > Microphone.)
    - **Accessibility** - required so Dibbur can type into other apps: System Settings > Privacy & Security > Accessibility, add Dibbur from Applications and switch it on.
@@ -63,14 +51,14 @@ Step-by-step with screenshots, in Hebrew: **[dibbur.pages.dev](https://dibbur.pa
 
 ### Updating
 
-Quit first (menu-bar icon > Quit), then replace the app in Applications with the new DMG. If typing into other apps stops working after an update, remove Dibbur from the Accessibility list and add it again (macOS keeps a stale entry for unsigned apps). There is no auto-update in unsigned builds - watch [Releases](https://github.com/ofershap/dibbur/releases/latest) or [dibbur.pages.dev](https://dibbur.pages.dev) for new versions.
+Recent releases include an in-app update route. Follow the update prompt when available. For a manual reinstall, quit Dibbur, download the correct DMG from [Releases](https://github.com/ofershap/dibbur/releases/latest), and replace the app in Applications. If paste into other apps stops working afterward, remove Dibbur from Accessibility and add it again. Keep the installed version and any error message when [reporting an update problem](https://github.com/ofershap/dibbur/issues/new/choose).
 
 ## FAQ
 
 <details>
 <summary>Is Dibbur really offline?</summary>
 
-Yes. Transcription runs locally with a Whisper engine on your machine, with no account and no cloud. The only network calls are the one-time model download and the optional text-cleanup step, which is off by default.
+Yes. Transcription runs locally with a Whisper engine on your machine, with no account and no cloud. Model downloads, update checks and optional remote text cleanup use the network. Remote cleanup is off by default.
 
 </details>
 
@@ -89,16 +77,16 @@ Yes. The bundled Ivrit Turbo model is Hebrew-first but handles mixed Hebrew-Engl
 </details>
 
 <details>
-<summary>Why is the app unsigned?</summary>
+<summary>Is Dibbur Apple-notarized?</summary>
 
-Code signing needs a paid Apple Developer account, and Dibbur is a zero-budget project. macOS Gatekeeper lets you run it anyway: right-click the app and choose Open once. Notarized builds are on the roadmap.
+No. The Mac build workflow uses a self-signed identity, not an Apple Developer ID certificate or Apple notarization. A local code signature does not remove Gatekeeper warnings. Follow the installation steps above; no paid Apple account is needed to use Dibbur.
 
 </details>
 
 <details>
 <summary>What about Arabic?</summary>
 
-Included since v0.2: pick the **Lahjat Turbo (Arabic)** model in Settings > Models (574 MB download). It is a dialectal fine-tune of Whisper large-v3-turbo and the best open option today: about 33% word-error rate averaged across 13 dialects (31% Palestinian, 35% Lebanese, 25% Egyptian, 17% Gulf). Expect it to handle everyday Levantine and Egyptian speech well and to struggle with Maghrebi dialects, where every open model is still weak.
+Pick the optional **Lahjat Turbo (Arabic)** model in Settings > Models. It is intended for dialectal Arabic. Results vary by dialect and recording quality; review important transcriptions.
 
 </details>
 
@@ -109,22 +97,17 @@ Yes. Turn on **Save Transcripts** in Settings > Advanced > History (off by defau
 
 </details>
 
-## Roadmap
-
-- v0.1 - Hebrew-first Handy fork: ivrit-ai model built in, Hebrew-aware cleanup prompt, Dibbur branding.
-- v0.2 - Arabic dictation (Lahjat Turbo dialectal model, Arabic filler cleanup).
-- v1.0 - zero-setup first run: the Hebrew model downloads automatically, Dibbur branding throughout.
-- v0.3 - Optional transcript archive: daily Markdown files in a folder you choose, plus a read-only MCP server (`transcripts-mcp/`) to list and search them. (Current release.)
-- v0.4 - Hebrew UI translation, floating on-screen dictation button, notarized builds.
-- Later - auto-start on speech.
-
 ## Building
 
-Every push runs the test suite. macOS installer builds are triggered manually with the **Unsigned Mac Build** workflow (Actions tab), which produces the Apple Silicon and Intel DMGs. See [BUILD.md](BUILD.md) for local development.
+See [BUILD.md](BUILD.md) for local development and platform prerequisites. The manual **Mac Build (stable self-signed)** workflow creates Apple Silicon and Intel artifacts. Maintainers publish releases separately. Checks are path-filtered, not a guarantee that every push was tested. The upstream **Main Branch Build** workflow is intentionally disabled; it is separate from the Mac release route.
 
 ## Contributing
 
-Bug reports (especially Hebrew transcription issues), feature requests, and PRs are welcome. Open an issue first for larger changes.
+[Report a bug, ask a question or propose a feature](https://github.com/ofershap/dibbur/issues/new/choose). Code and documentation PRs are welcome; read [CONTRIBUTING.md](CONTRIBUTING.md) for setup, test evidence and the PR destination. AI-assisted contributions are welcome with disclosure and tests.
+
+**Windows or Linux port?** Published Dibbur installers currently target macOS. Platform contributions are welcome, but a proposal or inherited upstream code is not a released port. Include your OS, architecture, build steps and what you tested.
+
+Report vulnerabilities privately using [SECURITY.md](SECURITY.md).
 
 ## Credit
 
@@ -136,6 +119,12 @@ Nearly all of the code, and all of the hard problems (shortcuts, recording, VAD,
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://linkedin.com/in/ofershap)
 [![GitHub](https://img.shields.io/badge/GitHub-Follow-181717?style=flat&logo=github&logoColor=white)](https://github.com/ofershap)
+
+[![Blog](https://img.shields.io/badge/Blog-ofershap.github.io-FF5722?style=flat&logo=rss&logoColor=white)](https://ofershap.github.io/)
+
+---
+
+<sub>README built with [README Builder](https://ofershap.github.io/readme-builder/)</sub>
 
 ## License
 

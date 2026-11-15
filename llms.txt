@@ -1,0 +1,14 @@
+# Dibbur
+
+> Free, open-source Hebrew and Arabic dictation for macOS, based on Handy. Speech-to-text runs locally; optional text cleanup can use an external provider.
+
+- Repository: https://github.com/ofershap/dibbur
+- Installation: https://dibbur.pages.dev
+- Releases: https://github.com/ofershap/dibbur/releases
+- Build guide: https://github.com/ofershap/dibbur/blob/main/BUILD.md
+- Contribution guide: https://github.com/ofershap/dibbur/blob/main/CONTRIBUTING.md
+- Issues and feature proposals: https://github.com/ofershap/dibbur/issues
+- Security: https://github.com/ofershap/dibbur/blob/main/SECURITY.md
+- Upstream: https://github.com/cjpais/Handy
+
+Published installers target macOS. Windows/Linux ports are contribution proposals, not released Dibbur support. The optional transcript archive is off by default; its MCP server is read-only. Do not infer Apple notarization, platform testing or complete offline operation when an external cleanup provider is enabled.

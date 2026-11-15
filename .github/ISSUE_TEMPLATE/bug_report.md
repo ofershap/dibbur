@@ -1,37 +1,28 @@
 ---
-name: Bug Report
-about: Create a report to help us improve Handy
-title: "[BUG] "
-labels: ["bug"]
+name: Bug report
+about: Report a problem in Dibbur
+title: ""
+labels: []
 assignees: ""
 ---
 
-## Before You Submit
+## What happened?
 
-**Please search [existing issues](https://github.com/cjpais/Handy/issues) to avoid duplicates.** Your bug may already be reported! Right now it's just me maintaining this project so many issues can be overwhelming! Help me out by checking first.
+Describe the problem and what you expected. Search [Dibbur issues](https://github.com/ofershap/dibbur/issues), including closed issues, first.
 
-## Bug Description
+## Steps to reproduce
 
-A clear and concise description of what the bug is.
+1.
+2.
 
-## System Information
+## Environment
 
-**App Version:**
+- Dibbur version:
+- Operating system and version:
+- CPU / architecture:
+- Speech model:
+- Installed release or local build:
 
-<!-- You can find this in the app settings or about section -->
+## Evidence
 
-**Operating System:**
-
-<!-- e.g., macOS 14.1, Windows 11, Ubuntu 22.04 -->
-
-**CPU:**
-
-<!-- e.g., Apple M2, Intel i7-12700K, AMD Ryzen 7 5800X -->
-
-**GPU:**
-
-<!-- e.g., Apple M2 GPU, NVIDIA RTX 4080, AMD RX 6800 XT, Intel UHD Graphics -->
-
-## Logs
-
-<!-- Please attach relevant logs to help us diagnose the issue. You can find the log directory by going to Settings > About in the app. -->
+Attach relevant screenshots or a small, redacted log excerpt. Remove tokens, personal paths, transcripts and private recordings. Report security vulnerabilities privately using [SECURITY.md](https://github.com/ofershap/dibbur/blob/main/SECURITY.md).

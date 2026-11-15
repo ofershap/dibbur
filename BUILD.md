@@ -1,6 +1,8 @@
 # Build Instructions
 
-This guide covers how to set up the development environment and build Handy from source across different platforms.
+This guide covers local development of Dibbur. Published Dibbur installers target macOS. Windows and Linux sections below are inherited technical starting points, not a claim that a Dibbur port or installer has been tested.
+
+For a proposed port, report build commands and platform test results in a [Dibbur issue](https://github.com/ofershap/dibbur/issues/new/choose). See [CONTRIBUTING.md](CONTRIBUTING.md). Upstream examples below may still use Handy binary paths; check the generated Dibbur bundle before running any copy or permission-reset command. Never reset another application's permissions as a Dibbur workaround.
 
 ## Prerequisites
 
@@ -77,8 +79,8 @@ This guide covers how to set up the development environment and build Handy from
 ### 1. Clone the Repository
 
 ```bash
-git clone git@github.com:cjpais/Handy.git
-cd Handy
+git clone https://github.com/ofershap/dibbur.git
+cd dibbur
 ```
 
 ### 2. Install Dependencies
@@ -87,13 +89,22 @@ cd Handy
 bun install
 ```
 
-### 3. Start Dev Server
+### 3. Prepare the VAD resource
+
+```bash
+mkdir -p src-tauri/resources/models
+curl -L -o src-tauri/resources/models/silero-vad-v6.2-F32.gguf https://huggingface.co/handy-computer/silero-vad-v6.2-gguf/resolve/main/silero-vad-v6.2-F32.gguf
+```
+
+Do not commit downloaded models. The speech model is a separate first-run download.
+
+### 4. Start Dev Server
 
 ```bash
 bun tauri dev
 ```
 
-### 4. Build for Production
+### 5. Build for Production
 
 ```bash
 bun run tauri build
@@ -135,15 +146,15 @@ Resources only need re-copying if they change upstream (new icons, sounds, model
 
 Local builds use the ad-hoc `signingIdentity: "-"`. A rebuild can have a new macOS code
 identity while the old **System Settings > Privacy & Security > Accessibility** entry
-remains visibly enabled, leaving Handy on `Waiting...`.
+remains visibly enabled, leaving Dibbur on `Waiting...`.
 
-After installing the final bundle at `/Applications/Handy.app`, quit Handy, clear only its
+After installing the final bundle at `/Applications/Dibbur.app`, quit Dibbur, clear only its
 stale Accessibility record, then reopen it:
 
 ```bash
-osascript -e 'tell application id "com.pais.handy" to quit' || true
-tccutil reset Accessibility com.pais.handy
-open /Applications/Handy.app
+osascript -e 'tell application id "com.dibbur.app" to quit' || true
+tccutil reset Accessibility com.dibbur.app
+open /Applications/Dibbur.app
 ```
 
 Grant Accessibility again when prompted. This does not reset Microphone or other TCC
@@ -154,7 +165,7 @@ bundles:
 
 ```bash
 codesign -dr - /path/to/previous/Handy.app 2>&1
-codesign -dr - /Applications/Handy.app 2>&1
+codesign -dr - /Applications/Dibbur.app 2>&1
 ```
 
 An ad-hoc requirement contains a `cdhash`; a changed requirement confirms the rebuild is
