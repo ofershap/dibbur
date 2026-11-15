@@ -1,0 +1,11 @@
+{
+    "hebrew_model":  "ivrit-ai/whisper-large-v3-turbo-ct2",
+    "english_model":  "small",
+    "language":  "auto",
+    "device":  "auto",
+    "hold_delay_sec":  0.1,
+    "min_audio_sec":  0.5,
+    "beam_size":  5,
+    "beeps":  true,
+    "add_trailing_space":  true
+}
