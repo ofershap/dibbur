@@ -574,7 +574,7 @@ fn default_start_hidden() -> bool {
 }
 
 fn default_autostart_enabled() -> bool {
-    false
+    true
 }
 
 fn default_update_checks_enabled() -> bool {
@@ -1342,6 +1342,29 @@ mod tests {
 
     fn default_settings_json() -> serde_json::Value {
         serde_json::to_value(get_default_settings()).unwrap()
+    }
+
+    /// Launch at login is on for settings with no saved choice (fresh installs)
+    /// and for the built-in defaults.
+    #[test]
+    fn autostart_defaults_to_on_when_unset() {
+        let settings: AppSettings = serde_json::from_value(serde_json::json!({}))
+            .expect("empty store must parse");
+        assert!(settings.autostart_enabled);
+        assert!(get_default_settings().autostart_enabled);
+    }
+
+    /// A saved explicit choice is never overridden by the new default.
+    #[test]
+    fn autostart_explicit_choice_is_preserved() {
+        let off: AppSettings =
+            serde_json::from_value(serde_json::json!({ "autostart_enabled": false }))
+                .expect("parse");
+        assert!(!off.autostart_enabled);
+        let on: AppSettings =
+            serde_json::from_value(serde_json::json!({ "autostart_enabled": true }))
+                .expect("parse");
+        assert!(on.autostart_enabled);
     }
 
     /// Every field must survive a partial store: a missing key must never fail
