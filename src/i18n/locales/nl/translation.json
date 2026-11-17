@@ -655,6 +655,9 @@
     }
   },
   "footer": {
+    "restartToUpdate": "Installeren en herstarten",
+    "finishDictationToUpdate": "Rond dicteren af om bij te werken",
+    "retryUpdate": "Update mislukt - opnieuw proberen",
     "checkingUpdates": "Controleren op updates...",
     "updateAvailableShort": "Update beschikbaar",
     "upToDate": "Up-to-date",

@@ -21,6 +21,7 @@ import {
   SECTIONS_CONFIG,
   type SidebarSection,
 } from "./components/Sidebar";
+import Footer from "./components/footer/Footer";
 import RecordingOverlay from "./overlay/RecordingOverlay";
 import { useSettingsStore } from "./stores/settingsStore";
 
@@ -136,7 +137,27 @@ useModelStore.setState({
 };
 const view = params.get("view") || "onboarding";
 
-if (view === "settings") {
+if (view === "updater") {
+  useModelStore.setState({
+    currentModel: "ivrit-turbo",
+    downloadProgress: {},
+    downloadingModels: {},
+    verifyingModels: {},
+  });
+  useSettingsStore.setState({
+    settings: {
+      update_checks_enabled: params.get("ustate") !== "disabled",
+      selected_model: "ivrit-turbo",
+    } as never,
+    isLoading: false,
+    updateChecksLocked: params.get("ustate") === "locked",
+  });
+  ReactDOM.createRoot(document.getElementById("root")!).render(
+    <div className="h-screen flex flex-col justify-end">
+      <Footer />
+    </div>,
+  );
+} else if (view === "settings") {
   // Seed the settings store so the real settings sections render their
   // populated state (toggles on, selectors filled).
   useSettingsStore.setState({

@@ -32,6 +32,48 @@
             qaCallbacks.delete(id);
           },
           invoke: async function (cmd, args) {
+            if (
+              new URLSearchParams(location.search).get("view") === "updater"
+            ) {
+              window.qaCalls = window.qaCalls || [];
+              window.qaCalls.push(cmd);
+              var mode = new URLSearchParams(location.search).get("ustate");
+              if (cmd === "plugin:app|version") return "1.0.10";
+              if (cmd === "get_transcription_model_status")
+                return "ivrit-turbo";
+              if (cmd === "plugin:updater|check") {
+                if (mode === "error") throw new Error("offline");
+                if (mode === "current") return null;
+                return {
+                  rid: 42,
+                  available: true,
+                  version: "1.0.11",
+                  currentVersion: "1.0.10",
+                  rawJson: { version: "1.0.11" },
+                };
+              }
+              if (cmd === "is_portable") return mode === "portable";
+              if (cmd === "plugin:updater|download") {
+                args.onEvent.onmessage({
+                  event: "Started",
+                  data: { contentLength: 100 },
+                });
+                args.onEvent.onmessage({
+                  event: "Progress",
+                  data: { chunkLength: 45 },
+                });
+                if (mode === "downloading") await new Promise(() => {});
+                return 43;
+              }
+              if (cmd === "begin_app_update") return mode !== "busy";
+              if (
+                cmd === "plugin:updater|install" ||
+                cmd === "plugin:process|restart" ||
+                cmd === "end_app_update" ||
+                cmd === "plugin:resources|close"
+              )
+                return null;
+            }
             if (cmd === "plugin:event|listen") {
               qaListeners.set(args.event, args.handler);
               return qaEventSeq++;

@@ -655,6 +655,9 @@
     }
   },
   "footer": {
+    "restartToUpdate": "Cài đặt và khởi động lại",
+    "finishDictationToUpdate": "Kết thúc đọc chính tả để cập nhật",
+    "retryUpdate": "Cập nhật thất bại - thử lại",
     "checkingUpdates": "Đang kiểm tra cập nhật...",
     "updateAvailableShort": "Có bản cập nhật",
     "upToDate": "Đã cập nhật",

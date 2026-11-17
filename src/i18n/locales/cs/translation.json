@@ -655,6 +655,9 @@
     }
   },
   "footer": {
+    "restartToUpdate": "Nainstalovat a restartovat",
+    "finishDictationToUpdate": "Dokončete diktování a aktualizujte",
+    "retryUpdate": "Aktualizace selhala - zkusit znovu",
     "checkingUpdates": "Kontroluji aktualizace...",
     "updateAvailableShort": "Dostupná aktualizace",
     "upToDate": "Vše aktuální",

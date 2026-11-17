@@ -655,6 +655,9 @@
     }
   },
   "footer": {
+    "restartToUpdate": "安裝並重新啟動",
+    "finishDictationToUpdate": "結束語音輸入後更新",
+    "retryUpdate": "更新失敗 - 重試",
     "checkingUpdates": "檢查更新中...",
     "updateAvailableShort": "有可用更新",
     "upToDate": "已是最新版本",

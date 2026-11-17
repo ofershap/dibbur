@@ -655,6 +655,9 @@
     }
   },
   "footer": {
+    "restartToUpdate": "Instal·la i reinicia",
+    "finishDictationToUpdate": "Acaba el dictat per actualitzar",
+    "retryUpdate": "Ha fallat l’actualització - torna-ho a provar",
     "checkingUpdates": "S'està comprovant si hi ha actualitzacions...",
     "updateAvailableShort": "Hi ha una actualització disponible",
     "upToDate": "Actualitzat",

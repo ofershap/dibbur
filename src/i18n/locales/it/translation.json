@@ -655,6 +655,9 @@
     }
   },
   "footer": {
+    "restartToUpdate": "Installa e riavvia",
+    "finishDictationToUpdate": "Termina la dettatura per aggiornare",
+    "retryUpdate": "Aggiornamento non riuscito - riprova",
     "checkingUpdates": "Controllo aggiornamenti...",
     "updateAvailableShort": "Aggiornamento disponibile",
     "upToDate": "Aggiornato",

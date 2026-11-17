@@ -509,7 +509,7 @@
       },
       "updateChecks": {
         "label": "Check for Updates",
-        "description": "Automatically check for new versions of Dibbur",
+        "description": "Automatically check for and download new versions. Restart only when you choose.",
         "lockedDescription": "Disabled by system configuration (DIBBUR_DISABLE_UPDATER)"
       },
       "whatsNewPreview": {
@@ -655,6 +655,9 @@
     }
   },
   "footer": {
+    "restartToUpdate": "Install update and restart",
+    "finishDictationToUpdate": "Finish dictation, then update",
+    "retryUpdate": "Update failed - retry",
     "checkingUpdates": "Checking for updates...",
     "updateAvailableShort": "Update available",
     "upToDate": "Up to date",

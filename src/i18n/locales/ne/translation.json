@@ -655,6 +655,9 @@
     }
   },
   "footer": {
+    "restartToUpdate": "स्थापना गरेर पुनः सुरु गर्नुहोस्",
+    "finishDictationToUpdate": "अद्यावधिक गर्न श्रुतिलेखन पूरा गर्नुहोस्",
+    "retryUpdate": "अद्यावधिक असफल - फेरि प्रयास गर्नुहोस्",
     "checkingUpdates": "अपडेटहरू जाँच गरिँदैछ...",
     "updateAvailableShort": "अपडेट उपलब्ध छ",
     "upToDate": "अद्यावधिक छ",

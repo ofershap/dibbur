@@ -479,7 +479,7 @@
       },
       "updateChecks": {
         "label": "التحقق من وجود تحديثات",
-        "description": "التحقق تلقائياً من وجود إصدارات جديدة من Dibbur",
+        "description": "التحقق من الإصدارات الجديدة وتنزيلها تلقائياً. إعادة التشغيل فقط باختيارك.",
         "lockedDescription": "معطّل بواسطة إعدادات النظام (DIBBUR_DISABLE_UPDATER)"
       },
       "soundTheme": {
@@ -655,6 +655,9 @@
     }
   },
   "footer": {
+    "restartToUpdate": "تثبيت التحديث وإعادة التشغيل",
+    "finishDictationToUpdate": "أنهِ الإملاء ثم حدّث",
+    "retryUpdate": "فشل التحديث - أعد المحاولة",
     "checkingUpdates": "جاري التحقق من وجود تحديثات...",
     "updateAvailableShort": "تحديث متاح",
     "upToDate": "محدث",

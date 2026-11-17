@@ -655,6 +655,9 @@
     }
   },
   "footer": {
+    "restartToUpdate": "インストールして再起動",
+    "finishDictationToUpdate": "音声入力を終了して更新",
+    "retryUpdate": "更新に失敗しました - 再試行",
     "checkingUpdates": "アップデートを確認中…",
     "updateAvailableShort": "アップデートあり",
     "upToDate": "最新です",

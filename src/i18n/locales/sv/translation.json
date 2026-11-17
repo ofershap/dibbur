@@ -655,6 +655,9 @@
     }
   },
   "footer": {
+    "restartToUpdate": "Installera och starta om",
+    "finishDictationToUpdate": "Avsluta diktering för att uppdatera",
+    "retryUpdate": "Uppdateringen misslyckades - försök igen",
     "checkingUpdates": "Söker efter uppdateringar...",
     "updateAvailableShort": "Uppdatering tillgänglig",
     "upToDate": "Uppdaterad",

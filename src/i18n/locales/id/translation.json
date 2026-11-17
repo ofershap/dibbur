@@ -655,6 +655,9 @@
     }
   },
   "footer": {
+    "restartToUpdate": "Instal dan mulai ulang",
+    "finishDictationToUpdate": "Selesaikan dikte untuk memperbarui",
+    "retryUpdate": "Pembaruan gagal - coba lagi",
     "checkingUpdates": "Memeriksa pembaruan...",
     "updateAvailableShort": "Pembaruan tersedia",
     "upToDate": "Sudah versi terbaru",
