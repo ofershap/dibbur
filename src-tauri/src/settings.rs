@@ -1348,8 +1348,8 @@ mod tests {
     /// and for the built-in defaults.
     #[test]
     fn autostart_defaults_to_on_when_unset() {
-        let settings: AppSettings = serde_json::from_value(serde_json::json!({}))
-            .expect("empty store must parse");
+        let settings: AppSettings =
+            serde_json::from_value(serde_json::json!({})).expect("empty store must parse");
         assert!(settings.autostart_enabled);
         assert!(get_default_settings().autostart_enabled);
     }
