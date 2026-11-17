@@ -655,6 +655,9 @@
     }
   },
   "footer": {
+    "restartToUpdate": "Установити й перезапустити",
+    "finishDictationToUpdate": "Завершіть диктування для оновлення",
+    "retryUpdate": "Помилка оновлення - спробувати знову",
     "checkingUpdates": "Перевірка оновлень...",
     "updateAvailableShort": "Доступне оновлення",
     "upToDate": "Актуальна версія",

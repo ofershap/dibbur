@@ -655,6 +655,9 @@
     }
   },
   "footer": {
+    "restartToUpdate": "설치 후 다시 시작",
+    "finishDictationToUpdate": "음성 입력을 마친 후 업데이트",
+    "retryUpdate": "업데이트 실패 - 다시 시도",
     "checkingUpdates": "업데이트 확인 중...",
     "updateAvailableShort": "업데이트 사용 가능",
     "upToDate": "최신 상태",

@@ -509,7 +509,7 @@
       },
       "updateChecks": {
         "label": "בדוק עדכונים",
-        "description": "בדוק אוטומטית אם קיימות גרסאות חדשות של דיבור",
+        "description": "בדיקה והורדה אוטומטית של גרסאות חדשות. הפעלה מחדש רק באישורך.",
         "lockedDescription": "מושבת על ידי תצורת המערכת (DIBBUR_DISABLE_UPDATER)"
       },
       "soundTheme": {
@@ -655,6 +655,9 @@
     }
   },
   "footer": {
+    "restartToUpdate": "התקן עדכון והפעל מחדש",
+    "finishDictationToUpdate": "סיים הכתבה ואז עדכן",
+    "retryUpdate": "העדכון נכשל - נסה שוב",
     "checkingUpdates": "בודק עדכונים...",
     "updateAvailableShort": "יש עדכון זמין",
     "upToDate": "מעודכן",

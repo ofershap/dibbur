@@ -655,6 +655,9 @@
     }
   },
   "footer": {
+    "restartToUpdate": "Installer og genstart",
+    "finishDictationToUpdate": "Afslut diktering for at opdatere",
+    "retryUpdate": "Opdatering mislykkedes - prøv igen",
     "checkingUpdates": "Tjekker for opdateringer...",
     "updateAvailableShort": "Opdatering tilgængelig",
     "upToDate": "Opdateret",

@@ -655,6 +655,9 @@
     }
   },
   "footer": {
+    "restartToUpdate": "Установить и перезапустить",
+    "finishDictationToUpdate": "Завершите диктовку для обновления",
+    "retryUpdate": "Ошибка обновления - повторить",
     "checkingUpdates": "Проверяем наличие обновлений...",
     "updateAvailableShort": "Доступно обновление",
     "upToDate": "Не требует обновлений",

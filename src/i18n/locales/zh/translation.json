@@ -655,6 +655,9 @@
     }
   },
   "footer": {
+    "restartToUpdate": "安装并重启",
+    "finishDictationToUpdate": "结束语音输入后更新",
+    "retryUpdate": "更新失败 - 重试",
     "checkingUpdates": "检查更新中...",
     "updateAvailableShort": "有可用更新",
     "upToDate": "已是最新版本",

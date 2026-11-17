@@ -655,6 +655,9 @@
     }
   },
   "footer": {
+    "restartToUpdate": "Yükle ve yeniden başlat",
+    "finishDictationToUpdate": "Güncellemek için dikteyi bitirin",
+    "retryUpdate": "Güncelleme başarısız - yeniden dene",
     "checkingUpdates": "Güncellemeler kontrol ediliyor...",
     "updateAvailableShort": "Güncelleme mevcut",
     "upToDate": "Güncel",

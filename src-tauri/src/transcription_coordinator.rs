@@ -172,6 +172,8 @@ enum Command {
     Input(InputEvent),
     Cancel { recording_was_active: bool },
     ProcessingFinished,
+    BeginUpdate(Sender<bool>),
+    EndUpdate,
 }
 
 /// Decide whether a key-up should be deferred (so auto-repeat can cancel it)
@@ -218,6 +220,7 @@ fn classify_ptt_event(
 ///   short tap locks the session, and the next press stops
 struct CoordinatorState {
     stage: Stage,
+    updating: bool,
     hold: Option<Hold>,
     last_press: Option<Instant>,
     pending_release: Option<PendingRelease>,
@@ -228,6 +231,7 @@ impl CoordinatorState {
     fn new() -> Self {
         Self {
             stage: Stage::Idle,
+            updating: false,
             hold: None,
             last_press: None,
             pending_release: None,
@@ -247,7 +251,22 @@ impl CoordinatorState {
             || self.pending_press.as_ref().is_some_and(|p| p.locked)
     }
 
+    fn begin_update(&mut self) -> bool {
+        if self.updating
+            || self.stage != Stage::Idle
+            || self.pending_press.is_some()
+            || self.pending_release.is_some()
+        {
+            return false;
+        }
+        self.updating = true;
+        true
+    }
+
     fn on_input(&mut self, input: InputEvent, now: Instant) -> Option<Effect> {
+        if self.updating {
+            return None;
+        }
         let pending_release_binding = self
             .pending_release
             .as_ref()
@@ -539,6 +558,25 @@ pub fn is_transcribe_binding(id: &str) -> bool {
 }
 
 impl TranscriptionCoordinator {
+    pub fn begin_app_update(&self) -> Result<bool, String> {
+        let (tx, rx) = mpsc::channel();
+        self.tx
+            .send(Command::BeginUpdate(tx))
+            .map_err(|e| e.to_string())?;
+        match rx.recv_timeout(Duration::from_secs(2)) {
+            Ok(allowed) => Ok(allowed),
+            Err(error) => {
+                // Also cover a successful send racing the caller timeout.
+                let _ = self.tx.send(Command::EndUpdate);
+                Err(error.to_string())
+            }
+        }
+    }
+
+    pub fn end_app_update(&self) -> Result<(), String> {
+        self.tx.send(Command::EndUpdate).map_err(|e| e.to_string())
+    }
+
     pub fn new(app: AppHandle) -> Self {
         let (tx, rx) = mpsc::channel();
 
@@ -574,6 +612,16 @@ impl TranscriptionCoordinator {
                         Command::Cancel {
                             recording_was_active,
                         } => state.on_cancel(recording_was_active),
+                        Command::BeginUpdate(reply) => {
+                            let allowed = state.begin_update();
+                            // A caller that timed out must not leave dictation locked.
+                            if reply.send(allowed).is_err() && allowed {
+                                state.updating = false;
+                            }
+                        }
+                        Command::EndUpdate => {
+                            state.updating = false;
+                        }
                         Command::ProcessingFinished => {
                             if let Some(effect) = state.on_processing_finished() {
                                 run_effect(&app, &mut state, effect);
@@ -711,6 +759,36 @@ fn stop(app: &AppHandle, binding_id: &str, hotkey_string: &str) {
 
 #[cfg(test)]
 mod tests {
+    #[test]
+    fn update_reservation_requires_idle_and_is_exclusive() {
+        let mut state = super::CoordinatorState::new();
+        state.stage = super::Stage::Recording("transcribe".into());
+        assert!(!state.begin_update());
+        state.stage = super::Stage::Processing;
+        assert!(!state.begin_update());
+        state.stage = super::Stage::Idle;
+        assert!(state.begin_update());
+        assert!(!state.begin_update());
+        state.updating = false;
+        assert!(state.begin_update());
+    }
+
+    #[test]
+    fn update_reservation_blocks_new_dictation() {
+        let mut state = super::CoordinatorState::new();
+        assert!(state.begin_update());
+        let input = super::InputEvent {
+            binding_id: "transcribe".into(),
+            hotkey_string: "test".into(),
+            is_pressed: true,
+            mode: crate::settings::ShortcutActivation::Toggle,
+            hold_threshold: std::time::Duration::ZERO,
+            external: true,
+        };
+        assert!(state.on_input(input, std::time::Instant::now()).is_none());
+        assert_eq!(state.stage, super::Stage::Idle);
+    }
+
     use super::*;
 
     #[test]

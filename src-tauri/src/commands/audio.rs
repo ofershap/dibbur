@@ -377,3 +377,25 @@ pub async fn set_selected_channel(app: AppHandle, channel: Option<u16>) -> Resul
     write_settings(&app, settings);
     Ok(())
 }
+
+/// Reserve the idle dictation coordinator before explicitly requested installation.
+#[tauri::command]
+#[specta::specta]
+pub async fn begin_app_update(app: AppHandle) -> Result<bool, String> {
+    if !crate::settings::update_checks_effectively_enabled(&get_settings(&app)) {
+        return Err("Update checks are disabled".into());
+    }
+    tauri::async_runtime::spawn_blocking(move || {
+        app.state::<crate::TranscriptionCoordinator>()
+            .begin_app_update()
+    })
+    .await
+    .map_err(|e| e.to_string())?
+}
+
+#[tauri::command]
+#[specta::specta]
+pub fn end_app_update(app: AppHandle) -> Result<(), String> {
+    app.state::<crate::TranscriptionCoordinator>()
+        .end_app_update()
+}

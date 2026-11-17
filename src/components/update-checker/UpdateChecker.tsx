@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { check } from "@tauri-apps/plugin-updater";
 import { relaunch } from "@tauri-apps/plugin-process";
+import { invoke } from "@tauri-apps/api/core";
+import { BackgroundUpdater, type UpdateState } from "./backgroundUpdater";
 import { listen } from "@tauri-apps/api/event";
 import { openUrl } from "@tauri-apps/plugin-opener";
 import { arch, platform } from "@tauri-apps/plugin-os";
@@ -19,188 +21,104 @@ interface UpdateCheckerProps {
 
 const UpdateChecker: React.FC<UpdateCheckerProps> = ({ className = "" }) => {
   const { t } = useTranslation();
-  // Update checking state
-  const [isChecking, setIsChecking] = useState(false);
-  const [updateAvailable, setUpdateAvailable] = useState(false);
-  const [isInstalling, setIsInstalling] = useState(false);
-  const [downloadProgress, setDownloadProgress] = useState(0);
-  const [showUpToDate, setShowUpToDate] = useState(false);
+  const [state, setState] = useState<UpdateState>({
+    phase: "idle",
+    progress: 0,
+  });
   const [showPortableUpdateDialog, setShowPortableUpdateDialog] =
     useState(false);
-  const [portableInstallerUrl, setPortableInstallerUrl] = useState<string>(
-    PORTABLE_RELEASES_URL,
-  );
-
   const { settings, isLoading, updateChecksLocked } = useSettings();
-  // Wait for the lock state too (null = not loaded yet), otherwise the first
-  // render could fire an update check before DIBBUR_DISABLE_UPDATER is known.
   const settingsLoaded =
     !isLoading && settings !== null && updateChecksLocked !== null;
-  // Forced-off by system configuration (DIBBUR_DISABLE_UPDATER) overrides the
-  // stored preference without persisting it, mirroring the backend's effective
-  // updater state.
   const updateChecksEnabled =
     (settings?.update_checks_enabled ?? false) && updateChecksLocked === false;
-
-  const upToDateTimeoutRef = useRef<ReturnType<typeof setTimeout>>();
-  const isManualCheckRef = useRef(false);
-  const downloadedBytesRef = useRef(0);
-  const contentLengthRef = useRef(0);
-
+  const updaterRef = useRef<BackgroundUpdater>();
+  if (!updaterRef.current) {
+    updaterRef.current = new BackgroundUpdater(
+      {
+        check: () => check({ timeout: 30000 }),
+        isPortable: commands.isPortable,
+        beginInstall: () => invoke<boolean>("begin_app_update"),
+        endInstall: () => invoke<void>("end_app_update"),
+        relaunch,
+      },
+      setState,
+    );
+  }
   useEffect(() => {
-    // Wait for settings to load before doing anything
-    if (!settingsLoaded) return;
-
-    if (!updateChecksEnabled) {
-      if (upToDateTimeoutRef.current) {
-        clearTimeout(upToDateTimeoutRef.current);
-      }
-      setIsChecking(false);
-      setUpdateAvailable(false);
-      setShowUpToDate(false);
+    const updater = updaterRef.current!;
+    if (!settingsLoaded || !updateChecksEnabled) {
+      updater.stop();
       return;
     }
-
-    checkForUpdates();
-
-    // Listen for update check events
-    const updateUnlisten = listen("check-for-updates", () => {
-      handleManualUpdateCheck();
-    });
-
+    updater.start();
+    let cancelled = false;
+    let unlisten: (() => void) | undefined;
+    listen("check-for-updates", () => {
+      void updater.check();
+    })
+      .then((fn) => {
+        if (cancelled) fn();
+        else unlisten = fn;
+      })
+      .catch(console.error);
     return () => {
-      if (upToDateTimeoutRef.current) {
-        clearTimeout(upToDateTimeoutRef.current);
-      }
-      updateUnlisten.then((fn) => fn());
+      cancelled = true;
+      unlisten?.();
+      updater.stop();
     };
   }, [settingsLoaded, updateChecksEnabled]);
 
-  // Update checking functions
-  const checkForUpdates = async () => {
-    if (!updateChecksEnabled || isChecking) return;
-
-    try {
-      setIsChecking(true);
-      const update = await check();
-
-      if (update) {
-        setUpdateAvailable(true);
-        setShowUpToDate(false);
-        // Portable installs can't self-update in place — the manual dialog links
-        // straight at the matching installer from this manifest instead.
-        setPortableInstallerUrl(
-          resolvePortableInstallerUrl(update.rawJson, platform(), arch()),
-        );
-      } else {
-        setUpdateAvailable(false);
-
-        if (isManualCheckRef.current) {
-          setShowUpToDate(true);
-          if (upToDateTimeoutRef.current) {
-            clearTimeout(upToDateTimeoutRef.current);
-          }
-          upToDateTimeoutRef.current = setTimeout(() => {
-            setShowUpToDate(false);
-          }, 3000);
-        }
-      }
-    } catch (error) {
-      console.error("Failed to check for updates:", error);
-    } finally {
-      setIsChecking(false);
-      isManualCheckRef.current = false;
-    }
-  };
-
-  const handleManualUpdateCheck = () => {
-    if (!updateChecksEnabled) return;
-    isManualCheckRef.current = true;
-    checkForUpdates();
-  };
-
-  const installUpdate = async () => {
-    if (!updateChecksEnabled) return;
-
-    const portable = await commands.isPortable();
-    if (portable) {
-      setShowPortableUpdateDialog(true);
-      return;
-    }
-
-    try {
-      setIsInstalling(true);
-      setDownloadProgress(0);
-      downloadedBytesRef.current = 0;
-      contentLengthRef.current = 0;
-      const update = await check();
-
-      if (!update) {
-        console.log("No update available during install attempt");
-        return;
-      }
-
-      await update.downloadAndInstall((event) => {
-        switch (event.event) {
-          case "Started":
-            downloadedBytesRef.current = 0;
-            contentLengthRef.current = event.data.contentLength ?? 0;
-            break;
-          case "Progress":
-            downloadedBytesRef.current += event.data.chunkLength;
-            const progress =
-              contentLengthRef.current > 0
-                ? Math.round(
-                    (downloadedBytesRef.current / contentLengthRef.current) *
-                      100,
-                  )
-                : 0;
-            setDownloadProgress(Math.min(progress, 100));
-            break;
-        }
-      });
-      await relaunch();
-    } catch (error) {
-      console.error("Failed to install update:", error);
-    } finally {
-      setIsInstalling(false);
-      setDownloadProgress(0);
-      downloadedBytesRef.current = 0;
-      contentLengthRef.current = 0;
-    }
-  };
-
-  // Update status functions
+  const isInstalling =
+    state.phase === "downloading" || state.phase === "installing";
+  const downloadProgress = state.progress;
+  const portableInstallerUrl = resolvePortableInstallerUrl(
+    state.rawJson,
+    platform(),
+    arch(),
+  );
+  const isUpdateDisabled =
+    !settingsLoaded ||
+    !updateChecksEnabled ||
+    state.phase === "checking" ||
+    isInstalling;
+  const isUpdateClickable = !isUpdateDisabled;
+  const updateAvailable = ["ready", "busy", "portable"].includes(state.phase);
   const getUpdateStatusText = () => {
-    if (!updateChecksEnabled) {
-      return t("footer.updateCheckingDisabled");
-    }
-    if (isInstalling) {
-      return downloadProgress > 0 && downloadProgress < 100
-        ? t("footer.downloading", {
-            progress: downloadProgress.toString().padStart(3),
-          })
-        : downloadProgress === 100
-          ? t("footer.installing")
+    if (!updateChecksEnabled) return t("footer.updateCheckingDisabled");
+    switch (state.phase) {
+      case "checking":
+        return t("footer.checkingUpdates");
+      case "downloading":
+        return downloadProgress > 0
+          ? t("footer.downloading", { progress: downloadProgress })
           : t("footer.preparing");
+      case "installing":
+        return t("footer.installing");
+      case "ready":
+        return t("footer.restartToUpdate");
+      case "busy":
+        return t("footer.finishDictationToUpdate");
+      case "portable":
+        return t("footer.updateAvailableShort");
+      case "error":
+        return t("footer.retryUpdate");
+      default:
+        return t("footer.checkForUpdates");
     }
-    if (isChecking) return t("footer.checkingUpdates");
-    if (showUpToDate) return t("footer.upToDate");
-    if (updateAvailable) return t("footer.updateAvailableShort");
-    return t("footer.checkForUpdates");
   };
-
   const getUpdateStatusAction = () => {
-    if (!updateChecksEnabled) return undefined;
-    if (updateAvailable && !isInstalling) return installUpdate;
-    if (!isChecking && !isInstalling && !updateAvailable)
-      return handleManualUpdateCheck;
-    return undefined;
+    if (isUpdateDisabled) return undefined;
+    if (state.phase === "portable")
+      return () => setShowPortableUpdateDialog(true);
+    if (state.phase === "ready" || state.phase === "busy")
+      return () => {
+        void updaterRef.current!.install();
+      };
+    return () => {
+      void updaterRef.current!.check();
+    };
   };
-
-  const isUpdateDisabled = !updateChecksEnabled || isChecking || isInstalling;
-  const isUpdateClickable =
-    !isUpdateDisabled && (updateAvailable || (!isChecking && !showUpToDate));
 
   // When no installer could be resolved for this target the button falls back to
   // the releases index, so the dialog has to say "browse" rather than "download".
